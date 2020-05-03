@@ -19,4 +19,4 @@ const Route = use('Route')
 Route.on('hello').render('welcome')
 
 // This has to be the last route
-// Route.any('*', ({ view }) => view.render('app'))
+Route.any('*', ({ view }) => view.render('app'))
