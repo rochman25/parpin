@@ -16,4 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('welcome')
+Route.on('hello').render('welcome')
+
+// This has to be the last route
+// Route.any('*', ({ view }) => view.render('app'))
