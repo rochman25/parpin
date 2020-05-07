@@ -58,7 +58,7 @@ mix.webpackConfig({
         alias: {
             "@": path.resolve(
                 __dirname,
-                "resources/assets/frontend"
+                "resources/assets"
             )
         }
     }
