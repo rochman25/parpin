@@ -386,7 +386,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-perfect-scrollbar'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -783,7 +784,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    VuePerfectScrollbar: !(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-perfect-scrollbar'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
+    VuePerfectScrollbar: vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default.a
   }
 });
 
@@ -1618,8 +1619,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'vuedraggable'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _components_vx_auto_suggest_VxAutoSuggest_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/vx-auto-suggest/VxAutoSuggest.vue */ "./resources/assets/frontend/components/vx-auto-suggest/VxAutoSuggest.vue");
+/* harmony import */ var _components_vx_auto_suggest_VxAutoSuggest_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/vx-auto-suggest/VxAutoSuggest.vue */ "./resources/assets/frontend/components/vx-auto-suggest/VxAutoSuggest.vue");
 //
 //
 //
@@ -1688,7 +1688,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+// import draggable     from 'vuedraggable'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -1698,8 +1698,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    draggable: !(function webpackMissingModule() { var e = new Error("Cannot find module 'vuedraggable'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
-    VxAutoSuggest: _components_vx_auto_suggest_VxAutoSuggest_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    draggable: draggable,
+    VxAutoSuggest: _components_vx_auto_suggest_VxAutoSuggest_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -1795,7 +1795,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-perfect-scrollbar'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -1858,7 +1859,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    VuePerfectScrollbar: !(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-perfect-scrollbar'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
+    VuePerfectScrollbar: vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   data: function data() {
     return {
@@ -1948,7 +1949,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-perfect-scrollbar'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2002,7 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    VuePerfectScrollbar: !(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-perfect-scrollbar'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
+    VuePerfectScrollbar: vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   data: function data() {
     return {
@@ -2113,8 +2115,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'firebase/app'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'firebase/auth'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 //
 //
 //
@@ -2181,8 +2181,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
+// import firebase from 'firebase/app'
+// import 'firebase/auth'
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -2194,19 +2194,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      var _this = this;
-
       // if user is logged in via auth0
       if (this.$auth.profile) this.$auth.logOut(); // if user is logged in via firebase
-
-      var firebaseCurrentUser = !(function webpackMissingModule() { var e = new Error("Cannot find module 'firebase/app'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).auth().currentUser;
-
-      if (firebaseCurrentUser) {
-        !(function webpackMissingModule() { var e = new Error("Cannot find module 'firebase/app'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).auth().signOut().then(function () {
-          _this.$router.push('/pages/login')["catch"](function () {});
-        });
-      } // If JWT login
-
+      // const firebaseCurrentUser = firebase.auth().currentUser
+      // if (firebaseCurrentUser) {
+      //     firebase.auth().signOut().then(() => {
+      //         this.$router.push('/pages/login').catch(() => {})
+      //     })
+      // }
+      // If JWT login
 
       if (localStorage.getItem("accessToken")) {
         localStorage.removeItem("accessToken");
@@ -2348,7 +2344,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-perfect-scrollbar'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _VerticalNavMenuGroup_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VerticalNavMenuGroup.vue */ "./resources/assets/frontend/layouts/components/vertical-nav-menu/VerticalNavMenuGroup.vue");
 /* harmony import */ var _VerticalNavMenuItem_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VerticalNavMenuItem.vue */ "./resources/assets/frontend/layouts/components/vertical-nav-menu/VerticalNavMenuItem.vue");
 /* harmony import */ var _Logo_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Logo.vue */ "./resources/assets/frontend/layouts/components/Logo.vue");
@@ -2490,7 +2487,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   components: {
     VNavMenuGroup: _VerticalNavMenuGroup_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     VNavMenuItem: _VerticalNavMenuItem_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    VuePerfectScrollbar: !(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-perfect-scrollbar'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
+    VuePerfectScrollbar: vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_4___default.a,
     Logo: _Logo_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: {
@@ -3125,7 +3122,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-backtotop'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var vue_backtotop__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-backtotop */ "./node_modules/vue-backtotop/src/main.js");
 /* harmony import */ var _layouts_components_horizontal_nav_menu_HorizontalNavMenu_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/layouts/components/horizontal-nav-menu/HorizontalNavMenu.vue */ "./resources/assets/frontend/layouts/components/horizontal-nav-menu/HorizontalNavMenu.vue");
 /* harmony import */ var _layouts_components_vertical_nav_menu_navMenuItems_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/layouts/components/vertical-nav-menu/navMenuItems.js */ "./resources/assets/frontend/layouts/components/vertical-nav-menu/navMenuItems.js");
 /* harmony import */ var _layouts_components_customizer_TheCustomizer_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/components/customizer/TheCustomizer.vue */ "./resources/assets/frontend/layouts/components/customizer/TheCustomizer.vue");
@@ -3281,7 +3278,7 @@ var VxTour = function VxTour() {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    BackToTop: !(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-backtotop'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
+    BackToTop: vue_backtotop__WEBPACK_IMPORTED_MODULE_9__["default"],
     HNavMenu: _layouts_components_horizontal_nav_menu_HorizontalNavMenu_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     TheCustomizer: _layouts_components_customizer_TheCustomizer_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     TheFooter: _layouts_components_TheFooter_vue__WEBPACK_IMPORTED_MODULE_6__["default"],

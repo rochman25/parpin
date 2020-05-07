@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import draggable     from 'vuedraggable'
+// import draggable     from 'vuedraggable'
 import VxAutoSuggest from '@/components/vx-auto-suggest/VxAutoSuggest.vue'
 
 export default {

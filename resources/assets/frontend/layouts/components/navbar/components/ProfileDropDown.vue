@@ -65,8 +65,8 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/auth'
+// import firebase from 'firebase/app'
+// import 'firebase/auth'
 
 export default {
   data() {
@@ -86,13 +86,13 @@ export default {
         if (this.$auth.profile) this.$auth.logOut();
 
         // if user is logged in via firebase
-        const firebaseCurrentUser = firebase.auth().currentUser
+        // const firebaseCurrentUser = firebase.auth().currentUser
 
-        if (firebaseCurrentUser) {
-            firebase.auth().signOut().then(() => {
-                this.$router.push('/pages/login').catch(() => {})
-            })
-        }
+        // if (firebaseCurrentUser) {
+        //     firebase.auth().signOut().then(() => {
+        //         this.$router.push('/pages/login').catch(() => {})
+        //     })
+        // }
         // If JWT login
         if(localStorage.getItem("accessToken")) {
           localStorage.removeItem("accessToken")
