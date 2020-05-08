@@ -17,8 +17,6 @@
             <feather-icon icon="HeartIcon" svgClasses="stroke-current text-danger w-6 h-6" class="ml-2" />
         </span>
 
-        <!-- buyNow component -->
-        <component :is="injections.components.BuyNow"></component>
     </footer>
 </template>
 

@@ -58,8 +58,18 @@ mix.webpackConfig({
         alias: {
             "@": path.resolve(
                 __dirname,
-                "resources/assets"
+                "resources/assets/frontend"
             )
         }
+    },
+    module: {
+        rules: [{
+            test: /\.jsx?$/,
+            exclude: /node_modules(?!\/@<redacted>)/,
+            use: [{
+                loader: 'babel-loader',
+                options: Config.babel()
+            }]
+        }]
     }
 })
