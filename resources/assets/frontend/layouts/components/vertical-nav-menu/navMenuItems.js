@@ -16,4 +16,16 @@ export default [
         slug: "home",
         icon: "HomeIcon",
     },
+    {
+        url: "/books",
+        name: "Books",
+        slug: "books",
+        icon: "BookIcon",
+    },
+    {
+        url: "/users",
+        name: "Users",
+        slug: "users",
+        icon: "UserIcon",
+    },
 ]

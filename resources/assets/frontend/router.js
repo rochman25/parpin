@@ -28,7 +28,7 @@ const router = new Router({
                     component: () =>
                         import ('./views/Dashboard.vue'),
                     meta: {
-                        // authRequired: true
+                        authRequired: true
                     }
                 }
             ]
@@ -67,16 +67,16 @@ const router = new Router({
     ]
 });
 
-// router.beforeEach((to, from, next) => {
-//     if (to.meta.authRequired) {
-//         if (!(auth.isAuthenticated())) {
-//             router.push({
-//                 path: '/login',
-//                 query: { to: to.path }
-//             });
-//         }
-//     }
-//     return next();
-// })
+router.beforeEach((to, from, next) => {
+    if (to.meta.authRequired) {
+        if (!(auth.isAuthenticated())) {
+            router.push({
+                path: '/login',
+                query: { to: to.path }
+            });
+        }
+    }
+    return next();
+})
 
 export default router;
