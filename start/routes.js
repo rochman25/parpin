@@ -18,11 +18,17 @@ const Route = use('Route')
 
 Route.get("hello", 'PenggunaController.index').prefix("api/v1");
 Route.post('/login', 'PenggunaController.login_action').prefix('api/v1').validator('Login');
-Route.post('/pengguna/add', 'PenggunaController.add_action').prefix('api/v1').validator('Pengguna');
 
 Route.group(function() {
+    //pengguna
     Route.get("/pengguna", 'PenggunaController.index');
-}).prefix("api/v1")
+    Route.post('/pengguna/add', 'PenggunaController.add_action').validator('Pengguna');
+
+    //alat
+    Route.get("/alat", 'AlatController.index');
+    Route.post("/alat/add", 'AlatController.add_action').validator('AddAlat');
+
+}).prefix("api/v1").middleware('auth')
 
 // This has to be the last route
 Route.any('*', ({ view }) => view.render('app'))
