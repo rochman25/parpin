@@ -16,7 +16,13 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('hello').render('welcome')
+Route.get("hello", 'PenggunaController.index').prefix("api/v1");
+Route.post('/login', 'PenggunaController.login_action').prefix('api/v1').validator('Login');
+Route.post('/pengguna/add', 'PenggunaController.add_action').prefix('api/v1').validator('Pengguna');
+
+Route.group(function() {
+    Route.get("/pengguna", 'PenggunaController.index');
+}).prefix("api/v1")
 
 // This has to be the last route
 Route.any('*', ({ view }) => view.render('app'))

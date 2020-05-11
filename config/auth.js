@@ -16,7 +16,7 @@ module.exports = {
     | Available Serializers - lucid, database
     |
     */
-    authenticator: 'session',
+    authenticator: 'jwt',
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ module.exports = {
         model: 'App/Models/Pengguna',
         token: 'App/Models/Token',
         scheme: 'jwt',
-        uid: 'email',
+        uid: 'username',
         password: 'password',
         expiry: '20m',
         options: {
