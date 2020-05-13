@@ -5,9 +5,11 @@ import authConfig from './../../../../auth_config.json'
 class AuthService extends EventEmitter {
 
     isAuthenticated() {
-        return (
-            localStorage.getItem('userInfo')
-        );
+        if (localStorage.getItem('userInfo')) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

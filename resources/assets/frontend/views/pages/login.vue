@@ -15,17 +15,17 @@
               <div class="p-8 login-tabs-container">
                 <div class="vx-card__title mb-4">
                   <h4 class="mb-4">Login</h4>
-                  <p>Welcome back, please login to your account.</p>
+                  <p>Selamat datang. Silahkan Login untuk melanjutkan.</p>
                 </div>
 
                 <div>
                   <vs-input
-                    name="email"
+                    name="username"
                     icon-no-border
                     icon="icon icon-user"
                     icon-pack="feather"
-                    label-placeholder="Email"
-                    v-model="email"
+                    label-placeholder="Username"
+                    v-model="username"
                     class="w-full"
                   />
 
@@ -58,22 +58,59 @@
 
 <script>
 export default {
-    data(){
-        return{
-            email:"",
-            password:""
-        };
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    checkLogin() {
+      if (this.$store.state.auth.isUserLoggedIn()) {
+        this.$vs.notify({
+          title: "Login Info",
+          text: "You are already logged in!",
+          iconPack: "feather",
+          icon: "icon-alert-circle",
+          color: "warning"
+        });
+
+        return false;
+      }
+      return true;
     },
-    methods:{
-        loginJWT(){
+    loginJWT() {
+      if (!this.checkLogin()) return;
 
-        },
-        validateForm(){
+      this.$vs.loading();
 
+      const payload = {
+        userDetails: {
+          username: this.username,
+          password: this.password
         }
-    }
-}
+      };
+
+      this.$store
+        .dispatch("auth/loginJwt", payload)
+        .then(() => {
+          this.$vs.loading.close();
+        })
+        .catch(error => {
+          this.$vs.loading.close();
+          this.$vs.notify({
+            title: "Error",
+            text: error.message,
+            iconPack: "feather",
+            icon: "icon-alert-circle",
+            color: "danger"
+          });
+          console.log(error.message);
+        });
+    },
+    validateForm() {}
+  }
+};
 </script>
 <style lang="scss">
-
 </style>

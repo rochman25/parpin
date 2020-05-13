@@ -29,7 +29,7 @@ import './assets/css/main.css'
 import router from './router.js'
 
 // Vuex Store
-import store from './store/store'
+import store from './store/store.js'
 
 // Vuejs - Vue wrapper for hammerjs
 import { VueHammer } from 'vue2-hammer'

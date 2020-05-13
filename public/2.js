@@ -70,12 +70,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      email: "",
+      username: "",
       password: ""
     };
   },
   methods: {
-    loginJWT: function loginJWT() {},
+    checkLogin: function checkLogin() {
+      if (this.$store.state.auth.isUserLoggedIn()) {
+        this.$vs.notify({
+          title: "Login Info",
+          text: "You are already logged in!",
+          iconPack: "feather",
+          icon: "icon-alert-circle",
+          color: "warning"
+        });
+        return false;
+      }
+
+      return true;
+    },
+    loginJWT: function loginJWT() {
+      var _this = this;
+
+      if (!this.checkLogin()) return;
+      this.$vs.loading();
+      var payload = {
+        userDetails: {
+          username: this.username,
+          password: this.password
+        }
+      };
+      this.$store.dispatch("auth/loginJwt", payload).then(function () {
+        _this.$vs.loading.close();
+      })["catch"](function (error) {
+        _this.$vs.loading.close();
+
+        _this.$vs.notify({
+          title: "Error",
+          text: error.message,
+          iconPack: "feather",
+          icon: "icon-alert-circle",
+          color: "danger"
+        });
+
+        console.log(error.message);
+      });
+    },
     validateForm: function validateForm() {}
   }
 });
@@ -155,7 +195,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(
-                                "Welcome back, please login to your account."
+                                "Selamat datang. Silahkan Login untuk melanjutkan."
                               )
                             ])
                           ]),
@@ -166,18 +206,18 @@ var render = function() {
                               _c("vs-input", {
                                 staticClass: "w-full",
                                 attrs: {
-                                  name: "email",
+                                  name: "username",
                                   "icon-no-border": "",
                                   icon: "icon icon-user",
                                   "icon-pack": "feather",
-                                  "label-placeholder": "Email"
+                                  "label-placeholder": "Username"
                                 },
                                 model: {
-                                  value: _vm.email,
+                                  value: _vm.username,
                                   callback: function($$v) {
-                                    _vm.email = $$v
+                                    _vm.username = $$v
                                   },
-                                  expression: "email"
+                                  expression: "username"
                                 }
                               }),
                               _vm._v(" "),
