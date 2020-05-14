@@ -28,6 +28,18 @@ Route.group(function() {
     Route.get("/alat", 'AlatController.index');
     Route.post("/alat/add", 'AlatController.add_action').validator('AddAlat');
 
+    //sensor
+    Route.get("/sensor", 'SensorController.index');
+    Route.post('/sensor/add', 'SensorController.add_action');
+    Route.put("/sensor/update/:id", 'SensorController.update_action');
+    Route.delete("/sensor/delete", 'SensorController.delete_action');
+
+    //microcontroller
+    Route.get("/microcontroller", 'MicroController.index');
+    Route.post('/microcontroller/add', 'MicroController.add_action');
+    Route.put("/microcontroller/update/:id", 'MicroController.update_action');
+    Route.delete("/microcontroller/delete", 'MicroController.delete_action');
+
 }).prefix("api/v1").middleware('auth')
 
 // This has to be the last route
