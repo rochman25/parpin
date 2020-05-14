@@ -11,7 +11,7 @@
 export default [
     //
     {
-        url: "/",
+        url: "/dashboard",
         name: "Dashboard",
         slug: "home",
         icon: "HomeIcon",

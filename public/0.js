@@ -2661,31 +2661,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5514,117 +5489,7 @@ var render = function() {
                                     isRTL: _vm.$vs.rtl
                                   }
                                 })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c(
-                              "vs-dropdown",
-                              {
-                                staticClass:
-                                  "ml-auto md:block hidden cursor-pointer",
-                                attrs: { "vs-trigger-click": "" }
-                              },
-                              [
-                                _c("vs-button", {
-                                  attrs: {
-                                    radius: "",
-                                    icon: "icon-settings",
-                                    "icon-pack": "feather"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "vs-dropdown-menu",
-                                  { staticClass: "w-32" },
-                                  [
-                                    _c("vs-dropdown-item", [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "flex items-center",
-                                          on: {
-                                            click: function($event) {
-                                              _vm.$router
-                                                .push("/pages/profile")
-                                                .catch(function() {})
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("feather-icon", {
-                                            staticClass: "inline-block mr-2",
-                                            attrs: {
-                                              icon: "UserIcon",
-                                              svgClasses: "w-4 h-4"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Profile")])
-                                        ],
-                                        1
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("vs-dropdown-item", [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "flex items-center",
-                                          on: {
-                                            click: function($event) {
-                                              _vm.$router
-                                                .push("/apps/todo")
-                                                .catch(function() {})
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("feather-icon", {
-                                            staticClass: "inline-block mr-2",
-                                            attrs: {
-                                              icon: "CheckSquareIcon",
-                                              svgClasses: "w-4 h-4"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Tasks")])
-                                        ],
-                                        1
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("vs-dropdown-item", [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "flex items-center",
-                                          on: {
-                                            click: function($event) {
-                                              _vm.$router
-                                                .push("/apps/email")
-                                                .catch(function() {})
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("feather-icon", {
-                                            staticClass: "inline-block mr-2",
-                                            attrs: {
-                                              icon: "MailIcon",
-                                              svgClasses: "w-4 h-4"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("span", [_vm._v("Inbox")])
-                                        ],
-                                        1
-                                      )
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
+                              : _vm._e()
                           ],
                           1
                         )
@@ -6934,7 +6799,7 @@ __webpack_require__.r(__webpack_exports__);
 ==========================================================================================*/
 /* harmony default export */ __webpack_exports__["default"] = ([//
 {
-  url: "/",
+  url: "/dashboard",
   name: "Dashboard",
   slug: "home",
   icon: "HomeIcon"

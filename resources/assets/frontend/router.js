@@ -28,6 +28,39 @@ const router = new Router({
                     component: () =>
                         import ('./views/Dashboard.vue'),
                     meta: {
+                        // breadcrumb: [
+                        //     { title: 'Home', url: '/' },
+                        //     { title: 'Dashboard', url: '/dashboard' },
+                        //     { title: 'Home', active: true },
+                        // ],
+                        authRequired: true
+                    }
+                },
+                {
+                    path: '/alat',
+                    name: 'parpin-alat',
+                    component: () =>
+                        import ('./views/pages/Alat/list_alat.vue'),
+                    meta: {
+                        // breadcrumb: [
+                        //     { title: 'Home', url: '/' },
+                        //     { title: 'Alat', url: '/alat' },
+                        //     { title: 'List Alat', active: true },
+                        // ],
+                        authRequired: true
+                    }
+                },
+                {
+                    path: '/pengguna',
+                    name: 'parpin-pengguna',
+                    component: () =>
+                        import ('./views/pages/Pengguna/list_pengguna.vue'),
+                    meta: {
+                        // breadcrumb: [
+                        //     { title: 'Home', url: '/' },
+                        //     { title: 'Pengguna', url: '/pengguna' },
+                        //     { title: 'List Pengguna', active: true },
+                        // ],
                         authRequired: true
                     }
                 }

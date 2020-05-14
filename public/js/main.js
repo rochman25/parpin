@@ -63651,6 +63651,39 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
         return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
       },
       meta: {
+        // breadcrumb: [
+        //     { title: 'Home', url: '/' },
+        //     { title: 'Dashboard', url: '/dashboard' },
+        //     { title: 'Home', active: true },
+        // ],
+        authRequired: true
+      }
+    }, {
+      path: '/alat',
+      name: 'parpin-alat',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/list_alat.vue */ "./resources/assets/frontend/views/pages/Alat/list_alat.vue"));
+      },
+      meta: {
+        // breadcrumb: [
+        //     { title: 'Home', url: '/' },
+        //     { title: 'Alat', url: '/alat' },
+        //     { title: 'List Alat', active: true },
+        // ],
+        authRequired: true
+      }
+    }, {
+      path: '/pengguna',
+      name: 'parpin-pengguna',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/pages/Pengguna/list_pengguna.vue */ "./resources/assets/frontend/views/pages/Pengguna/list_pengguna.vue"));
+      },
+      meta: {
+        // breadcrumb: [
+        //     { title: 'Home', url: '/' },
+        //     { title: 'Pengguna', url: '/pengguna' },
+        //     { title: 'List Pengguna', active: true },
+        // ],
         authRequired: true
       }
     }]
