@@ -1613,27 +1613,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -3570,24 +3549,7 @@ var render = function(_h, _vm) {
           [_vm._v("Pixinvent")]
         ),
         _vm._v(", All rights Reserved")
-      ]),
-      _vm._v(" "),
-      _c(
-        "span",
-        { staticClass: "md:flex hidden items-center" },
-        [
-          _c("span", [_vm._v("Hand-crafted & Made with")]),
-          _vm._v(" "),
-          _c("feather-icon", {
-            staticClass: "ml-2",
-            attrs: {
-              icon: "HeartIcon",
-              svgClasses: "stroke-current text-danger w-6 h-6"
-            }
-          })
-        ],
-        1
-      )
+      ])
     ]
   )
 }
@@ -4118,10 +4080,6 @@ var render = function() {
             attrs: { color: _vm.navbarColor }
           },
           [
-            _vm.windowWidth >= 992
-              ? _c("bookmarks", { attrs: { navbarColor: _vm.navbarColor } })
-              : _vm._e(),
-            _vm._v(" "),
             _c(
               "router-link",
               {
@@ -4134,13 +4092,11 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("span", { staticClass: "vx-logo-text text-primary" }, [
-                  _vm._v("Vuexy")
+                  _vm._v("Parpin")
                 ])
               ],
               1
             ),
-            _vm._v(" "),
-            _c("search-bar"),
             _vm._v(" "),
             _c("notification-drop-down"),
             _vm._v(" "),
@@ -4199,13 +4155,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm.windowWidth >= 992
-              ? _c("bookmarks", { attrs: { navbarColor: _vm.navbarColor } })
-              : _vm._e(),
-            _vm._v(" "),
             _c("vs-spacer"),
-            _vm._v(" "),
-            _c("search-bar"),
             _vm._v(" "),
             _c("notification-drop-down"),
             _vm._v(" "),
@@ -4728,78 +4678,6 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "li",
-                      {
-                        staticClass:
-                          "flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-                      },
-                      [
-                        _c("feather-icon", {
-                          attrs: { icon: "MailIcon", svgClasses: "w-4 h-4" }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "ml-2" }, [_vm._v("Inbox")])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      {
-                        staticClass:
-                          "flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-                      },
-                      [
-                        _c("feather-icon", {
-                          attrs: {
-                            icon: "CheckSquareIcon",
-                            svgClasses: "w-4 h-4"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "ml-2" }, [_vm._v("Tasks")])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      {
-                        staticClass:
-                          "flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-                      },
-                      [
-                        _c("feather-icon", {
-                          attrs: {
-                            icon: "MessageSquareIcon",
-                            svgClasses: "w-4 h-4"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "ml-2" }, [_vm._v("Chat")])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      {
-                        staticClass:
-                          "flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-                      },
-                      [
-                        _c("feather-icon", {
-                          attrs: { icon: "HeartIcon", svgClasses: "w-4 h-4" }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "ml-2" }, [
-                          _vm._v("Wish List")
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
                     _c("vs-divider", { staticClass: "m-1" }),
                     _vm._v(" "),
                     _c(
@@ -5082,7 +4960,7 @@ var render = function() {
                               ],
                               staticClass: "vx-logo-text text-primary"
                             },
-                            [_vm._v(_vm._s(_vm.title))]
+                            [_vm._v("Parpin")]
                           )
                         : _vm._e()
                     ],
@@ -7061,14 +6939,14 @@ __webpack_require__.r(__webpack_exports__);
   slug: "home",
   icon: "HomeIcon"
 }, {
-  url: "/books",
-  name: "Books",
-  slug: "books",
-  icon: "BookIcon"
+  url: "/alat",
+  name: "Alat",
+  slug: "alat",
+  icon: "PackageIcon"
 }, {
-  url: "/users",
-  name: "Users",
-  slug: "users",
+  url: "/pengguna",
+  name: "Pengguna",
+  slug: "pengguna",
   icon: "UserIcon"
 }]);
 

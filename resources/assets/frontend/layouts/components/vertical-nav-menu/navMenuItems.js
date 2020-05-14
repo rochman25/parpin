@@ -17,15 +17,15 @@ export default [
         icon: "HomeIcon",
     },
     {
-        url: "/books",
-        name: "Books",
-        slug: "books",
-        icon: "BookIcon",
+        url: "/alat",
+        name: "Alat",
+        slug: "alat",
+        icon: "PackageIcon",
     },
     {
-        url: "/users",
-        name: "Users",
-        slug: "users",
+        url: "/pengguna",
+        name: "Pengguna",
+        slug: "pengguna",
         icon: "UserIcon",
     },
 ]

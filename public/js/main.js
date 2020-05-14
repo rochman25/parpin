@@ -4748,27 +4748,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/array-for-each.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/core-js/internals/array-for-each.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $forEach = __webpack_require__(/*! ../internals/array-iteration */ "./node_modules/core-js/internals/array-iteration.js").forEach;
-var sloppyArrayMethod = __webpack_require__(/*! ../internals/sloppy-array-method */ "./node_modules/core-js/internals/sloppy-array-method.js");
-
-// `Array.prototype.forEach` method implementation
-// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
-module.exports = sloppyArrayMethod('forEach') ? function forEach(callbackfn /* , thisArg */) {
-  return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-} : [].forEach;
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/array-includes.js":
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/internals/array-includes.js ***!
@@ -5157,52 +5136,6 @@ var EXISTS = isObject(document) && isObject(document.createElement);
 
 module.exports = function (it) {
   return EXISTS ? document.createElement(it) : {};
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/internals/dom-iterables.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js/internals/dom-iterables.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// iterable DOM collections
-// flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
-module.exports = {
-  CSSRuleList: 0,
-  CSSStyleDeclaration: 0,
-  CSSValueList: 0,
-  ClientRectList: 0,
-  DOMRectList: 0,
-  DOMStringList: 0,
-  DOMTokenList: 1,
-  DataTransferItemList: 0,
-  FileList: 0,
-  HTMLAllCollection: 0,
-  HTMLCollection: 0,
-  HTMLFormElement: 0,
-  HTMLSelectElement: 0,
-  MediaList: 0,
-  MimeTypeArray: 0,
-  NamedNodeMap: 0,
-  NodeList: 1,
-  PaintRequestList: 0,
-  Plugin: 0,
-  PluginArray: 0,
-  SVGLengthList: 0,
-  SVGNumberList: 0,
-  SVGPathSegList: 0,
-  SVGPointList: 0,
-  SVGStringList: 0,
-  SVGTransformList: 0,
-  SourceBufferList: 0,
-  StyleSheetList: 0,
-  TextTrackCueList: 0,
-  TextTrackList: 0,
-  TouchList: 0
 };
 
 
@@ -6969,27 +6902,6 @@ addToUnscopables(FIND_INDEX);
 
 /***/ }),
 
-/***/ "./node_modules/core-js/modules/es.array.for-each.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/core-js/modules/es.array.for-each.js ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var forEach = __webpack_require__(/*! ../internals/array-for-each */ "./node_modules/core-js/internals/array-for-each.js");
-
-// `Array.prototype.forEach` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
-$({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
-  forEach: forEach
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/modules/es.array.includes.js":
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.includes.js ***!
@@ -7867,32 +7779,6 @@ $({ target: 'String', proto: true, forced: forcedStringTrimMethod('trim') }, {
     return $trim(this);
   }
 });
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/web.dom-collections.for-each.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/core-js/modules/web.dom-collections.for-each.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
-var DOMIterables = __webpack_require__(/*! ../internals/dom-iterables */ "./node_modules/core-js/internals/dom-iterables.js");
-var forEach = __webpack_require__(/*! ../internals/array-for-each */ "./node_modules/core-js/internals/array-for-each.js");
-var hide = __webpack_require__(/*! ../internals/hide */ "./node_modules/core-js/internals/hide.js");
-
-for (var COLLECTION_NAME in DOMIterables) {
-  var Collection = global[COLLECTION_NAME];
-  var CollectionPrototype = Collection && Collection.prototype;
-  // some Chrome versions have non-configurable methods on DOMTokenList
-  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
-    hide(CollectionPrototype, 'forEach', forEach);
-  } catch (error) {
-    CollectionPrototype.forEach = forEach;
-  }
-}
 
 
 /***/ }),
@@ -62579,14 +62465,14 @@ module.exports = "/images/vuexy-login-bg.jpg?04351a33eb1f49873e982c8b025d5718";
 
 /***/ }),
 
-/***/ "./resources/assets/frontend/assets/images/portrait/small/avatar-s-11.jpg":
-/*!********************************************************************************!*\
-  !*** ./resources/assets/frontend/assets/images/portrait/small/avatar-s-11.jpg ***!
-  \********************************************************************************/
+/***/ "./resources/assets/frontend/assets/images/portrait/small/account.png":
+/*!****************************************************************************!*\
+  !*** ./resources/assets/frontend/assets/images/portrait/small/account.png ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/avatar-s-11.jpg?1a620230b75dd161d37ad2d21948e9cb";
+module.exports = "/images/account.png?ac323e7635e33157ecafe0089c40c74e";
 
 /***/ }),
 
@@ -63555,14 +63441,14 @@ __webpack_require__.r(__webpack_exports__);
   pages: {
     key: "title",
     data: [{
-      title: 'Home',
+      title: 'Dashboard',
       url: '/',
       icon: 'HomeIcon',
       is_bookmarked: false
     }, {
-      title: 'Books',
-      url: '/books',
-      icon: 'FileIcon',
+      title: 'Alat',
+      url: '/alat',
+      icon: 'PackageIcon',
       is_bookmarked: false
     }]
   }
@@ -64187,20 +64073,8 @@ var mutations = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.filter */ "./node_modules/core-js/modules/es.array.filter.js");
 /* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.for-each */ "./node_modules/core-js/modules/es.array.for-each.js");
-/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.keys */ "./node_modules/core-js/modules/es.object.keys.js");
-/* harmony import */ var core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _layouts_components_navbar_navbarSearchAndPinList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/components/navbar/navbarSearchAndPinList */ "./resources/assets/frontend/layouts/components/navbar/navbarSearchAndPinList.js");
-/* harmony import */ var _themeConfig_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../themeConfig.js */ "./themeConfig.js");
-
-
-
-
-
-
+/* harmony import */ var _layouts_components_navbar_navbarSearchAndPinList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/layouts/components/navbar/navbarSearchAndPinList */ "./resources/assets/frontend/layouts/components/navbar/navbarSearchAndPinList.js");
+/* harmony import */ var _themeConfig_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../themeConfig.js */ "./themeConfig.js");
 
 
 
@@ -64208,18 +64082,15 @@ __webpack_require__.r(__webpack_exports__);
  // /////////////////////////////////////////////
 // Variables
 // /////////////////////////////////////////////
+// const userDefaults = {
+//     uid: 0, // From Auth
+//     displayName: "John Doe", // From Auth
+//     about: "Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw brownie brownie marshmallow.",
+//     photoURL: require("@/assets/images/portrait/small/avatar-s-11.jpg"), // From Auth
+//     status: "online",
+//     userRole: "admin"
+// };
 
-var userDefaults = {
-  uid: 0,
-  // From Auth
-  displayName: "John Doe",
-  // From Auth
-  about: "Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw brownie brownie marshmallow.",
-  photoURL: __webpack_require__(/*! @/assets/images/portrait/small/avatar-s-11.jpg */ "./resources/assets/frontend/assets/images/portrait/small/avatar-s-11.jpg"),
-  // From Auth
-  status: "online",
-  userRole: "admin"
-};
 var userInfoLocalStorage = JSON.parse(localStorage.getItem("userInfo")) || {}; // Set default values for active-user
 // More data can be added by auth provider or other plugins/packages
 
@@ -64227,20 +64098,23 @@ var getUserInfo = function getUserInfo() {
   var userInfo = {
     uid: userInfoLocalStorage._id,
     displayName: userInfoLocalStorage.username,
-    photoURL: __webpack_require__(/*! @/assets/images/portrait/small/avatar-s-11.jpg */ "./resources/assets/frontend/assets/images/portrait/small/avatar-s-11.jpg"),
+    photoURL: __webpack_require__(/*! @/assets/images/portrait/small/account.png */ "./resources/assets/frontend/assets/images/portrait/small/account.png"),
     // From Auth
     status: "online",
     userRole: "admin"
   }; // Update property in user
-
-  Object.keys(userDefaults).forEach(function (key) {
-    // If property is defined in localStorage => Use that
-    userInfo[key] = userInfoLocalStorage[key] ? userInfoLocalStorage[key] : userDefaults[key];
-  }); // Include properties from localStorage
-
-  Object.keys(userInfoLocalStorage).forEach(function (key) {
-    if (userInfo[key] == undefined && userInfoLocalStorage[key] != null) userInfo[key] = userInfoLocalStorage[key];
-  }); // console.log(userInfo)
+  // Object.keys(userDefaults).forEach(key => {
+  //     // If property is defined in localStorage => Use that
+  //     userInfo[key] = userInfoLocalStorage[key] ?
+  //         userInfoLocalStorage[key] :
+  //         userDefaults[key];
+  // });
+  // Include properties from localStorage
+  // Object.keys(userInfoLocalStorage).forEach(key => {
+  //     if (userInfo[key] == undefined && userInfoLocalStorage[key] != null)
+  //         userInfo[key] = userInfoLocalStorage[key];
+  // });
+  // console.log(userInfo)
 
   return userInfo;
 };
@@ -64249,17 +64123,17 @@ var state = {
   AppActiveUser: getUserInfo(),
   bodyOverlay: false,
   isVerticalNavMenuActive: true,
-  mainLayoutType: _themeConfig_js__WEBPACK_IMPORTED_MODULE_5__["default"].mainLayoutType || "vertical",
-  navbarSearchAndPinList: _layouts_components_navbar_navbarSearchAndPinList__WEBPACK_IMPORTED_MODULE_4__["default"],
-  reduceButton: _themeConfig_js__WEBPACK_IMPORTED_MODULE_5__["default"].sidebarCollapsed,
+  mainLayoutType: _themeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"].mainLayoutType || "vertical",
+  navbarSearchAndPinList: _layouts_components_navbar_navbarSearchAndPinList__WEBPACK_IMPORTED_MODULE_1__["default"],
+  reduceButton: _themeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"].sidebarCollapsed,
   verticalNavMenuWidth: "default",
   verticalNavMenuItemsMin: false,
   scrollY: 0,
-  starredPages: _layouts_components_navbar_navbarSearchAndPinList__WEBPACK_IMPORTED_MODULE_4__["default"]["pages"].data.filter(function (page) {
+  starredPages: _layouts_components_navbar_navbarSearchAndPinList__WEBPACK_IMPORTED_MODULE_1__["default"]["pages"].data.filter(function (page) {
     return page.is_bookmarked;
   }),
-  theme: _themeConfig_js__WEBPACK_IMPORTED_MODULE_5__["default"].theme || "light",
-  themePrimaryColor: _themeConfig_js__WEBPACK_IMPORTED_MODULE_5__["default"].primary,
+  theme: _themeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"].theme || "light",
+  themePrimaryColor: _themeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"].primary,
   // Can be used to get current window with
   // Note: Above breakpoint state is for internal use of sidebar & navbar component
   windowWidth: null
