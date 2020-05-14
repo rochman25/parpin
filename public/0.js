@@ -6809,6 +6809,26 @@ __webpack_require__.r(__webpack_exports__);
   slug: "alat",
   icon: "PackageIcon"
 }, {
+  url: "/notifikasi",
+  name: "Notifikasi",
+  slug: "notifikasi",
+  icon: "InfoIcon"
+}, {
+  url: null,
+  name: "Master Data",
+  icon: "PlusCircleIcon",
+  submenu: [{
+    url: "/master/sensor",
+    name: "Sensor",
+    slug: "Master Data Sensor",
+    icon: "PocketIcon"
+  }, {
+    url: "/master/microcontroller",
+    name: "microcontroller",
+    slug: "Master Data microcontroller",
+    icon: "EditIcon"
+  }]
+}, {
   url: "/pengguna",
   name: "Pengguna",
   slug: "pengguna",

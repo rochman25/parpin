@@ -63,6 +63,33 @@ const router = new Router({
                         // ],
                         authRequired: true
                     }
+                },
+                {
+                    path: '/master/sensor',
+                    name: 'parpin-sensor',
+                    component: () =>
+                        import ('./views/pages/Sensor/list_sensor.vue'),
+                    meta: {
+                        authRequired: true
+                    }
+                },
+                {
+                    path: '/master/microcontroller',
+                    name: 'parpin-microcontroller',
+                    component: () =>
+                        import ('./views/pages/Microcontroller/list_microcontroller.vue'),
+                    meta: {
+                        authRequired: true
+                    }
+                },
+                {
+                    path: '/notifikasi',
+                    name: 'parpin-notifikasi',
+                    component: () =>
+                        import ('./views/pages/Notifikasi/view_notifikasi.vue'),
+                    meta: {
+                        authRequired: true
+                    }
                 }
             ]
         },

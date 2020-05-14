@@ -63648,7 +63648,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/dashboard',
       name: 'parpin-dashboard',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -63686,11 +63686,38 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
         // ],
         authRequired: true
       }
+    }, {
+      path: '/master/sensor',
+      name: 'parpin-sensor',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/pages/Sensor/list_sensor.vue */ "./resources/assets/frontend/views/pages/Sensor/list_sensor.vue"));
+      },
+      meta: {
+        authRequired: true
+      }
+    }, {
+      path: '/master/microcontroller',
+      name: 'parpin-microcontroller',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/pages/Microcontroller/list_microcontroller.vue */ "./resources/assets/frontend/views/pages/Microcontroller/list_microcontroller.vue"));
+      },
+      meta: {
+        authRequired: true
+      }
+    }, {
+      path: '/notifikasi',
+      name: 'parpin-notifikasi',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/pages/Notifikasi/view_notifikasi.vue */ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue"));
+      },
+      meta: {
+        authRequired: true
+      }
     }]
   }, {
     path: "",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./layouts/full-page/FullPage.vue */ "./resources/assets/frontend/layouts/full-page/FullPage.vue"));
+      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./layouts/full-page/FullPage.vue */ "./resources/assets/frontend/layouts/full-page/FullPage.vue"));
     },
     children: [//fullpages
     {
@@ -63703,7 +63730,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/not-found',
       name: 'parpin-not-found',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/pages/404.vue */ "./resources/assets/frontend/views/pages/404.vue"));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/pages/404.vue */ "./resources/assets/frontend/views/pages/404.vue"));
       }
     } // {
     //     path: '/not-authorized',
