@@ -4,6 +4,11 @@
 const Model = use('Model')
 
 class Microcontroller extends Model {
+
+    static get collection() {
+        return 'microcontroller'
+    }
+
 }
 
 module.exports = Microcontroller
