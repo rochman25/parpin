@@ -26,7 +26,9 @@ Route.group(function() {
 
     //alat
     Route.get("/alat", 'AlatController.index');
-    Route.post("/alat/add", 'AlatController.add_action').validator('AddAlat');
+    Route.post("/alat/add", 'AlatController.add_action');
+    Route.put("/alat/update/:id", 'AlatController.update_action');
+    Route.delete("/alat/delete", "AlatController.delete_action");
 
     //sensor
     Route.get("/sensor", 'SensorController.index');
