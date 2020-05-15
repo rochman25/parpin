@@ -39,10 +39,10 @@ class SensorController extends BaseController {
     }
 
     async add_action({ request, response }) {
-        let nama = request.input('nama');
-        let model = request.input('model');
-        let wr = request.input('work_range');
-        let wp = request.input('water_pressure');
+        let nama = request.input("nama");
+        let model = request.input("model");
+        let wr = request.input("work_range");
+        let wp = request.input("water_pressure");
         let sensor = new Sensor();
         sensor.nama = nama;
         sensor.model = model;
@@ -64,10 +64,10 @@ class SensorController extends BaseController {
         let sensor = await Sensor.find(id);
         let respon = {};
         if (sensor) {
-            let nama = request.input('nama');
-            let model = request.input('model');
-            let wr = request.input('work_range');
-            let wp = request.input('water_pressure');
+            let nama = request.input("nama");
+            let model = request.input("model");
+            let wr = request.input("work_range");
+            let wp = request.input("water_pressure");
 
             sensor.nama = nama;
             sensor.model = model;
@@ -79,18 +79,31 @@ class SensorController extends BaseController {
             respon = {
                 message: this.updateSuccessMessage,
                 data: sensor
-            }
-            return response.json(this.successResponse(respon))
+            };
+            return response.json(this.successResponse(respon));
         } else {
             respon = {
-                message: this.dataNotFound,
-            }
-            return response.json(this.successResponse(respon))
+                message: this.dataNotFound
+            };
+            return response.json(this.successResponse(respon));
         }
     }
 
     async delete_action({ request, response }) {
-
+        let id = request.input("id");
+        let sensor = await Sensor.find(id);
+        let respon = {};
+        if (sensor) {
+            await sensor.delete()
+            respon = {
+                message: this.deleteSuccessMessage,
+            };
+        } else {
+            respon = {
+                message: this.dataNotFound
+            };
+        }
+        return response.json(this.successResponse(respon));
     }
 }
 

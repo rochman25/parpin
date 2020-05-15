@@ -10,6 +10,7 @@ class BaseController {
 
         this.addSuccessMessage = "Insert data succes.";
         this.updateSuccessMessage = "Update data success.";
+        this.deleteSuccessMessage = "Delete data success.";
 
         this.dataFound = "Data Found.";
         this.dataNotFound = "Data Not Found.";
