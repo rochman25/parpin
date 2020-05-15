@@ -60,7 +60,6 @@ class SensorController extends BaseController {
 
     async update_action({ request, response, params }) {
         let id = params.id;
-        // let sensor = await Sensor.where('_id', id).fetch();
         let sensor = await Sensor.find(id);
         let respon = {};
         if (sensor) {
