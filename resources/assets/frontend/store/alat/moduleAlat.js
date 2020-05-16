@@ -4,6 +4,7 @@ import getters from './moduleAlatGetters.js'
 import mutations from './moduleAlatMutations.js'
 
 export default {
+    isRegistered: false,
     namespaced: true,
     state: state,
     mutations: mutations,

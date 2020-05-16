@@ -2,41 +2,47 @@
   <div id="demo-card-analytics">
     <div class="vx-row">
       <!-- SUPPORT TRACKER CHART+- -->
-      <div class="vx-col w-full md:w-1/3 lg:w-1/3 xl:w-1/3 mb-base">
-        <vx-card title="Alat 1">
-          <!-- CARD ACTION -->
-          <template slot="actions">
-            <!-- <change-time-duration-dropdown /> -->
-          </template>
+      <!-- <template slot-scope="{data}"> -->
+        <div
+          class="vx-col w-full md:w-1/3 lg:w-1/3 xl:w-1/3 mb-base"
+          v-for="(alatInfo,index) in list"
+          :key="index"
+        >
+          <vx-card :title="alatInfo.nama">
+            <!-- CARD ACTION -->
+            <template slot="actions">
+              <!-- <change-time-duration-dropdown /> -->
+            </template>
 
-          <div slot="no-body" v-if="supportTracker.analyticsData">
-            <div class="vx-row text-center">
-              <!-- Chart -->
-              <div
-                class="vx-col w-full lg:w-5/5 md:w-full sm:w-5/5 justify-center mx-auto lg:mt-0 md:mt-6 sm:mt-0 mt-6"
-              >
-                <vue-apex-charts
-                  type="radialBar"
-                  height="385"
-                  :options="analyticsData.supportTrackerRadialBar.chartOptions"
-                  :series="supportTracker.series"
-                />
+            <div slot="no-body" v-if="supportTracker.analyticsData">
+              <div class="vx-row text-center">
+                <!-- Chart -->
+                <div
+                  class="vx-col w-full lg:w-5/5 md:w-full sm:w-5/5 justify-center mx-auto lg:mt-0 md:mt-6 sm:mt-0 mt-3"
+                >
+                  <vue-apex-charts
+                    type="radialBar"
+                    height="350"
+                    :options="analyticsData.supportTrackerRadialBar.chartOptions"
+                    :series="supportTracker.series"
+                  />
+                </div>
+              </div>
+              <!-- Support Tracker Meta Data -->
+              <div class="flex flex-row justify-between px-8 pb-5">
+                <p
+                  class="text-center"
+                  v-for="(val, key) in supportTracker.analyticsData.meta"
+                  :key="key"
+                >
+                  <span class="block">{{ key }}</span>
+                  <span class="text-2xl font-semibold">{{ val }}</span>
+                </p>
               </div>
             </div>
-            <!-- Support Tracker Meta Data -->
-            <div class="flex flex-row justify-between px-8 pb-10">
-              <p
-                class="text-center"
-                v-for="(val, key) in supportTracker.analyticsData.meta"
-                :key="key"
-              >
-                <span class="block">{{ key }}</span>
-                <span class="text-2xl font-semibold">{{ val }}</span>
-              </p>
-            </div>
-          </div>
-        </vx-card>
-      </div>
+          </vx-card>
+        </div>
+      <!-- </template> -->
     </div>
   </div>
 </template>
@@ -55,19 +61,12 @@ export default {
         analyticsData: {
           openTickets: 163,
           meta: {
-            "New Tickets": 30,
-            "Open Tickets": 63,
-            "Response Time": "1d"
+            Status: "online",
+            // "": 63,
+            "Waktu Response": 0.23 + " detik"
           }
         },
-        series: [10]
-      },
-      goalOverview: {
-        analyticsData: {
-          completed: 8000000,
-          inProgress: 13561
-        },
-        series: [83]
+        series: [100]
       },
       analyticsData: analyticsData
     };
@@ -78,8 +77,9 @@ export default {
     ChangeTimeDurationDropdown
   },
   computed: {
-    alat() {
-      return this.$store.state.alat;
+    list() {
+    //   console.log(this.$store.state.dataAlat);
+      return this.$store.state.dataAlat.alat;
     }
   },
   created() {
@@ -92,7 +92,8 @@ export default {
     });
   },
   mounted() {
-    this.isMounted = true;
+	this.isMounted = true;
+	console.log(this.$store.state.dataAlat)
   }
 };
 </script>
