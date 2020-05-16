@@ -4,6 +4,7 @@ import actions from './moduleSensorActions.js'
 import getters from './moduleSensorGetters.js'
 
 export default {
+    isRegistered: false,
     namespaced: true,
     state: state,
     mutations: mutations,
