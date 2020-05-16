@@ -1,5 +1,5 @@
 export default {
-    SET_PENGGUNA(state, sensor) {
-        state.sensor = sensor
+    SET_PENGGUNA(state, pengguna) {
+        state.pengguna = pengguna
     },
 }

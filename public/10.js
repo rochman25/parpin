@@ -87,7 +87,7 @@ var render = function() {
           _c(
             "vs-table",
             {
-              attrs: { "max-items": "3", "pagination:data": "list" },
+              attrs: { "max-items": "5", pagination: "", data: _vm.list },
               scopedSlots: _vm._u([
                 {
                   key: "default",
@@ -235,8 +235,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  SET_PENGGUNA: function SET_PENGGUNA(state, sensor) {
-    state.sensor = sensor;
+  SET_PENGGUNA: function SET_PENGGUNA(state, pengguna) {
+    state.pengguna = pengguna;
   }
 });
 

@@ -1,7 +1,7 @@
 <template>
   <vx-card title="Daftar Pengguna" subtitle="List data akun pengguna">
     <div>
-      <vs-table max-items="3" pagination:data="list">
+      <vs-table max-items="5" pagination :data="list">
         <template slot="thead">
           <vs-th>Username</vs-th>
           <vs-th>Email</vs-th>

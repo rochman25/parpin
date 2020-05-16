@@ -36,7 +36,38 @@ class PenggunaController extends BaseController {
     }
 
     async fetch({ request, response }) {
-
+        let id = request.input("id");
+        let page = request.input("page") ? request.input("page") : 1;
+        let respon = {};
+        let pengguna = [];
+        if (id != null) {
+            pengguna = await Pengguna.find(id);
+            if (pengguna) {
+                respon = {
+                    message: this.dataFound,
+                    data: pengguna
+                };
+            } else {
+                respon = {
+                    message: this.dataNotFound,
+                    data: pengguna
+                };
+            }
+            return response.json(this.successResponse(respon));
+        }
+        pengguna = await Pengguna.query().paginate(page, 10);
+        if (pengguna.toJSON().total > 0) {
+            respon = {
+                message: this.dataFound,
+                data: pengguna
+            };
+        } else {
+            respon = {
+                message: this.dataNotFound,
+                data: pengguna
+            };
+        }
+        return response.json(this.successResponse(respon));
     }
 
     async add_action({ request, response }) {
