@@ -33,13 +33,13 @@ export default [
         name: "Master Data",
         icon: "PlusCircleIcon",
         submenu: [{
-                url: "/master/sensor",
+                url: "/sensor",
                 name: "Sensor",
                 slug: "Master Data Sensor",
                 icon: "PocketIcon",
             },
             {
-                url: "/master/microcontroller",
+                url: "/microcontroller",
                 name: "microcontroller",
                 slug: "Master Data microcontroller",
                 icon: "EditIcon",

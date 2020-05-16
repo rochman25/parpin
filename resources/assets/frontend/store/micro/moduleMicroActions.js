@@ -6,7 +6,7 @@ export default {
             axios
                 .get("api/v1/microcontroller")
                 .then(response => {
-                    // console.log(response)
+                    // console.log(response);
                     commit("SET_MICRO", response.data.data.data);
                     resolve(response);
                 })

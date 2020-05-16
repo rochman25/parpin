@@ -65,7 +65,7 @@ const router = new Router({
                     }
                 },
                 {
-                    path: '/master/sensor',
+                    path: '/sensor',
                     name: 'parpin-sensor',
                     component: () =>
                         import ('./views/pages/Sensor/list_sensor.vue'),
@@ -74,7 +74,7 @@ const router = new Router({
                     }
                 },
                 {
-                    path: '/master/microcontroller',
+                    path: '/microcontroller',
                     name: 'parpin-microcontroller',
                     component: () =>
                         import ('./views/pages/Microcontroller/list_microcontroller.vue'),

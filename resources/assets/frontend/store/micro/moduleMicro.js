@@ -4,6 +4,7 @@ import actions from './moduleMicroActions.js'
 import getters from './moduleMicroGetters.js'
 
 export default {
+    isRegistered: false,
     namespaced: true,
     state: state,
     mutations: mutations,

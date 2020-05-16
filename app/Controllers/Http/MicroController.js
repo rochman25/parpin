@@ -25,7 +25,7 @@ class MicroController extends BaseController {
             return response.json(this.successResponse(respon));
         }
         microcontroller = await Micro.query().paginate(page, 10);
-        if (microcontroller.total > 0) {
+        if (microcontroller.toJSON().total > 0) {
             respon = {
                 message: this.dataFound,
                 data: microcontroller
