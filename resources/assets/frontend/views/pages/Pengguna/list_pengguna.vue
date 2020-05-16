@@ -1,7 +1,7 @@
 <template>
   <vx-card title="Daftar Pengguna" subtitle="List data akun pengguna">
     <div>
-      <vs-table max-items="3" pagination:data="pengguna">
+      <vs-table max-items="3" pagination:data="list">
         <template slot="thead">
           <vs-th>Username</vs-th>
           <vs-th>Email</vs-th>
@@ -18,3 +18,32 @@
     </div>
   </vx-card>
 </template>
+
+<script>
+import modulePengguna from "./../../../store/pengguna/modulePengguna.js";
+export default {
+  data() {
+    return {
+      isMounted: false
+    };
+  },
+  computed: {
+    list() {
+      return this.$store.state.dataPengguna.pengguna;
+    }
+  },
+  created() {
+    if (!modulePengguna.isRegistered) {
+      this.$store.registerModule("dataPengguna", modulePengguna);
+      modulePengguna.isRegistered = true;
+    }
+    this.$store.dispatch("dataPengguna/fetchDataPengguna").catch(err => {
+      console.error(err);
+    });
+  },
+  mounted() {
+    this.isMounted = true;
+    // console.log(this.list)
+  }
+};
+</script>

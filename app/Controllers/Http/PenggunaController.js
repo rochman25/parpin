@@ -35,6 +35,10 @@ class PenggunaController extends BaseController {
         }
     }
 
+    async fetch({ request, response }) {
+
+    }
+
     async add_action({ request, response }) {
         let username = request.input("username");
         let password = request.input("password");

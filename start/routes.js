@@ -21,7 +21,7 @@ Route.post('/login', 'PenggunaController.login_action').prefix('api/v1').validat
 
 Route.group(function() {
     //pengguna
-    Route.get("/pengguna", 'PenggunaController.index');
+    Route.get("/pengguna", 'PenggunaController.fetch');
     Route.post('/pengguna/add', 'PenggunaController.add_action').validator('Pengguna');
 
     //alat
