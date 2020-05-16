@@ -63652,7 +63652,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/dashboard',
       name: 'parpin-dashboard',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -63666,7 +63666,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/alat',
       name: 'parpin-alat',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/list_alat.vue */ "./resources/assets/frontend/views/pages/Alat/list_alat.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/list_alat.vue */ "./resources/assets/frontend/views/pages/Alat/list_alat.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -63721,20 +63721,20 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   }, {
     path: "",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./layouts/full-page/FullPage.vue */ "./resources/assets/frontend/layouts/full-page/FullPage.vue"));
+      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./layouts/full-page/FullPage.vue */ "./resources/assets/frontend/layouts/full-page/FullPage.vue"));
     },
     children: [//fullpages
     {
       path: '/login',
       name: 'parpin-login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/pages/login.vue */ "./resources/assets/frontend/views/pages/login.vue"));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/pages/login.vue */ "./resources/assets/frontend/views/pages/login.vue"));
       }
     }, {
       path: '/not-found',
       name: 'parpin-not-found',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/pages/404.vue */ "./resources/assets/frontend/views/pages/404.vue"));
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/pages/404.vue */ "./resources/assets/frontend/views/pages/404.vue"));
       }
     } // {
     //     path: '/not-authorized',

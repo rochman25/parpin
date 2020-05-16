@@ -26,7 +26,7 @@ class AlatController extends BaseController {
             return response.json(this.successResponse(respon));
         }
         alat = await Alat.query().paginate(page, 10);
-        if (alat.total > 0) {
+        if (alat.toJSON().total > 0) {
             respon = {
                 message: this.dataFound,
                 data: alat
@@ -37,6 +37,7 @@ class AlatController extends BaseController {
                 data: alat
             };
         }
+        // console.log(alat.toJSON().total)
         return response.json(this.successResponse(respon));
     }
 
