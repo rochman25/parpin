@@ -62815,8 +62815,12 @@ __webpack_require__.r(__webpack_exports__);
 // axios
 
 var domain = "";
+var headers = "";
 /* harmony default export */ __webpack_exports__["default"] = (axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
-  domain: domain // You can add your headers here
+  domain: domain,
+  headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
+  } // You can add your headers here
 
 }));
 
@@ -63676,7 +63680,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/pengguna',
       name: 'parpin-pengguna',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/pages/Pengguna/list_pengguna.vue */ "./resources/assets/frontend/views/pages/Pengguna/list_pengguna.vue"));
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/pages/Pengguna/list_pengguna.vue */ "./resources/assets/frontend/views/pages/Pengguna/list_pengguna.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -63690,7 +63694,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/master/sensor',
       name: 'parpin-sensor',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/pages/Sensor/list_sensor.vue */ "./resources/assets/frontend/views/pages/Sensor/list_sensor.vue"));
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/pages/Sensor/list_sensor.vue */ "./resources/assets/frontend/views/pages/Sensor/list_sensor.vue"));
       },
       meta: {
         authRequired: true
@@ -63699,7 +63703,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/master/microcontroller',
       name: 'parpin-microcontroller',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/pages/Microcontroller/list_microcontroller.vue */ "./resources/assets/frontend/views/pages/Microcontroller/list_microcontroller.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/pages/Microcontroller/list_microcontroller.vue */ "./resources/assets/frontend/views/pages/Microcontroller/list_microcontroller.vue"));
       },
       meta: {
         authRequired: true
@@ -63708,7 +63712,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/notifikasi',
       name: 'parpin-notifikasi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/pages/Notifikasi/view_notifikasi.vue */ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/pages/Notifikasi/view_notifikasi.vue */ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue"));
       },
       meta: {
         authRequired: true
@@ -63896,6 +63900,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       })["catch"](function (error) {
         reject(error);
+      });
+    });
+  },
+  fetchAccessToken: function fetchAccessToken() {
+    return new Promise(function (resolve) {
+      _http_requests_auth_jwt_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].refreshToken().then(function (response) {
+        resolve(response);
       });
     });
   }

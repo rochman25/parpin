@@ -27,5 +27,10 @@ export default {
                     reject(error);
                 });
         });
+    },
+    fetchAccessToken() {
+        return new Promise((resolve) => {
+            jwt.refreshToken().then(response => { resolve(response) })
+        })
     }
 };
