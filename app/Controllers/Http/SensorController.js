@@ -96,10 +96,15 @@ class SensorController extends BaseController {
             await sensor.delete()
             respon = {
                 message: this.deleteSuccessMessage,
+                data: sensor
             };
         } else {
+            if (id == null) {
+                id = "Id Kosong"
+            }
             respon = {
-                message: this.dataNotFound
+                message: this.dataNotFound,
+                data: id
             };
         }
         return response.json(this.successResponse(respon));

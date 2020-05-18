@@ -9,4 +9,8 @@ export default {
         const productIndex = state.sensor.findIndex((p) => p._id == sensor._id)
         Object.assign(state.sensor[productIndex], sensor)
     },
+    REMOVE_ITEM(state, itemId) {
+        const ItemIndex = state.sensor.findIndex((p) => p._id == itemId)
+        state.sensor.splice(ItemIndex, 1)
+    },
 }

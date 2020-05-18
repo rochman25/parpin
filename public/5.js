@@ -757,6 +757,7 @@ var render = function() {
                                 on: {
                                   click: function($event) {
                                     $event.stopPropagation()
+                                    return _vm.deleteData(tr._id)
                                   }
                                 }
                               })
@@ -911,7 +912,7 @@ __webpack_require__.r(__webpack_exports__);
         water_pressure: item.water_pressure
       }).then(function (response) {
         // console.log(response.data.data.sensor._id)
-        commit('ADD_ITEM', Object.assign(item, {
+        commit("ADD_ITEM", Object.assign(item, {
           id: response.data.data.sensor._id
         }));
         resolve(response);
@@ -930,7 +931,18 @@ __webpack_require__.r(__webpack_exports__);
         water_pressure: item.water_pressure
       }).then(function (response) {
         // console.log(response)
-        commit('UPDATE_SENSOR', response.data.data);
+        commit("UPDATE_SENSOR", response.data.data);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  removeItem: function removeItem(_ref4, itemId) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/sensor/delete?id=".concat(itemId)).then(function (response) {
+        commit("REMOVE_ITEM", itemId);
         resolve(response);
       })["catch"](function (error) {
         reject(error);
@@ -965,6 +977,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find-index */ "./node_modules/core-js/modules/es.array.find-index.js");
 /* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.splice */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__);
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -979,6 +995,12 @@ __webpack_require__.r(__webpack_exports__);
       return p._id == sensor._id;
     });
     Object.assign(state.sensor[productIndex], sensor);
+  },
+  REMOVE_ITEM: function REMOVE_ITEM(state, itemId) {
+    var ItemIndex = state.sensor.findIndex(function (p) {
+      return p._id == itemId;
+    });
+    state.sensor.splice(ItemIndex, 1);
   }
 });
 
