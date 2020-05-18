@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[13],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/views/pages/Sensor/FormSensor.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
@@ -9,12 +9,23 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_object_entries__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.entries */ "./node_modules/core-js/modules/es.object.entries.js");
-/* harmony import */ var core_js_modules_es_object_entries__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_entries__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
-/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.function.name */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_entries__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.entries */ "./node_modules/core-js/modules/es.object.entries.js");
+/* harmony import */ var core_js_modules_es_object_entries__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_entries__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_2__);
+
+
 
  //
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -108,25 +119,24 @@ __webpack_require__.r(__webpack_exports__);
     isSidebarActive: function isSidebarActive(val) {
       if (!val) return;
 
-      if (Object.entries(this.data)._id === null) {
-        this.initValues(); // this.$validator.reset();
+      if (Object.entries(this.data).length === 0) {
+        this.initValues();
+        this.$validator.reset();
       } else {
-        // console.log(this.data)
         var _JSON$parse = JSON.parse(JSON.stringify(this.data)),
-            nama = _JSON$parse.nama,
-            _id = _JSON$parse._id,
+            category = _JSON$parse.category,
+            id = _JSON$parse.id,
             img = _JSON$parse.img,
-            model = _JSON$parse.model,
-            working_range = _JSON$parse.working_range,
-            water_pressure = _JSON$parse.water_pressure;
+            name = _JSON$parse.name,
+            order_status = _JSON$parse.order_status,
+            price = _JSON$parse.price;
 
-        console.log(this.data);
-        this.dataId = _id;
-        this.dataModel = model;
+        this.dataId = id;
+        this.dataCategory = category;
         this.dataImg = img;
-        this.dataNama = nama;
-        this.dataWr = working_range;
-        this.dataWp = water_pressure;
+        this.dataName = name;
+        this.dataOrder_status = order_status;
+        this.dataPrice = price;
         this.initValues();
       } // Object.entries(this.data).length === 0 ? this.initValues() : { this.dataId, this.dataName, this.dataCategory, this.dataOrder_status, this.dataPrice } = JSON.parse(JSON.stringify(this.data))
 
@@ -135,15 +145,41 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       dataId: null,
-      dataNama: "",
-      dataModel: null,
+      dataName: "",
+      dataCategory: null,
       dataImg: null,
-      dataWr: null,
-      dataWp: null,
+      dataOrder_status: "pending",
+      dataPrice: 0,
+      category_choices: [{
+        text: 'Audio',
+        value: 'audio'
+      }, {
+        text: 'Computers',
+        value: 'computers'
+      }, {
+        text: 'Fitness',
+        value: 'fitness'
+      }, {
+        text: 'Appliance',
+        value: 'appliance'
+      }],
+      order_status_choices: [{
+        text: 'Pending',
+        value: 'pending'
+      }, {
+        text: 'Canceled',
+        value: 'canceled'
+      }, {
+        text: 'Delivered',
+        value: 'delivered'
+      }, {
+        text: 'On Hold',
+        value: 'on_hold'
+      }],
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
+        wheelSpeed: .60
       }
     };
   },
@@ -154,9 +190,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       set: function set(val) {
         if (!val) {
-          this.$emit("closeSidebar"); // this.$validator.reset()
-
-          this.initValues();
+          this.$emit('closeSidebar'); // this.$validator.reset()
+          // this.initValues()
         }
       }
     },
@@ -165,52 +200,55 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     initValues: function initValues() {
-      if (this.data._id) return;
+      if (this.data.id) return;
       this.dataId = null;
-      this.dataNama = "";
-      this.dataModel = null;
-      this.dataWr = null;
-      this.dataWp = null;
+      this.dataName = "";
+      this.dataCategory = null;
+      this.dataOrder_status = "pending";
+      this.dataPrice = 0;
       this.dataImg = null;
     },
     submitData: function submitData() {
-      var result = true; // this.$validator.validateAll().then(result => {
+      var _this = this;
 
-      if (result) {
-        var obj = {
-          id: this.dataId,
-          nama: this.dataNama,
-          img: this.dataImg,
-          model: this.dataModel,
-          work_range: this.dataWr,
-          water_pressure: this.dataWp
-        };
+      this.$validator.validateAll().then(function (result) {
+        if (result) {
+          var obj = {
+            id: _this.dataId,
+            name: _this.dataName,
+            img: _this.dataImg,
+            category: _this.dataCategory,
+            order_status: _this.dataOrder_status,
+            price: _this.dataPrice
+          };
 
-        if (this.dataId !== null) {
-          this.$store.dispatch("dataSensor/updateItem", obj)["catch"](function (err) {
-            console.error(err);
-          });
-        } else {
-          delete obj.id;
-          obj.popularity = 0;
-          this.$store.dispatch("dataSensor/addItem", obj)["catch"](function (err) {
-            console.error(err);
-          });
+          if (_this.dataId !== null && _this.dataId >= 0) {
+            _this.$store.dispatch("dataList/updateItem", obj)["catch"](function (err) {
+              console.error(err);
+            });
+          } else {
+            delete obj.id;
+            obj.popularity = 0;
+
+            _this.$store.dispatch("dataList/addItem", obj)["catch"](function (err) {
+              console.error(err);
+            });
+          }
+
+          _this.$emit('closeSidebar');
+
+          _this.initValues();
         }
-
-        this.$emit("closeSidebar");
-        this.initValues();
-      } // });
-
+      });
     },
     updateCurrImg: function updateCurrImg(input) {
-      var _this = this;
+      var _this2 = this;
 
       if (input.target.files && input.target.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          _this.dataImg = e.target.result;
+          _this2.dataImg = e.target.result;
         };
 
         reader.readAsDataURL(input.target.files[0]);
@@ -218,7 +256,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    VuePerfectScrollbar: vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default.a
+    VuePerfectScrollbar: vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_2___default.a
   }
 });
 
@@ -313,13 +351,12 @@ __webpack_require__.r(__webpack_exports__);
       this.toggleDataSidebar(true);
     },
     deleteData: function deleteData(id) {
-      this.$store.dispatch("dataSensor/removeItem", id)["catch"](function (err) {
+      this.$store.dispatch("dataList/removeItem", id)["catch"](function (err) {
         console.error(err);
       });
     },
     editData: function editData(data) {
       // this.sidebarData = JSON.parse(JSON.stringify(this.blankData))
-      // console.log(data)
       this.sidebarData = data;
       this.toggleDataSidebar(true);
     },
@@ -450,8 +487,8 @@ var render = function() {
           _c("h4", [
             _vm._v(
               _vm._s(
-                Object.entries(this.data).length === 0 ? "TAMBAH" : "UPDATE"
-              ) + " SENSOR"
+                Object.entries(this.data).length === 0 ? "ADD NEW" : "UPDATE"
+              ) + " ITEM"
             )
           ]),
           _vm._v(" "),
@@ -544,49 +581,74 @@ var render = function() {
               _vm._v(" "),
               _c("vs-input", {
                 staticClass: "mt-5 w-full",
-                attrs: { label: "Nama Sensor", name: "item-name" },
+                attrs: { label: "Name", name: "item-name" },
                 model: {
-                  value: _vm.dataNama,
+                  value: _vm.dataName,
                   callback: function($$v) {
-                    _vm.dataNama = $$v
+                    _vm.dataName = $$v
                   },
-                  expression: "dataNama"
+                  expression: "dataName"
                 }
               }),
               _vm._v(" "),
-              _c("vs-input", {
-                staticClass: "mt-5 w-full",
-                attrs: { label: "Model Sensor", name: "item-model" },
-                model: {
-                  value: _vm.dataModel,
-                  callback: function($$v) {
-                    _vm.dataModel = $$v
-                  },
-                  expression: "dataModel"
-                }
-              }),
+              _c(
+                "vs-select",
+                {
+                  staticClass: "mt-5 w-full",
+                  attrs: { label: "Category", name: "item-category" },
+                  model: {
+                    value: _vm.dataCategory,
+                    callback: function($$v) {
+                      _vm.dataCategory = $$v
+                    },
+                    expression: "dataCategory"
+                  }
+                },
+                _vm._l(_vm.category_choices, function(item) {
+                  return _c("vs-select-item", {
+                    key: item.value,
+                    attrs: { value: item.value, text: item.text }
+                  })
+                }),
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "vs-select",
+                {
+                  staticClass: "mt-5 w-full",
+                  attrs: { label: "Order Status" },
+                  model: {
+                    value: _vm.dataOrder_status,
+                    callback: function($$v) {
+                      _vm.dataOrder_status = $$v
+                    },
+                    expression: "dataOrder_status"
+                  }
+                },
+                _vm._l(_vm.order_status_choices, function(item) {
+                  return _c("vs-select-item", {
+                    key: item.value,
+                    attrs: { value: item.value, text: item.text }
+                  })
+                }),
+                1
+              ),
               _vm._v(" "),
               _c("vs-input", {
                 staticClass: "mt-5 w-full",
-                attrs: { label: "Working Range", name: "item-wr" },
+                attrs: {
+                  "icon-pack": "feather",
+                  icon: "icon-dollar-sign",
+                  label: "Price",
+                  name: "item-price"
+                },
                 model: {
-                  value: _vm.dataWr,
+                  value: _vm.dataPrice,
                   callback: function($$v) {
-                    _vm.dataWr = $$v
+                    _vm.dataPrice = $$v
                   },
-                  expression: "dataWr"
-                }
-              }),
-              _vm._v(" "),
-              _c("vs-input", {
-                staticClass: "mt-5 w-full",
-                attrs: { label: "Water Pressure", name: "item-wp" },
-                model: {
-                  value: _vm.dataWp,
-                  callback: function($$v) {
-                    _vm.dataWp = $$v
-                  },
-                  expression: "dataWp"
+                  expression: "dataPrice"
                 }
               }),
               _vm._v(" "),
@@ -633,7 +695,11 @@ var render = function() {
         [
           _c(
             "vs-button",
-            { staticClass: "mr-6", on: { click: _vm.submitData } },
+            {
+              staticClass: "mr-6",
+              attrs: { disabled: !_vm.isFormValid },
+              on: { click: _vm.submitData }
+            },
             [_vm._v("Submit")]
           ),
           _vm._v(" "),
@@ -696,7 +762,7 @@ var render = function() {
           _c(
             "vs-table",
             {
-              attrs: { "max-items": "10", pagination: "", data: _vm.list },
+              attrs: { "max-items": "3", pagination: "", data: _vm.list },
               scopedSlots: _vm._u([
                 {
                   key: "default",
@@ -742,7 +808,6 @@ var render = function() {
                                 on: {
                                   click: function($event) {
                                     $event.stopPropagation()
-                                    return _vm.editData(tr)
                                   }
                                 }
                               }),
@@ -900,42 +965,6 @@ __webpack_require__.r(__webpack_exports__);
         reject(error);
       });
     });
-  },
-  addItem: function addItem(_ref2, item) {
-    var commit = _ref2.commit;
-    return new Promise(function (resolve, reject) {
-      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/sensor/add", {
-        nama: item.nama,
-        model: item.model,
-        work_range: item.work_range,
-        water_pressure: item.water_pressure
-      }).then(function (response) {
-        // console.log(response.data.data.sensor._id)
-        commit('ADD_ITEM', Object.assign(item, {
-          id: response.data.data.sensor._id
-        }));
-        resolve(response);
-      })["catch"](function (error) {
-        reject(error);
-      });
-    });
-  },
-  updateItem: function updateItem(_ref3, item) {
-    var commit = _ref3.commit;
-    return new Promise(function (resolve, reject) {
-      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/sensor/update/".concat(item.id), {
-        nama: item.nama,
-        model: item.model,
-        work_range: item.work_range,
-        water_pressure: item.water_pressure
-      }).then(function (response) {
-        // console.log(response)
-        commit('UPDATE_SENSOR', response.data.data);
-        resolve(response);
-      })["catch"](function (error) {
-        reject(error);
-      });
-    });
   }
 });
 
@@ -963,22 +992,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find-index */ "./node_modules/core-js/modules/es.array.find-index.js");
-/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__);
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  ADD_ITEM: function ADD_ITEM(state, item) {
-    state.sensor.unshift(item);
-  },
   SET_SENSOR: function SET_SENSOR(state, sensor) {
     state.sensor = sensor;
-  },
-  UPDATE_SENSOR: function UPDATE_SENSOR(state, sensor) {
-    var productIndex = state.sensor.findIndex(function (p) {
-      return p._id == sensor._id;
-    });
-    Object.assign(state.sensor[productIndex], sensor);
   }
 });
 
