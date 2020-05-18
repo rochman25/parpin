@@ -90,6 +90,14 @@ class PenggunaController extends BaseController {
         return response.json(this.successResponse(respon));
     }
 
+    async update_action({ request, response, params }) {
+
+    }
+
+    async delete_action({ request, response }) {
+
+    }
+
     async list_data({ response }) {}
 }
 

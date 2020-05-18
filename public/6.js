@@ -863,6 +863,51 @@ __webpack_require__.r(__webpack_exports__);
         reject(error);
       });
     });
+  },
+  addItem: function addItem(_ref2, item) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/pengguna/add", {
+        nama: item.nama,
+        model: item.model,
+        connection_type: item.cp
+      }).then(function (response) {
+        // console.log(response.data.data.microcontroller._id)
+        commit("ADD_ITEM", Object.assign(item, {
+          id: response.data.data.microcontroller._id
+        }));
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  updateItem: function updateItem(_ref3, item) {
+    var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/microcontroller/update/".concat(item.id), {
+        nama: item.nama,
+        model: item.model,
+        connection_type: item.cp
+      }).then(function (response) {
+        // console.log(response)
+        commit("UPDATE_MICRO", response.data.data);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  removeItem: function removeItem(_ref4, itemId) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/microcontroller/delete?id=".concat(itemId)).then(function (response) {
+        commit("REMOVE_ITEM", itemId);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
   }
 });
 

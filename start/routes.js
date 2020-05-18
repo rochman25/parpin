@@ -23,6 +23,8 @@ Route.group(function() {
     //pengguna
     Route.get("/pengguna", 'PenggunaController.fetch');
     Route.post('/pengguna/add', 'PenggunaController.add_action').validator('Pengguna');
+    Route.put("/pengguna/update/:id", 'PenggunaController.update_action')
+    Route.delete("/pengguna/delete", "PenggunaController.delete_action")
 
     //alat
     Route.get("/alat", 'AlatController.index');
