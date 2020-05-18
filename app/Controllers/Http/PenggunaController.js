@@ -91,11 +91,52 @@ class PenggunaController extends BaseController {
     }
 
     async update_action({ request, response, params }) {
+        let id = params.id;
+        let pengguna = await Pengguna.find(id);
+        let respon = {};
+        if (pengguna) {
+            let username = request.input("username");
+            let email = request.input("email");
+            let no_telp = request.input("notelp");
 
+            pengguna.username = username;
+            pengguna.email = email;
+            pengguna.no_telp = no_telp;
+
+            await pengguna.save();
+
+            respon = {
+                message: this.updateSuccessMessage,
+                data: pengguna
+            };
+            return response.json(this.successResponse(respon));
+        } else {
+            respon = {
+                message: this.dataNotFound
+            };
+            return response.json(this.successResponse(respon));
+        }
     }
 
     async delete_action({ request, response }) {
-
+        let id = request.input("id");
+        let pengguna = await Pengguna.find(id);
+        let respon = {};
+        if (pengguna) {
+            await pengguna.delete()
+            respon = {
+                message: this.deleteSuccessMessage,
+            };
+        } else {
+            if (id == null) {
+                id = "Id Kosong"
+            }
+            respon = {
+                message: this.dataNotFound,
+                data: id
+            };
+        }
+        return response.json(this.successResponse(respon));
     }
 
     async list_data({ response }) {}
