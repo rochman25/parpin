@@ -207,6 +207,51 @@ __webpack_require__.r(__webpack_exports__);
         reject(error);
       });
     });
+  },
+  addItem: function addItem(_ref2, item) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/microcontroller/add", {
+        nama: item.nama,
+        model: item.model,
+        connection_type: item.cp
+      }).then(function (response) {
+        // console.log(response.data.data.microcontroller._id)
+        commit("ADD_ITEM", Object.assign(item, {
+          id: response.data.data.microcontroller._id
+        }));
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  updateItem: function updateItem(_ref3, item) {
+    var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/microcontroller/update/".concat(item.id), {
+        nama: item.nama,
+        model: item.model,
+        connection_type: item.cp
+      }).then(function (response) {
+        // console.log(response)
+        commit("UPDATE_MICRO", response.data.data);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  removeItem: function removeItem(_ref4, itemId) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/microcontroller/delete?id=".concat(itemId)).then(function (response) {
+        commit("REMOVE_ITEM", itemId);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
   }
 });
 
@@ -234,9 +279,32 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find-index */ "./node_modules/core-js/modules/es.array.find-index.js");
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.splice */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  ADD_ITEM: function ADD_ITEM(state, item) {
+    state.micro.unshift(item);
+  },
   SET_MICRO: function SET_MICRO(state, micro) {
     state.micro = micro;
+  },
+  UPDATE_MICRO: function UPDATE_MICRO(state, micro) {
+    var productIndex = state.micro.findIndex(function (p) {
+      return p._id == micro._id;
+    });
+    Object.assign(state.micro[productIndex], micro);
+  },
+  REMOVE_ITEM: function REMOVE_ITEM(state, itemId) {
+    var ItemIndex = state.micro.findIndex(function (p) {
+      return p._id == itemId;
+    });
+    state.micro.splice(ItemIndex, 1);
   }
 });
 
