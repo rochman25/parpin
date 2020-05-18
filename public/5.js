@@ -323,19 +323,6 @@ __webpack_require__.r(__webpack_exports__);
       this.sidebarData = data;
       this.toggleDataSidebar(true);
     },
-    getOrderStatusColor: function getOrderStatusColor(status) {
-      if (status == "on_hold") return "warning";
-      if (status == "delivered") return "success";
-      if (status == "canceled") return "danger";
-      return "primary";
-    },
-    getPopularityColor: function getPopularityColor(num) {
-      if (num > 90) return "success";
-      if (num > 70) return "primary";
-      if (num >= 50) return "warning";
-      if (num < 50) return "danger";
-      return "primary";
-    },
     toggleDataSidebar: function toggleDataSidebar() {
       var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       this.addNewDataSidebar = val;

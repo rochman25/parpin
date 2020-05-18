@@ -87,19 +87,6 @@ export default {
       this.sidebarData = data;
       this.toggleDataSidebar(true);
     },
-    getOrderStatusColor(status) {
-      if (status == "on_hold") return "warning";
-      if (status == "delivered") return "success";
-      if (status == "canceled") return "danger";
-      return "primary";
-    },
-    getPopularityColor(num) {
-      if (num > 90) return "success";
-      if (num > 70) return "primary";
-      if (num >= 50) return "warning";
-      if (num < 50) return "danger";
-      return "primary";
-    },
     toggleDataSidebar(val = false) {
       this.addNewDataSidebar = val;
     }
