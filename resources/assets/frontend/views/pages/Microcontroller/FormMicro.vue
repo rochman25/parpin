@@ -39,11 +39,11 @@
         </template>
 
         <!-- NAME -->
-        <vs-input label="Nama Sensor" v-model="dataNama" class="mt-5 w-full" name="item-name" />
+        <vs-input label="Nama Microcontroller" v-model="dataNama" class="mt-5 w-full" name="item-name" />
         <!-- v-validate="'required'" -->
         <!-- <span class="text-danger text-sm" v-show="errors.has('item-name')">{{ errors.first('item-name') }}</span> -->
         <!-- Model -->
-        <vs-input label="Model Sensor" v-model="dataModel" class="mt-5 w-full" name="item-model" />
+        <vs-input label="Model Microcontroller" v-model="dataModel" class="mt-5 w-full" name="item-model" />
         <!-- <span class="text-danger text-sm" v-show="errors.has('item-category')">{{ errors.first('item-category') }}</span> -->
         <!-- working range -->
         <vs-input label="Connection type" v-model="dataCt" class="mt-5 w-full" name="item-wr" />
@@ -158,7 +158,7 @@ export default {
             nama: this.dataNama,
             img: this.dataImg,
             model: this.dataModel,
-            connection_type: this.dataCt,
+            cp: this.dataCt,
           };
 
           if (this.dataId !== null) {

@@ -6,7 +6,7 @@
         @closeSidebar="toggleDataSidebar"
         :data="sidebarData"
       />
-      <vs-table max-items="3" pagination :data="list">
+      <vs-table max-items="10" pagination :data="list">
         <div slot="header" class="flex flex-wrap-reverse items-center flex-grow justify-between">
           <div class="flex flex-wrap-reverse items-center data-list-btn-container">
             <!-- ADD NEW -->

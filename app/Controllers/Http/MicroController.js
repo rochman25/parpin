@@ -51,7 +51,7 @@ class MicroController extends BaseController {
         let respon = {
             message: this.addSuccessMessage,
             data: {
-                sensor: microcontroller
+                microcontroller: microcontroller
             }
         };
         return response.json(this.successResponse(respon));

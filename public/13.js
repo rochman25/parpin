@@ -175,7 +175,7 @@ __webpack_require__.r(__webpack_exports__);
           nama: this.dataNama,
           img: this.dataImg,
           model: this.dataModel,
-          connection_type: this.dataCt
+          cp: this.dataCt
         };
 
         if (this.dataId !== null) {
@@ -521,7 +521,7 @@ var render = function() {
               _vm._v(" "),
               _c("vs-input", {
                 staticClass: "mt-5 w-full",
-                attrs: { label: "Nama Sensor", name: "item-name" },
+                attrs: { label: "Nama Microcontroller", name: "item-name" },
                 model: {
                   value: _vm.dataNama,
                   callback: function($$v) {
@@ -533,7 +533,7 @@ var render = function() {
               _vm._v(" "),
               _c("vs-input", {
                 staticClass: "mt-5 w-full",
-                attrs: { label: "Model Sensor", name: "item-model" },
+                attrs: { label: "Model Microcontroller", name: "item-model" },
                 model: {
                   value: _vm.dataModel,
                   callback: function($$v) {
@@ -666,7 +666,7 @@ var render = function() {
           _c(
             "vs-table",
             {
-              attrs: { "max-items": "3", pagination: "", data: _vm.list },
+              attrs: { "max-items": "10", pagination: "", data: _vm.list },
               scopedSlots: _vm._u([
                 {
                   key: "default",
