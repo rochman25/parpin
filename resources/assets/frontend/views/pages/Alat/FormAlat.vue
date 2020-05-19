@@ -43,11 +43,11 @@
         <!-- v-validate="'required'" -->
         <!-- <span class="text-danger text-sm" v-show="errors.has('item-name')">{{ errors.first('item-name') }}</span> -->
         <!-- SENSOR -->
-        <label for="" class="vs-select--label mt-5 w-full">Tipe Sensor</label>
-        <v-select label="Sensor" :options="sensor" class="" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+        <label for class="vs-select--label mt-5 w-full">Tipe Sensor</label>
+        <v-select label="nama" :options="listSensor" class :dir="$vs.rtl ? 'rtl' : 'ltr'" />
         <!-- MICROCONTROLLER -->
-        <label for="" class="vs-select--label mt-5">Tipe Microcontroller</label>
-        <v-select label="Micro" :options="micro" class="" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+        <label for class="vs-select--label mt-5">Tipe Microcontroller</label>
+        <v-select label="nama" :options="listMicro" class :dir="$vs.rtl ? 'rtl' : 'ltr'" />
         <!-- Upload -->
         <!-- <vs-upload text="Upload Image" class="img-upload" ref="fileUpload" /> -->
 
@@ -74,6 +74,8 @@
 <script>
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import vSelect from "vue-select";
+import moduleSensor from "./../../../store/sensor/moduleSensor.js";
+import moduleMicro from "./../../../store/micro/moduleMicro.js";
 
 export default {
   props: {
@@ -165,6 +167,14 @@ export default {
     },
     isFormValid() {
       //   return !this.errors.any() && this.dataName && this.dataCategory && (this.dataPrice > 0)
+    },
+    listSensor() {
+      //   console.log(this.$store.state.dataAlat);
+      return this.$store.state.dataSensor.sensor;
+    },
+    listMicro() {
+      //   console.log(this.$store.state.dataAlat);
+      return this.$store.state.dataMicro.micro;
     }
   },
   methods: {
@@ -220,6 +230,22 @@ export default {
   components: {
     VuePerfectScrollbar,
     "v-select": vSelect
+  },
+  created() {
+    if (!moduleSensor.isRegistered) {
+      this.$store.registerModule("dataSensor", moduleSensor);
+      moduleSensor.isRegistered = true;
+    }
+    this.$store.dispatch("dataSensor/fetchDataSensor").catch(err => {
+      console.error(err);
+    });
+    if (!moduleMicro.isRegistered) {
+      this.$store.registerModule("dataMicro", moduleMicro);
+      moduleMicro.isRegistered = true;
+    }
+    this.$store.dispatch("dataMicro/fetchDataMicro").catch(err => {
+      console.error(err);
+    });
   }
 };
 </script>

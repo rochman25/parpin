@@ -191,9 +191,267 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/babel-loader/lib??ref--10-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/frontend/views/pages/Alat/FormAlat.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/resources/assets/frontend/views/pages/Alat/FormAlat.vue: Unexpected token, expected \",\" (139:9)\n\n\u001b[0m \u001b[90m 137 | \u001b[39m            countryName\u001b[33m:\u001b[39m \u001b[32m\"Australia\"\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 138 | \u001b[39m          }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 139 | \u001b[39m        ]\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 140 | \u001b[39m        micro\u001b[33m:\u001b[39m [\u001b[0m\n\u001b[0m \u001b[90m 141 | \u001b[39m          {\u001b[0m\n\u001b[0m \u001b[90m 142 | \u001b[39m            countryCode\u001b[33m:\u001b[39m \u001b[32m\"DE\"\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    at Object._raise (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:742:17)\n    at Object.raiseWithData (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.raise (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:729:17)\n    at Object.unexpected (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:8779:16)\n    at Object.expect (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:8765:28)\n    at Object.parseObj (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10387:14)\n    at Object.parseExprAtom (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10017:28)\n    at Object.parseExprAtom (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:4626:20)\n    at Object.parseExprSubscripts (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9624:23)\n    at Object.parseMaybeUnary (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9604:21)\n    at Object.parseExprOps (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9474:23)\n    at Object.parseMaybeConditional (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9447:23)\n    at Object.parseMaybeAssign (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9402:21)\n    at Object.parseExpression (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9354:23)\n    at Object.parseReturnStatement (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:11471:28)\n    at Object.parseStatementContent (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:11152:21)\n    at Object.parseStatement (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:11104:17)\n    at Object.parseBlockOrModuleBlockBody (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:11679:25)\n    at Object.parseBlockBody (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:11665:10)\n    at Object.parseBlock (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:11649:10)\n    at Object.parseFunctionBody (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10656:24)\n    at Object.parseFunctionBodyAndFinish (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10639:10)\n    at Object.parseMethod (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10601:10)\n    at Object.parseObjectMethod (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10517:19)\n    at Object.parseObjPropValue (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10559:23)\n    at Object.parseObjectMember (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10483:10)\n    at Object.parseObj (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10396:25)\n    at Object.parseExprAtom (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:10017:28)\n    at Object.parseExprAtom (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:4626:20)\n    at Object.parseExprSubscripts (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9624:23)\n    at Object.parseMaybeUnary (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9604:21)\n    at Object.parseExprOps (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9474:23)\n    at Object.parseMaybeConditional (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9447:23)\n    at Object.parseMaybeAssign (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:9402:21)\n    at Object.parseExportDefaultExpression (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:12306:24)\n    at Object.parseExport (/media/zaenur/1EFEDA3CFEDA0C41/dev/parpin/parpin/node_modules/@babel/parser/lib/index.js:12208:31)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_object_entries__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.entries */ "./node_modules/core-js/modules/es.object.entries.js");
+/* harmony import */ var core_js_modules_es_object_entries__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_entries__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _store_sensor_moduleSensor_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../store/sensor/moduleSensor.js */ "./resources/assets/frontend/store/sensor/moduleSensor.js");
+/* harmony import */ var _store_micro_moduleMicro_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../store/micro/moduleMicro.js */ "./resources/assets/frontend/store/micro/moduleMicro.js");
+
+ //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    isSidebarActive: {
+      type: Boolean,
+      required: true
+    },
+    data: {
+      type: Object,
+      "default": function _default() {}
+    }
+  },
+  watch: {
+    isSidebarActive: function isSidebarActive(val) {
+      if (!val) return;
+
+      if (Object.entries(this.data)._id === null) {
+        this.initValues(); // this.$validator.reset();
+      } else {
+        // console.log(this.data)
+        var _JSON$parse = JSON.parse(JSON.stringify(this.data)),
+            nama = _JSON$parse.nama,
+            _id = _JSON$parse._id,
+            img = _JSON$parse.img,
+            model = _JSON$parse.model,
+            working_range = _JSON$parse.working_range,
+            water_pressure = _JSON$parse.water_pressure;
+
+        console.log(this.data);
+        this.dataId = _id;
+        this.dataModel = model;
+        this.dataImg = img;
+        this.dataNama = nama;
+        this.dataWr = working_range;
+        this.dataWp = water_pressure;
+        this.initValues();
+      } // Object.entries(this.data).length === 0 ? this.initValues() : { this.dataId, this.dataName, this.dataCategory, this.dataOrder_status, this.dataPrice } = JSON.parse(JSON.stringify(this.data))
+
+    }
+  },
+  data: function data() {
+    return {
+      dataId: null,
+      dataNama: "",
+      dataModel: null,
+      dataImg: null,
+      dataWr: null,
+      dataWp: null,
+      settings: {
+        // perfectscrollbar settings
+        maxScrollbarLength: 60,
+        wheelSpeed: 0.6
+      },
+      sensor: [{
+        sensor_id: "DE",
+        Sensor: "Germany"
+      }, {
+        sensor_id: "AUS",
+        Sensor: "Australia"
+      }],
+      micro: [{
+        micro_id: "DE",
+        Micro: "Germany"
+      }, {
+        micro_id: "AUS",
+        Micro: "Australia"
+      }]
+    };
+  },
+  computed: {
+    isSidebarActiveLocal: {
+      get: function get() {
+        return this.isSidebarActive;
+      },
+      set: function set(val) {
+        if (!val) {
+          this.$emit("closeSidebar"); // this.$validator.reset()
+
+          this.initValues();
+        }
+      }
+    },
+    isFormValid: function isFormValid() {//   return !this.errors.any() && this.dataName && this.dataCategory && (this.dataPrice > 0)
+    },
+    listSensor: function listSensor() {
+      //   console.log(this.$store.state.dataAlat);
+      return this.$store.state.dataSensor.sensor;
+    },
+    listMicro: function listMicro() {
+      //   console.log(this.$store.state.dataAlat);
+      return this.$store.state.dataMicro.micro;
+    }
+  },
+  methods: {
+    initValues: function initValues() {
+      if (this.data._id) return;
+      this.dataId = null;
+      this.dataNama = "";
+      this.dataModel = null;
+      this.dataWr = null;
+      this.dataWp = null;
+      this.dataImg = null;
+    },
+    submitData: function submitData() {
+      var result = true; // this.$validator.validateAll().then(result => {
+
+      if (result) {
+        var obj = {
+          id: this.dataId,
+          nama: this.dataNama,
+          img: this.dataImg,
+          model: this.dataModel,
+          work_range: this.dataWr,
+          water_pressure: this.dataWp
+        };
+
+        if (this.dataId !== null) {
+          this.$store.dispatch("dataSensor/updateItem", obj)["catch"](function (err) {
+            console.error(err);
+          });
+        } else {
+          delete obj.id;
+          obj.popularity = 0;
+          this.$store.dispatch("dataSensor/addItem", obj)["catch"](function (err) {
+            console.error(err);
+          });
+        }
+
+        this.$emit("closeSidebar");
+        this.initValues();
+      } // });
+
+    },
+    updateCurrImg: function updateCurrImg(input) {
+      var _this = this;
+
+      if (input.target.files && input.target.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          _this.dataImg = e.target.result;
+        };
+
+        reader.readAsDataURL(input.target.files[0]);
+      }
+    }
+  },
+  components: {
+    VuePerfectScrollbar: vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default.a,
+    "v-select": vue_select__WEBPACK_IMPORTED_MODULE_2___default.a
+  },
+  created: function created() {
+    if (!_store_sensor_moduleSensor_js__WEBPACK_IMPORTED_MODULE_3__["default"].isRegistered) {
+      this.$store.registerModule("dataSensor", _store_sensor_moduleSensor_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
+      _store_sensor_moduleSensor_js__WEBPACK_IMPORTED_MODULE_3__["default"].isRegistered = true;
+    }
+
+    this.$store.dispatch("dataSensor/fetchDataSensor")["catch"](function (err) {
+      console.error(err);
+    });
+
+    if (!_store_micro_moduleMicro_js__WEBPACK_IMPORTED_MODULE_4__["default"].isRegistered) {
+      this.$store.registerModule("dataMicro", _store_micro_moduleMicro_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
+      _store_micro_moduleMicro_js__WEBPACK_IMPORTED_MODULE_4__["default"].isRegistered = true;
+    }
+
+    this.$store.dispatch("dataMicro/fetchDataMicro")["catch"](function (err) {
+      console.error(err);
+    });
+  }
+});
 
 /***/ }),
 
@@ -782,18 +1040,33 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "vs-select--label mt-5 w-full",
+                  attrs: { for: "" }
+                },
+                [_vm._v("Tipe Sensor")]
+              ),
+              _vm._v(" "),
               _c("v-select", {
                 attrs: {
-                  label: "Type Sensor",
-                  options: _vm.sensor,
+                  label: "nama",
+                  options: _vm.listSensor,
                   dir: _vm.$vs.rtl ? "rtl" : "ltr"
                 }
               }),
               _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "vs-select--label mt-5", attrs: { for: "" } },
+                [_vm._v("Tipe Microcontroller")]
+              ),
+              _vm._v(" "),
               _c("v-select", {
                 attrs: {
-                  label: "Type Microcontroller",
-                  options: _vm.micro,
+                  label: "nama",
+                  options: _vm.listMicro,
                   dir: _vm.$vs.rtl ? "rtl" : "ltr"
                 }
               }),
@@ -1369,6 +1642,354 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   alat: []
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/micro/moduleMicro.js":
+/*!**************************************************************!*\
+  !*** ./resources/assets/frontend/store/micro/moduleMicro.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _moduleMicroState_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moduleMicroState.js */ "./resources/assets/frontend/store/micro/moduleMicroState.js");
+/* harmony import */ var _moduleMicroMutations_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./moduleMicroMutations.js */ "./resources/assets/frontend/store/micro/moduleMicroMutations.js");
+/* harmony import */ var _moduleMicroActions_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./moduleMicroActions.js */ "./resources/assets/frontend/store/micro/moduleMicroActions.js");
+/* harmony import */ var _moduleMicroGetters_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./moduleMicroGetters.js */ "./resources/assets/frontend/store/micro/moduleMicroGetters.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  isRegistered: false,
+  namespaced: true,
+  state: _moduleMicroState_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+  mutations: _moduleMicroMutations_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  actions: _moduleMicroActions_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+  getters: _moduleMicroGetters_js__WEBPACK_IMPORTED_MODULE_3__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/micro/moduleMicroActions.js":
+/*!*********************************************************************!*\
+  !*** ./resources/assets/frontend/store/micro/moduleMicroActions.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../axios.js */ "./resources/assets/frontend/axios.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  fetchDataMicro: function fetchDataMicro(_ref) {
+    var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/microcontroller").then(function (response) {
+        // console.log(response);
+        commit("SET_MICRO", response.data.data.data);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  addItem: function addItem(_ref2, item) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/microcontroller/add", {
+        nama: item.nama,
+        model: item.model,
+        connection_type: item.cp
+      }).then(function (response) {
+        // console.log(response.data.data.microcontroller._id)
+        commit("ADD_ITEM", Object.assign(item, {
+          id: response.data.data.microcontroller._id
+        }));
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  updateItem: function updateItem(_ref3, item) {
+    var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/microcontroller/update/".concat(item.id), {
+        nama: item.nama,
+        model: item.model,
+        connection_type: item.cp
+      }).then(function (response) {
+        // console.log(response)
+        commit("UPDATE_MICRO", response.data.data);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  removeItem: function removeItem(_ref4, itemId) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/microcontroller/delete?id=".concat(itemId)).then(function (response) {
+        commit("REMOVE_ITEM", itemId);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/micro/moduleMicroGetters.js":
+/*!*********************************************************************!*\
+  !*** ./resources/assets/frontend/store/micro/moduleMicroGetters.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/micro/moduleMicroMutations.js":
+/*!***********************************************************************!*\
+  !*** ./resources/assets/frontend/store/micro/moduleMicroMutations.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find-index */ "./node_modules/core-js/modules/es.array.find-index.js");
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.splice */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  ADD_ITEM: function ADD_ITEM(state, item) {
+    state.micro.unshift(item);
+  },
+  SET_MICRO: function SET_MICRO(state, micro) {
+    state.micro = micro;
+  },
+  UPDATE_MICRO: function UPDATE_MICRO(state, micro) {
+    var productIndex = state.micro.findIndex(function (p) {
+      return p._id == micro._id;
+    });
+    Object.assign(state.micro[productIndex], micro);
+  },
+  REMOVE_ITEM: function REMOVE_ITEM(state, itemId) {
+    var ItemIndex = state.micro.findIndex(function (p) {
+      return p._id == itemId;
+    });
+    state.micro.splice(ItemIndex, 1);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/micro/moduleMicroState.js":
+/*!*******************************************************************!*\
+  !*** ./resources/assets/frontend/store/micro/moduleMicroState.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  micro: []
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/sensor/moduleSensor.js":
+/*!****************************************************************!*\
+  !*** ./resources/assets/frontend/store/sensor/moduleSensor.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _moduleSensorState_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moduleSensorState.js */ "./resources/assets/frontend/store/sensor/moduleSensorState.js");
+/* harmony import */ var _moduleSensorMutations_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./moduleSensorMutations.js */ "./resources/assets/frontend/store/sensor/moduleSensorMutations.js");
+/* harmony import */ var _moduleSensorActions_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./moduleSensorActions.js */ "./resources/assets/frontend/store/sensor/moduleSensorActions.js");
+/* harmony import */ var _moduleSensorGetters_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./moduleSensorGetters.js */ "./resources/assets/frontend/store/sensor/moduleSensorGetters.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  isRegistered: false,
+  namespaced: true,
+  state: _moduleSensorState_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+  mutations: _moduleSensorMutations_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  actions: _moduleSensorActions_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+  getters: _moduleSensorGetters_js__WEBPACK_IMPORTED_MODULE_3__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/sensor/moduleSensorActions.js":
+/*!***********************************************************************!*\
+  !*** ./resources/assets/frontend/store/sensor/moduleSensorActions.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../axios.js */ "./resources/assets/frontend/axios.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  fetchDataSensor: function fetchDataSensor(_ref) {
+    var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/sensor").then(function (response) {
+        // console.log(response)
+        commit("SET_SENSOR", response.data.data.data);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  addItem: function addItem(_ref2, item) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/sensor/add", {
+        nama: item.nama,
+        model: item.model,
+        work_range: item.work_range,
+        water_pressure: item.water_pressure
+      }).then(function (response) {
+        // console.log(response.data.data.sensor._id)
+        commit("ADD_ITEM", Object.assign(item, {
+          id: response.data.data.sensor._id
+        }));
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  updateItem: function updateItem(_ref3, item) {
+    var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/sensor/update/".concat(item.id), {
+        nama: item.nama,
+        model: item.model,
+        work_range: item.work_range,
+        water_pressure: item.water_pressure
+      }).then(function (response) {
+        // console.log(response)
+        commit("UPDATE_SENSOR", response.data.data);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  removeItem: function removeItem(_ref4, itemId) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/sensor/delete?id=".concat(itemId)).then(function (response) {
+        commit("REMOVE_ITEM", itemId);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/sensor/moduleSensorGetters.js":
+/*!***********************************************************************!*\
+  !*** ./resources/assets/frontend/store/sensor/moduleSensorGetters.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/sensor/moduleSensorMutations.js":
+/*!*************************************************************************!*\
+  !*** ./resources/assets/frontend/store/sensor/moduleSensorMutations.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find-index */ "./node_modules/core-js/modules/es.array.find-index.js");
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.splice */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  ADD_ITEM: function ADD_ITEM(state, item) {
+    state.sensor.unshift(item);
+  },
+  SET_SENSOR: function SET_SENSOR(state, sensor) {
+    state.sensor = sensor;
+  },
+  UPDATE_SENSOR: function UPDATE_SENSOR(state, sensor) {
+    var productIndex = state.sensor.findIndex(function (p) {
+      return p._id == sensor._id;
+    });
+    Object.assign(state.sensor[productIndex], sensor);
+  },
+  REMOVE_ITEM: function REMOVE_ITEM(state, itemId) {
+    var ItemIndex = state.sensor.findIndex(function (p) {
+      return p._id == itemId;
+    });
+    state.sensor.splice(ItemIndex, 1);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/sensor/moduleSensorState.js":
+/*!*********************************************************************!*\
+  !*** ./resources/assets/frontend/store/sensor/moduleSensorState.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  sensor: []
 });
 
 /***/ }),
