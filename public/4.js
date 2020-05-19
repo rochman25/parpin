@@ -325,29 +325,14 @@ __webpack_require__.r(__webpack_exports__);
     return {
       dataId: null,
       dataNama: "",
-      dataModel: null,
+      dataMicro_: null,
       dataImg: null,
-      dataWr: null,
-      dataWp: null,
+      dataSensor_: null,
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
         wheelSpeed: 0.6
-      },
-      sensor: [{
-        sensor_id: "DE",
-        Sensor: "Germany"
-      }, {
-        sensor_id: "AUS",
-        Sensor: "Australia"
-      }],
-      micro: [{
-        micro_id: "DE",
-        Micro: "Germany"
-      }, {
-        micro_id: "AUS",
-        Micro: "Australia"
-      }]
+      }
     };
   },
   computed: {
@@ -379,9 +364,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.data._id) return;
       this.dataId = null;
       this.dataNama = "";
-      this.dataModel = null;
-      this.dataWr = null;
-      this.dataWp = null;
+      this.dataSensor_ = null;
+      this.dataMicro_ = null;
       this.dataImg = null;
     },
     submitData: function submitData() {
@@ -392,19 +376,18 @@ __webpack_require__.r(__webpack_exports__);
           id: this.dataId,
           nama: this.dataNama,
           img: this.dataImg,
-          model: this.dataModel,
-          work_range: this.dataWr,
-          water_pressure: this.dataWp
-        };
+          sensor_id: this.dataSensor_._id,
+          micro_id: this.dataMicro_._id
+        }; // console.log(obj);
 
         if (this.dataId !== null) {
-          this.$store.dispatch("dataSensor/updateItem", obj)["catch"](function (err) {
+          this.$store.dispatch("dataAlat/updateItem", obj)["catch"](function (err) {
             console.error(err);
           });
         } else {
           delete obj.id;
           obj.popularity = 0;
-          this.$store.dispatch("dataSensor/addItem", obj)["catch"](function (err) {
+          this.$store.dispatch("dataAlat/addItem", obj)["catch"](function (err) {
             console.error(err);
           });
         }
@@ -1054,6 +1037,13 @@ var render = function() {
                   label: "nama",
                   options: _vm.listSensor,
                   dir: _vm.$vs.rtl ? "rtl" : "ltr"
+                },
+                model: {
+                  value: _vm.dataSensor_,
+                  callback: function($$v) {
+                    _vm.dataSensor_ = $$v
+                  },
+                  expression: "dataSensor_"
                 }
               }),
               _vm._v(" "),
@@ -1068,6 +1058,13 @@ var render = function() {
                   label: "nama",
                   options: _vm.listMicro,
                   dir: _vm.$vs.rtl ? "rtl" : "ltr"
+                },
+                model: {
+                  value: _vm.dataMicro_,
+                  callback: function($$v) {
+                    _vm.dataMicro_ = $$v
+                  },
+                  expression: "dataMicro_"
                 }
               }),
               _vm._v(" "),
@@ -1596,6 +1593,51 @@ __webpack_require__.r(__webpack_exports__);
         reject(error);
       });
     });
+  },
+  addItem: function addItem(_ref2, item) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/alat/add", {
+        nama: item.nama,
+        id_sensor: item.sensor_id,
+        id_micro: item.micro_id
+      }).then(function (response) {
+        // console.log(response.data.data.microcontroller._id)
+        commit("ADD_ITEM", Object.assign(item, {
+          id: response.data.data.alat._id
+        }));
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  updateItem: function updateItem(_ref3, item) {
+    var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/alat/update/".concat(item.id), {
+        nama: item.nama,
+        id_sensor: item.sensor_id,
+        id_micro: item.micro_id
+      }).then(function (response) {
+        // console.log(response)
+        commit("UPDATE_ALAT", response.data.data);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  removeItem: function removeItem(_ref4, itemId) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/alat/delete?id=".concat(itemId)).then(function (response) {
+        commit("REMOVE_ITEM", itemId);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
   }
 });
 
@@ -1623,9 +1665,32 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find-index */ "./node_modules/core-js/modules/es.array.find-index.js");
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.splice */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  ADD_ITEM: function ADD_ITEM(state, item) {
+    state.alat.unshift(item);
+  },
   SET_ALAT: function SET_ALAT(state, alat) {
     state.alat = alat; // console.log(state.alat)
+  },
+  UPDATE_ALAT: function UPDATE_ALAT(state, alat) {
+    var productIndex = state.alat.findIndex(function (p) {
+      return p._id == alat._id;
+    });
+    Object.assign(state.alat[productIndex], alat);
+  },
+  REMOVE_ITEM: function REMOVE_ITEM(state, itemId) {
+    var ItemIndex = state.alat.findIndex(function (p) {
+      return p._id == itemId;
+    });
+    state.alat.splice(ItemIndex, 1);
   }
 });
 

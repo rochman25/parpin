@@ -44,10 +44,10 @@
         <!-- <span class="text-danger text-sm" v-show="errors.has('item-name')">{{ errors.first('item-name') }}</span> -->
         <!-- SENSOR -->
         <label for class="vs-select--label mt-5 w-full">Tipe Sensor</label>
-        <v-select label="nama" :options="listSensor" class :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+        <v-select label="nama" :options="listSensor" class :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="dataSensor_" />
         <!-- MICROCONTROLLER -->
         <label for class="vs-select--label mt-5">Tipe Microcontroller</label>
-        <v-select label="nama" :options="listMicro" class :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+        <v-select label="nama" :options="listMicro" class :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="dataMicro_" />
         <!-- Upload -->
         <!-- <vs-upload text="Upload Image" class="img-upload" ref="fileUpload" /> -->
 
@@ -120,36 +120,15 @@ export default {
     return {
       dataId: null,
       dataNama: "",
-      dataModel: null,
+      dataMicro_: null,
       dataImg: null,
-      dataWr: null,
-      dataWp: null,
+      dataSensor_: null,
 
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
         wheelSpeed: 0.6
-      },
-      sensor: [
-        {
-          sensor_id: "DE",
-          Sensor: "Germany"
-        },
-        {
-          sensor_id: "AUS",
-          Sensor: "Australia"
-        }
-      ],
-      micro: [
-        {
-          micro_id: "DE",
-          Micro: "Germany"
-        },
-        {
-          micro_id: "AUS",
-          Micro: "Australia"
-        }
-      ]
+      }
     };
   },
   computed: {
@@ -182,9 +161,8 @@ export default {
       if (this.data._id) return;
       this.dataId = null;
       this.dataNama = "";
-      this.dataModel = null;
-      this.dataWr = null;
-      this.dataWp = null;
+      this.dataSensor_ = null;
+      this.dataMicro_ = null;
       this.dataImg = null;
     },
     submitData() {
@@ -195,19 +173,19 @@ export default {
           id: this.dataId,
           nama: this.dataNama,
           img: this.dataImg,
-          model: this.dataModel,
-          work_range: this.dataWr,
-          water_pressure: this.dataWp
+          sensor_id: this.dataSensor_._id,
+          micro_id: this.dataMicro_._id,
         };
+        // console.log(obj);
 
         if (this.dataId !== null) {
-          this.$store.dispatch("dataSensor/updateItem", obj).catch(err => {
+          this.$store.dispatch("dataAlat/updateItem", obj).catch(err => {
             console.error(err);
           });
         } else {
           delete obj.id;
           obj.popularity = 0;
-          this.$store.dispatch("dataSensor/addItem", obj).catch(err => {
+          this.$store.dispatch("dataAlat/addItem", obj).catch(err => {
             console.error(err);
           });
         }
