@@ -8,7 +8,7 @@
           class="mb-base"
           icon="CpuIcon"
           icon-right
-          statistic="2"
+          :statistic=totalAlat
           statisticTitle="Jumlah Alat"
         />
       </div>
@@ -52,6 +52,7 @@
 </template>
 <script>
 import StatisticsCardLine from "@/components/statistics-cards/StatisticsCardLine.vue";
+import moduleAlat from "./../store/alat/moduleAlat.js";
 export default {
   components: {
     StatisticsCardLine
@@ -59,8 +60,20 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    totalAlat() {
+        // console.log(this.$store.state.dataAlat.jumlah);
+      return this.$store.state.dataAlat.jumlah;
+    }
+  },
   created() {
-    console.log(localStorage.getItem("accessToken"));
+    if (!moduleAlat.isRegistered) {
+      this.$store.registerModule("dataAlat", moduleAlat);
+      moduleAlat.isRegistered = true;
+    }
+    this.$store.dispatch("dataAlat/fetchDataAlat").catch(err => {
+      console.error(err);
+    });
   }
 };
 </script>

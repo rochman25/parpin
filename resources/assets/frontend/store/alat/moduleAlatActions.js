@@ -6,8 +6,9 @@ export default {
             axios
                 .get("api/v1/alat")
                 .then(response => {
-                    // console.log(response)
+                    console.log(response)
                     commit("SET_ALAT", response.data.data.data);
+                    commit("SET_TOTAL", response.data.data.total);
                     resolve(response);
                 })
                 .catch(error => {

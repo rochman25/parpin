@@ -6,6 +6,10 @@ export default {
         state.alat = alat
             // console.log(state.alat)
     },
+    SET_TOTAL(state, alat) {
+        state.jumlah = alat
+            // console.log(state.alat)
+    },
     UPDATE_ALAT(state, alat) {
         const productIndex = state.alat.findIndex((p) => p._id == alat._id)
         Object.assign(state.alat[productIndex], alat)
