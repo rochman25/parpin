@@ -37,6 +37,7 @@ class PenggunaController extends BaseController {
 
     async fetch({ request, response }) {
         let id = request.input("id");
+        let idP = request.input("idP");
         let page = request.input("page") ? request.input("page") : 1;
         let respon = {};
         let pengguna = [];

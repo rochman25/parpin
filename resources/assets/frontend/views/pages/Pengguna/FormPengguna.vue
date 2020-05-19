@@ -158,7 +158,7 @@ export default {
             username: this.dataUname,
             img: this.dataImg,
             email: this.dataEmail,
-            no_telp: this.dataNoTelp,
+            notelp: this.dataNoTelp,
           };
 
           if (this.dataId !== null) {

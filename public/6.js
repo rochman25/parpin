@@ -175,7 +175,7 @@ __webpack_require__.r(__webpack_exports__);
           username: this.dataUname,
           img: this.dataImg,
           email: this.dataEmail,
-          no_telp: this.dataNoTelp
+          notelp: this.dataNoTelp
         };
 
         if (this.dataId !== null) {
@@ -855,7 +855,9 @@ __webpack_require__.r(__webpack_exports__);
   fetchDataPengguna: function fetchDataPengguna(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/pengguna").then(function (response) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/pengguna", {
+        idP: localStorage.getItem("userInfo").id
+      }).then(function (response) {
         // console.log(response)
         commit("SET_PENGGUNA", response.data.data.data);
         resolve(response);

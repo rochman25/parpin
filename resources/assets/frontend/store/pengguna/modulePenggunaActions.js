@@ -4,7 +4,7 @@ export default {
     fetchDataPengguna({ commit }) {
         return new Promise((resolve, reject) => {
             axios
-                .get("api/v1/pengguna")
+                .get("api/v1/pengguna", { idP: localStorage.getItem("userInfo").id })
                 .then(response => {
                     // console.log(response)
                     commit("SET_PENGGUNA", response.data.data.data);
