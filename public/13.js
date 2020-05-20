@@ -333,6 +333,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -357,7 +389,8 @@ __webpack_require__.r(__webpack_exports__);
       analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_5__["default"],
       // Data Sidebar
       addNewDataSidebar: false,
-      sidebarData: {}
+      sidebarData: {},
+      popupActive: false
     };
   },
   components: {
@@ -908,26 +941,54 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", { staticClass: "vx-row" }, [
-        _c("div", { staticClass: "vx-col" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary",
-              on: { click: _vm.addNewData }
-            },
-            [
-              _c("feather-icon", {
-                attrs: { icon: "PlusIcon", svgClasses: "h-4 w-4" }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "ml-2 text-base text-primary" }, [
-                _vm._v("Tambah Alat")
-              ])
-            ],
-            1
-          )
-        ])
+        _c(
+          "div",
+          { staticClass: "vx-col" },
+          [
+            _c(
+              "vs-popup",
+              {
+                attrs: {
+                  "background-color": "rgba(0,0,0,.7)",
+                  title: "Lorem ipsum dolor sit amet",
+                  active: _vm.popupActive
+                },
+                on: {
+                  "update:active": function($event) {
+                    _vm.popupActive = $event
+                  }
+                }
+              },
+              [
+                _c("p", [
+                  _vm._v(
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary",
+                on: { click: _vm.addNewData }
+              },
+              [
+                _c("feather-icon", {
+                  attrs: { icon: "PlusIcon", svgClasses: "h-4 w-4" }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "ml-2 text-base text-primary" }, [
+                  _vm._v("Tambah Alat")
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c(
@@ -945,7 +1006,107 @@ var render = function() {
                 "vx-card",
                 { attrs: { title: alatInfo.nama } },
                 [
-                  _c("template", { slot: "actions" }),
+                  _c(
+                    "template",
+                    { slot: "actions" },
+                    [
+                      _c(
+                        "vs-dropdown",
+                        {
+                          staticClass: "dd-actions cursor-pointer mb-4",
+                          attrs: { "vs-trigger-click": "" }
+                        },
+                        [
+                          _c("feather-icon", {
+                            attrs: {
+                              icon: "SettingsIcon",
+                              svgClasses: "w-6 h-6 text-grey"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "vs-dropdown-menu",
+                            [
+                              _c("vs-dropdown-item", [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "flex items-center",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.popupActive = true
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("feather-icon", {
+                                      staticClass: "mr-2",
+                                      attrs: {
+                                        icon: "InfoIcon",
+                                        svgClasses: "h-4 w-4"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Detail")])
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("vs-dropdown-item", [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "flex items-center",
+                                    on: {
+                                      click: function($event) {
+                                        $event.stopPropagation()
+                                        return _vm.editData(alatInfo)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("feather-icon", {
+                                      staticClass: "mr-2",
+                                      attrs: {
+                                        icon: "EditIcon",
+                                        svgClasses: "h-4 w-4"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Ubah")])
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("vs-dropdown-item", [
+                                _c(
+                                  "span",
+                                  { staticClass: "flex items-center" },
+                                  [
+                                    _c("feather-icon", {
+                                      staticClass: "mr-2",
+                                      attrs: {
+                                        icon: "TrashIcon",
+                                        svgClasses: "h-4 w-4"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v("Hapus")])
+                                  ],
+                                  1
+                                )
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _vm.supportTracker.analyticsData
                     ? _c(

@@ -8,6 +8,14 @@
     <div class="vx-row">
       <div class="vx-col">
         <!-- ADD NEW -->
+        <vs-popup
+          background-color="rgba(0,0,0,.7)"
+          class
+          title="Lorem ipsum dolor sit amet"
+          :active.sync="popupActive"
+        >
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </vs-popup>
         <div
           class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary"
           @click="addNewData"
@@ -28,7 +36,31 @@
         <vx-card :title="alatInfo.nama">
           <!-- CARD ACTION -->
           <template slot="actions">
-            <!-- <change-time-duration-dropdown /> -->
+            <vs-dropdown vs-trigger-click class="dd-actions cursor-pointer mb-4">
+              <feather-icon icon="SettingsIcon" svgClasses="w-6 h-6 text-grey"></feather-icon>
+              <vs-dropdown-menu>
+                <vs-dropdown-item>
+                  <span class="flex items-center" @click="popupActive=true">
+                    <feather-icon icon="InfoIcon" svgClasses="h-4 w-4" class="mr-2" />
+                    <span>Detail</span>
+                  </span>
+                </vs-dropdown-item>
+
+                <vs-dropdown-item>
+                  <span class="flex items-center" @click.stop="editData(alatInfo)">
+                    <feather-icon icon="EditIcon" svgClasses="h-4 w-4" class="mr-2" />
+                    <span>Ubah</span>
+                  </span>
+                </vs-dropdown-item>
+
+                <vs-dropdown-item>
+                  <span class="flex items-center">
+                    <feather-icon icon="TrashIcon" svgClasses="h-4 w-4" class="mr-2" />
+                    <span>Hapus</span>
+                  </span>
+                </vs-dropdown-item>
+              </vs-dropdown-menu>
+            </vs-dropdown>
           </template>
 
           <div slot="no-body" v-if="supportTracker.analyticsData">
@@ -89,7 +121,8 @@ export default {
       analyticsData: analyticsData,
       // Data Sidebar
       addNewDataSidebar: false,
-      sidebarData: {}
+      sidebarData: {},
+      popupActive: false
     };
   },
   components: {
