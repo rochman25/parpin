@@ -100,17 +100,15 @@ export default {
           nama,
           _id,
           img,
-          model,
-          working_range,
-          water_pressure
+          sensor,
+          micro
         } = JSON.parse(JSON.stringify(this.data));
         console.log(this.data);
         this.dataId = _id;
-        this.dataModel = model;
+        this.dataSensor_ = sensor;
         this.dataImg = img;
         this.dataNama = nama;
-        this.dataWr = working_range;
-        this.dataWp = water_pressure;
+        this.dataMicro_ = micro;
         this.initValues();
       }
       // Object.entries(this.data).length === 0 ? this.initValues() : { this.dataId, this.dataName, this.dataCategory, this.dataOrder_status, this.dataPrice } = JSON.parse(JSON.stringify(this.data))

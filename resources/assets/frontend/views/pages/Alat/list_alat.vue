@@ -11,10 +11,10 @@
         <vs-popup
           background-color="rgba(0,0,0,.7)"
           class
-          title="Lorem ipsum dolor sit amet"
+          title="Detail Alat"
           :active.sync="popupActive"
         >
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          
         </vs-popup>
         <div
           class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary"

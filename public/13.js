@@ -119,17 +119,15 @@ __webpack_require__.r(__webpack_exports__);
             nama = _JSON$parse.nama,
             _id = _JSON$parse._id,
             img = _JSON$parse.img,
-            model = _JSON$parse.model,
-            working_range = _JSON$parse.working_range,
-            water_pressure = _JSON$parse.water_pressure;
+            sensor = _JSON$parse.sensor,
+            micro = _JSON$parse.micro;
 
         console.log(this.data);
         this.dataId = _id;
-        this.dataModel = model;
+        this.dataSensor_ = sensor;
         this.dataImg = img;
         this.dataNama = nama;
-        this.dataWr = working_range;
-        this.dataWp = water_pressure;
+        this.dataMicro_ = micro;
         this.initValues();
       } // Object.entries(this.data).length === 0 ? this.initValues() : { this.dataId, this.dataName, this.dataCategory, this.dataOrder_status, this.dataPrice } = JSON.parse(JSON.stringify(this.data))
 
@@ -945,28 +943,18 @@ var render = function() {
           "div",
           { staticClass: "vx-col" },
           [
-            _c(
-              "vs-popup",
-              {
-                attrs: {
-                  "background-color": "rgba(0,0,0,.7)",
-                  title: "Lorem ipsum dolor sit amet",
-                  active: _vm.popupActive
-                },
-                on: {
-                  "update:active": function($event) {
-                    _vm.popupActive = $event
-                  }
-                }
+            _c("vs-popup", {
+              attrs: {
+                "background-color": "rgba(0,0,0,.7)",
+                title: "Detail Alat",
+                active: _vm.popupActive
               },
-              [
-                _c("p", [
-                  _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                  )
-                ])
-              ]
-            ),
+              on: {
+                "update:active": function($event) {
+                  _vm.popupActive = $event
+                }
+              }
+            }),
             _vm._v(" "),
             _c(
               "div",
