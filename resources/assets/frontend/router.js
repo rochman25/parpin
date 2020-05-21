@@ -51,6 +51,15 @@ const router = new Router({
                     }
                 },
                 {
+                    path: '/alat/detail/:id',
+                    name: 'parpin-detail-alat',
+                    component: () =>
+                        import ('./views/pages/Alat/DetailAlat.vue'),
+                    meta: {
+                        authRequired: true
+                    }
+                },
+                {
                     path: '/pengguna',
                     name: 'parpin-pengguna',
                     component: () =>

@@ -7,15 +7,6 @@
     />
     <div class="vx-row">
       <div class="vx-col">
-        <!-- ADD NEW -->
-        <vs-popup
-          background-color="rgba(0,0,0,.7)"
-          class
-          title="Detail Alat"
-          :active.sync="popupActive"
-        >
-          
-        </vs-popup>
         <div
           class="btn-add-new p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-center text-lg font-medium text-base text-primary border border-solid border-primary"
           @click="addNewData"
@@ -40,7 +31,7 @@
               <feather-icon icon="SettingsIcon" svgClasses="w-6 h-6 text-grey"></feather-icon>
               <vs-dropdown-menu>
                 <vs-dropdown-item>
-                  <span class="flex items-center" @click="popupActive=true">
+                  <span class="flex items-center" @click="navigate_to_detail_view(alatInfo._id)">
                     <feather-icon icon="InfoIcon" svgClasses="h-4 w-4" class="mr-2" />
                     <span>Detail</span>
                   </span>
@@ -54,7 +45,7 @@
                 </vs-dropdown-item>
 
                 <vs-dropdown-item>
-                  <span class="flex items-center">
+                  <span class="flex items-center" @click.stop="deleteData(alatInfo._id)">
                     <feather-icon icon="TrashIcon" svgClasses="h-4 w-4" class="mr-2" />
                     <span>Hapus</span>
                   </span>
@@ -137,7 +128,7 @@ export default {
       this.toggleDataSidebar(true);
     },
     deleteData(id) {
-      this.$store.dispatch("dataSensor/removeItem", id).catch(err => {
+      this.$store.dispatch("dataAlat/removeItem", id).catch(err => {
         console.error(err);
       });
     },
@@ -149,6 +140,14 @@ export default {
     },
     toggleDataSidebar(val = false) {
       this.addNewDataSidebar = val;
+    },
+    navigate_to_detail_view(id) {
+      this.$router
+        .push({
+          name: "parpin-detail-alat",
+          params: { id: id}
+        })
+        .catch(() => {});
     }
   },
   computed: {
