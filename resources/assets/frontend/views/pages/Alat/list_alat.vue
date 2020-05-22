@@ -91,7 +91,6 @@ import DataViewSidebar from "./FormAlat.vue";
 import moduleAlat from "./../../../store/alat/moduleAlat.js";
 import VueApexCharts from "vue-apexcharts";
 import StatisticsCardLine from "./../../../components/statistics-cards/StatisticsCardLine";
-import ChangeTimeDurationDropdown from "@/components/ChangeTimeDurationDropdown.vue";
 import analyticsData from "./analyticData.js";
 
 export default {
@@ -119,7 +118,6 @@ export default {
   components: {
     VueApexCharts,
     StatisticsCardLine,
-    ChangeTimeDurationDropdown,
     DataViewSidebar
   },
   methods: {

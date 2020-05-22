@@ -6,9 +6,25 @@ export default {
             axios
                 .get("api/v1/alat")
                 .then(response => {
-                    console.log(response)
+                    console.log(response.data.data)
                     commit("SET_ALAT", response.data.data.data);
                     commit("SET_TOTAL", response.data.data.total);
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    },
+    fetchDetailAlat({ commit }, itemId) {
+        return new Promise((resolve, reject) => {
+            axios
+                .get(`api/v1/alat?id=${itemId}`)
+                .then(response => {
+                    // console.log(itemId)
+                    // console.log(response.data.data)
+                    commit("SET_ALAT", response.data.data);
+                    // commit("SET_TOTAL", response.data.data.total);
                     resolve(response);
                 })
                 .catch(error => {

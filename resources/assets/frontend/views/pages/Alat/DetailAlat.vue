@@ -16,7 +16,7 @@
               <div class="vx-col md:w-2/5 w-full flex items-center justify-center">
                 <div class="product-img-container w-3/5 mx-auto mb-10 md:mb-0">
                   <img
-                    src="https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/01.png"
+                    src="../../../assets/images/pages/eCommerce/Algolia-logo.png"
                     class="responsive"
                   />
 
@@ -31,9 +31,9 @@
 
               <!-- Item Content -->
               <div class="vx-col md:w-3/5 w-full">
-                <h3>Nama Item</h3>
+                <h3>{{alat.nama}}</h3>
 
-                <p class="my-2">
+                <!-- <p class="my-2">
                   <span class="mr-2">by</span>
                   <span>brand item</span>
                 </p>
@@ -45,141 +45,47 @@
                     <star-rating :show-rating="false" :star-size="20" read-only />
                   </span>
                   <span class="cursor-pointer leading-none mt-2">424 ratings</span>
-                </p>
+                </p>-->
 
                 <vs-divider />
 
-                <p>deskripsi</p>
+                <!-- <p>deskripsi</p> -->
 
                 <vs-list class="product-sales-meta-list px-0 pt-4">
                   <vs-list-item
-                    v-if
                     class="p-0 border-none"
-                    title="Free Sheeping"
+                    title="Sensor"
                     icon-pack="feather"
                     icon="icon-truck"
-                  />
+                  ></vs-list-item>
+                  <p>{{alat.sensor}}</p>
                   <vs-list-item
                     class="p-0 border-none"
-                    title="EMI options available"
+                    title="Microcontroller"
                     icon-pack="feather"
                     icon="icon-dollar-sign"
                   ></vs-list-item>
+                  <p>{{alat.micro}}</p>
                 </vs-list>
 
                 <vs-divider />
 
-                <!-- Color -->
-                <div class="vx-row">
-                  <div class="vx-col w-full">
-                    <span class="text-xl font-medium">Color</span>
-                    <div class="flex flex-wrap items-center mt-2">
-                      <div
-                        :class="{'border-transparent': opt_color != color}"
-                        class="color-radio rounded-full mx-1 border-2 border-solid cursor-pointer relative"
-                        :style="itemColor({color: color, style: ['borderColor']})"
-                        v-for="color in available_item_colors"
-                        :key="color"
-                        @click="opt_color=color"
-                      >
-                        <div
-                          class="h-6 w-6 rounded-full absolute"
-                          :style="itemColor({color: color, style: ['backgroundColor']})"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- /Color -->
-
-                <vs-divider />
+                <!-- <vs-divider /> -->
 
                 <!-- Quantity -->
                 <div class="vx-row">
                   <div class="vx-col w-full">
                     <p class="my-2">
-                      <span>Available</span>
+                      <span>Status</span>
                       <span class="mx-2">-</span>
-                      <span class="text-success">In Stock</span>
+                      <span class="text-success">Online</span> OR
+                      <span class="text-danger">Offline</span>
                     </p>
                   </div>
 
-                  <div class="vx-col w-full">
-                    <div class="flex flex-wrap items-start mb-4">
-                      <!-- Add To Cart Button -->
-                      <vs-button
-                        class="mr-4 mb-4"
-                        icon-pack="feather"
-                        icon="icon-shopping-cart"
-                      >ADD TO CART</vs-button>
-
-                      <vs-button
-                        class="mr-4 mb-4"
-                        icon-pack="feather"
-                        icon="icon-shopping-cart"
-                        @click="$router.push({name: 'ecommerce-checkout'}).catch(err => {})"
-                      >VIEW IN CART</vs-button>
-                      <!-- /Add To Cart Button -->
-
-                      <!-- Wishlist Button -->
-                      <vs-button
-                        key="filled"
-                        class="mb-4"
-                        icon-pack="feather"
-                        icon="icon-heart"
-                        color="danger"
-                      >WHISHLIST</vs-button>
-
-                      <vs-button
-                        key="border"
-                        class="mb-4"
-                        type="border"
-                        icon-pack="feather"
-                        icon="icon-heart"
-                        color="danger"
-                      >WHISHLIST</vs-button>
-                      <!-- /Wishlist Button -->
-                    </div>
-                  </div>
+                  <div class="vx-col w-full"></div>
                 </div>
                 <!-- /Quantity -->
-
-                <div class="vx-row">
-                  <div class="vx-col flex flex-wrap items-center">
-                    <vs-button
-                      class="mr-4"
-                      type="border"
-                      icon-pack="feather"
-                      color="#1551b1"
-                      icon="icon-facebook"
-                      radius
-                    ></vs-button>
-                    <vs-button
-                      class="mr-4"
-                      type="border"
-                      icon-pack="feather"
-                      color="#00aaff"
-                      icon="icon-twitter"
-                      radius
-                    ></vs-button>
-                    <vs-button
-                      class="mr-4"
-                      type="border"
-                      icon-pack="feather"
-                      color="#c4302b"
-                      icon="icon-youtube"
-                      radius
-                    ></vs-button>
-                    <vs-button
-                      class="mr-4"
-                      type="border"
-                      icon-pack="feather"
-                      color="#405DE6"
-                      icon="icon-instagram"
-                      radius
-                    ></vs-button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -187,89 +93,80 @@
           <!-- Product Feature/Meta Row -->
           <div class="py-24 mb-16 mt-10 text-center item-features">
             <div class="vx-row">
-              <div class="vx-col md:w-1/3 w-full">
-                <div class="w-64 mx-auto mb-16 md:mb-0">
+              <div class="vx-col md:w-1/2 w-full">
+                <div class="w-full mx-auto mb-16 md:mb-0">
                   <feather-icon
+                    icon="PieChartIcon"
+                    svgClasses="h-12 w-12 text-primary stroke-current"
+                    class="block mb-4"
+                  />
+                  <span class="font-semibold text-lg">Statistik Alat</span>
+                  <div slot="no-body" v-if="supportTracker.analyticsData">
+                    <div class="vx-row text-center">
+                      <!-- Chart -->
+                      <div
+                        class="vx-col w-full lg:w-5/5 md:w-full sm:w-5/5 justify-center mx-auto lg:mt-0 md:mt-6 sm:mt-0 mt-3"
+                      >
+                        <vue-apex-charts
+                          type="radialBar"
+                          height="350"
+                          :options="analyticsData.supportTrackerRadialBar.chartOptions"
+                          :series="supportTracker.series"
+                        />
+                      </div>
+                    </div>
+                    <!-- Support Tracker Meta Data -->
+                    <!-- <div class="flex flex-row justify-between px-8 pb-5">
+                      <p
+                        class="text-center"
+                        v-for="(val, key) in supportTracker.analyticsData.meta"
+                        :key="key"
+                      >
+                        <span class="block">{{ key }}</span>
+                        <span class="text-2xl font-semibold">{{ val }}</span>
+                      </p>
+                    </div>-->
+                  </div>
+                  <!-- <feather-icon
                     icon="AwardIcon"
                     svgClasses="h-12 w-12 text-primary stroke-current"
                     class="block mb-4"
                   />
                   <span class="font-semibold text-lg">100% Original</span>
-                  <p class="mt-2">Chocolate bar candy canes ice cream toffee cookie halvah.</p>
+                  <p class="mt-2">Chocolate bar candy canes ice cream toffee cookie halvah.</p>-->
                 </div>
               </div>
-              <div class="vx-col md:w-1/3 w-full">
-                <div class="w-64 mx-auto mb-16 md:mb-0">
+              <div class="vx-col md:w-1/2 w-full">
+                <div class="w-full mx-auto mb-16 md:mb-0">
                   <feather-icon
-                    icon="ClockIcon"
+                    icon="MapIcon"
                     svgClasses="h-12 w-12 text-primary stroke-current"
                     class="block mb-4"
                   />
-                  <span class="font-semibold text-lg">10 Day Replacement</span>
-                  <p class="mt-2">Marshmallow biscuit donut dragée fruitcake wafer.</p>
-                </div>
-              </div>
-              <div class="vx-col md:w-1/3 w-full">
-                <div class="w-64 mx-auto">
-                  <feather-icon
-                    icon="ShieldIcon"
-                    svgClasses="h-12 w-12 text-primary stroke-current"
-                    class="block mb-4"
-                  />
-                  <span class="font-semibold text-lg">1 Year Warranty</span>
-                  <p class="mt-2">Cotton candy gingerbread cake I love sugar sweet.</p>
+                  <span class="font-semibold text-lg">Lokasi Alat</span>
+                  <div id="extra-component-google-map-demo">
+                    <GmapMap
+                      :center="center"
+                      :zoom="7"
+                      map-type-id="terrain"
+                      style="width: 100%; height: 400px"
+                    >
+                      <GmapMarker
+                        :key="index"
+                        v-for="(m, index) in markers"
+                        :position="m.position"
+                        :clickable="true"
+                        :draggable="true"
+                        @click="center=m.position"
+                      />
+                    </GmapMap>
+                  </div>
+                  <!-- <span class="font-semibold text-lg">10 Day Replacement</span>
+                  <p class="mt-2">Marshmallow biscuit donut dragée fruitcake wafer.</p>-->
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Related Products -->
-        <div class="related-products text-center px-6">
-          <div class="related-headings mb-8 text-center">
-            <h2 class="uppercase">Related Products</h2>
-            <p>People also search for this items</p>
-          </div>
-          <swiper
-            :options="swiperOption"
-            :dir="$vs.rtl ? 'rtl' : 'ltr'"
-            :key="$vs.rtl"
-            class="related-product-swiper px-12 py-6"
-          >
-            <swiper-slide
-              v-for="item in related_items"
-              :key="item.objectId"
-              class="p-6 rounded cursor-pointer"
-            >
-              <!-- Item Heading -->
-              <div class="item-heading mb-4">
-                <p class="text-lg font-semibold truncate">{{ item.name }}</p>
-                <p class="text-sm">
-                  <span class="mr-2">by</span>
-                  <span>{{ item.brand }}</span>
-                </p>
-              </div>
-
-              <!-- Item Image -->
-              <div class="img-container w-32 mx-auto my-base">
-                <img class="responsive" :src="item.image" :alt="item.name" />
-              </div>
-
-              <!-- Item Meta -->
-              <div class="item-meta">
-                <star-rating
-                  :show-rating="false"
-                  :rating="item.rating"
-                  :star-size="14"
-                  class="justify-center"
-                  read-only
-                />
-                <p class="text-lg font-medium text-primary">${{ item.price }}</p>
-              </div>
-            </swiper-slide>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
-          </swiper>
         </div>
       </template>
     </vx-card>
@@ -277,13 +174,30 @@
 </template>
 
 <script>
+import moduleAlat from "./../../../store/alat/moduleAlat.js";
+import VueApexCharts from "vue-apexcharts";
+import StatisticsCardLine from "./../../../components/statistics-cards/StatisticsCardLine";
+import analyticsData from "./analyticData.js";
 export default {
   data() {
     return {
-      //   algolia_index: algoliasearch(
-      //     "latency",
-      //     "6be0576ff61c053d5f9a3225e2a90f76"
-      //   ).initIndex("instant_search"),
+      center: { lat: 10.0, lng: 10.0 },
+      markers: [
+        { position: { lat: 10.0, lng: 10.0 } },
+        { position: { lat: 11.0, lng: 11.0 } }
+      ],
+      supportTracker: {
+        analyticsData: {
+          openTickets: 163,
+          meta: {
+            Status: "online",
+            // "": 63,
+            "Waktu Response": 0.23 + " detik"
+          }
+        },
+        series: [100]
+      },
+      analyticsData: analyticsData,
       item_data: null,
       error_occured: false,
       error_msg: "",
@@ -297,29 +211,13 @@ export default {
       opt_color: "#7367F0"
     };
   },
+  components: {
+    VueApexCharts,
+    StatisticsCardLine
+  },
   computed: {
-    item_qty() {
-      const item = this.$store.getters["eCommerce/getCartItem"](
-        this.item_data.objectID
-      );
-      return Object.keys(item).length ? item.quantity : 1;
-    },
-    itemColor() {
-      return obj => {
-        let style_obj = {};
-
-        obj.style.forEach(p => {
-          style_obj[p] = obj.color;
-        });
-
-        return style_obj;
-      };
-    },
-    isInWishList() {
-      return itemId => this.$store.getters["eCommerce/isInWishList"](itemId);
-    },
-    isInCart() {
-      return itemId => this.$store.getters["eCommerce/isInCart"](itemId);
+    alat() {
+      return this.$store.state.dataAlat.alat;
     }
   },
   methods: {
@@ -330,19 +228,29 @@ export default {
       this.$store.dispatch("eCommerce/toggleItemInCart", item);
     },
     fetch_item_details(id) {
-    //   this.algolia_index.getObject(id, (err, content) => {
-    //     if (err) {
-    //       this.error_occured = true;
-    //       this.error_msg = err.message;
-    //       console.error(err);
-    //     } else {
-    //       this.item_data = content;
-    //     }
-    //   });
+      //   this.algolia_index.getObject(id, (err, content) => {
+      //     if (err) {
+      //       this.error_occured = true;
+      //       this.error_msg = err.message;
+      //       console.error(err);
+      //     } else {
+      //       this.item_data = content;
+      //     }
+      //   });
     }
   },
   created() {
-    this.fetch_item_details(this.$route.params.item_id);
+    if (!moduleAlat.isRegistered) {
+      this.$store.registerModule("dataAlat", moduleAlat);
+      moduleAlat.isRegistered = true;
+    }
+    this.$store
+      .dispatch("dataAlat/fetchDetailAlat", this.$route.params.id)
+      .catch(err => {
+        console.error(err);
+      });
+    // console.log(this.$store.state.dataAlat)
+    // this.fetch_item_details(this.$route.params.item_id);
   }
 };
 </script>

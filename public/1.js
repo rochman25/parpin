@@ -507,7 +507,7 @@ __webpack_require__.r(__webpack_exports__);
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/alat").then(function (response) {
-        console.log(response);
+        console.log(response.data.data);
         commit("SET_ALAT", response.data.data.data);
         commit("SET_TOTAL", response.data.data.total);
         resolve(response);
@@ -516,8 +516,22 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  addItem: function addItem(_ref2, item) {
+  fetchDetailAlat: function fetchDetailAlat(_ref2, itemId) {
     var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/alat?id=".concat(itemId)).then(function (response) {
+        // console.log(itemId)
+        // console.log(response.data.data)
+        commit("SET_ALAT", response.data.data); // commit("SET_TOTAL", response.data.data.total);
+
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  addItem: function addItem(_ref3, item) {
+    var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/alat/add", {
         nama: item.nama,
@@ -534,8 +548,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  updateItem: function updateItem(_ref3, item) {
-    var commit = _ref3.commit;
+  updateItem: function updateItem(_ref4, item) {
+    var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/alat/update/".concat(item.id), {
         nama: item.nama,
@@ -550,8 +564,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  removeItem: function removeItem(_ref4, itemId) {
-    var commit = _ref4.commit;
+  removeItem: function removeItem(_ref5, itemId) {
+    var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/alat/delete?id=".concat(itemId)).then(function (response) {
         commit("REMOVE_ITEM", itemId);

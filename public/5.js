@@ -264,8 +264,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
 /* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../components/statistics-cards/StatisticsCardLine */ "./resources/assets/frontend/components/statistics-cards/StatisticsCardLine.vue");
-/* harmony import */ var _components_ChangeTimeDurationDropdown_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/ChangeTimeDurationDropdown.vue */ "./resources/assets/frontend/components/ChangeTimeDurationDropdown.vue");
-/* harmony import */ var _analyticData_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./analyticData.js */ "./resources/assets/frontend/views/pages/Alat/analyticData.js");
+/* harmony import */ var _analyticData_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./analyticData.js */ "./resources/assets/frontend/views/pages/Alat/analyticData.js");
 //
 //
 //
@@ -354,7 +353,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 
@@ -375,7 +373,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         series: [100]
       },
-      analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_5__["default"],
+      analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_4__["default"],
       // Data Sidebar
       addNewDataSidebar: false,
       sidebarData: {},
@@ -385,7 +383,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     VueApexCharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_2___default.a,
     StatisticsCardLine: _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_3__["default"],
-    ChangeTimeDurationDropdown: _components_ChangeTimeDurationDropdown_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     DataViewSidebar: _FormAlat_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
@@ -536,112 +533,6 @@ var update = __webpack_require__(/*! ../../../../../../node_modules/style-loader
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/components/ChangeTimeDurationDropdown.vue?vue&type=template&id=0fb28182&functional=true&":
-/*!**********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/frontend/components/ChangeTimeDurationDropdown.vue?vue&type=template&id=0fb28182&functional=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function(_h, _vm) {
-  var _c = _vm._c
-  return _c(
-    "vs-dropdown",
-    {
-      staticClass: "cursor-pointer",
-      class: _vm.data.staticClass,
-      attrs: { "vs-trigger-click": "" }
-    },
-    [
-      _c(
-        "small",
-        { staticClass: "flex cursor-pointer" },
-        [
-          _c("span", [_vm._v("Last 7 days")]),
-          _vm._v(" "),
-          _c("feather-icon", {
-            staticClass: "ml-1",
-            attrs: { icon: "ChevronDownIcon", svgClasses: "h-4 w-4" }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "vs-dropdown-menu",
-        { staticClass: "w-32" },
-        [
-          _c(
-            "vs-dropdown-item",
-            {
-              on: {
-                click: function($event) {
-                  _vm.listeners.timeDurationChanged
-                    ? {
-                        timeDurationChanged: _vm.listeners.timeDurationChanged(
-                          "last-28-days"
-                        )
-                      }
-                    : null
-                }
-              }
-            },
-            [_vm._v("Last 28 days")]
-          ),
-          _vm._v(" "),
-          _c(
-            "vs-dropdown-item",
-            {
-              on: {
-                click: function($event) {
-                  _vm.listeners.timeDurationChanged
-                    ? {
-                        timeDurationChanged: _vm.listeners.timeDurationChanged(
-                          "last-month"
-                        )
-                      }
-                    : null
-                }
-              }
-            },
-            [_vm._v("Last Month")]
-          ),
-          _vm._v(" "),
-          _c(
-            "vs-dropdown-item",
-            {
-              on: {
-                click: function($event) {
-                  _vm.listeners.timeDurationChanged
-                    ? {
-                        timeDurationChanged: _vm.listeners.timeDurationChanged(
-                          "last-year"
-                        )
-                      }
-                    : null
-                }
-              }
-            },
-            [_vm._v("Last Year")]
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
 
 /***/ }),
 
@@ -1161,59 +1052,6 @@ var render = function() {
 }
 var staticRenderFns = []
 render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/frontend/components/ChangeTimeDurationDropdown.vue":
-/*!*****************************************************************************!*\
-  !*** ./resources/assets/frontend/components/ChangeTimeDurationDropdown.vue ***!
-  \*****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ChangeTimeDurationDropdown_vue_vue_type_template_id_0fb28182_functional_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChangeTimeDurationDropdown.vue?vue&type=template&id=0fb28182&functional=true& */ "./resources/assets/frontend/components/ChangeTimeDurationDropdown.vue?vue&type=template&id=0fb28182&functional=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-var script = {}
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
-  _ChangeTimeDurationDropdown_vue_vue_type_template_id_0fb28182_functional_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ChangeTimeDurationDropdown_vue_vue_type_template_id_0fb28182_functional_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  true,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/frontend/components/ChangeTimeDurationDropdown.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/frontend/components/ChangeTimeDurationDropdown.vue?vue&type=template&id=0fb28182&functional=true&":
-/*!****************************************************************************************************************************!*\
-  !*** ./resources/assets/frontend/components/ChangeTimeDurationDropdown.vue?vue&type=template&id=0fb28182&functional=true& ***!
-  \****************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChangeTimeDurationDropdown_vue_vue_type_template_id_0fb28182_functional_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ChangeTimeDurationDropdown.vue?vue&type=template&id=0fb28182&functional=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/components/ChangeTimeDurationDropdown.vue?vue&type=template&id=0fb28182&functional=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChangeTimeDurationDropdown_vue_vue_type_template_id_0fb28182_functional_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChangeTimeDurationDropdown_vue_vue_type_template_id_0fb28182_functional_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
