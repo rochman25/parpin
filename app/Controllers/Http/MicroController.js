@@ -43,10 +43,13 @@ class MicroController extends BaseController {
         let nama = request.input("nama");
         let model = request.input("model");
         let ct = request.input("connection_type");
+        let photo = request.input("photo");
+
         let microcontroller = new Micro();
         microcontroller.nama = nama;
         microcontroller.model = model;
         microcontroller.connection_type = ct;
+        microcontroller.photo = photo;
         await microcontroller.save();
         let respon = {
             message: this.addSuccessMessage,
@@ -65,10 +68,12 @@ class MicroController extends BaseController {
             let nama = request.input("nama");
             let model = request.input("model");
             let ct = request.input("connection_type");
+            let photo = request.input("photo");
 
             microcontroller.nama = nama;
             microcontroller.model = model;
             microcontroller.connection_type = ct;
+            microcontroller.photo = photo;
 
             await microcontroller.save();
 

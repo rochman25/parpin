@@ -47,10 +47,16 @@ class AlatController extends BaseController {
         let idm = request.input("id_micro");
         let sensor = await Sensor.find(ids);
         let micro = await Micro.find(idm);
+        let latitude = request.input("lat");
+        let longitude = request.input("long");
+        let photo = request.input("photo");
         let alat = new Alat();
         alat.nama = nama;
         alat.sensor = sensor.toJSON();
         alat.micro = micro.toJSON();
+        alat.latitude = latitude
+        alat.longitude = longitude
+        alat.photo = photo
         await alat.save();
         let respon = {
             message: this.addSuccessMessage,
@@ -73,10 +79,16 @@ class AlatController extends BaseController {
             let idm = request.input("id_micro");
             let sensor = await Sensor.find(ids);
             let micro = await Micro.find(idm);
+            let latitude = request.input("lat");
+            let longitude = request.input("long");
+            let photo = request.input("photo");
 
             alat.nama = nama;
             alat.sensor = sensor.toJSON()
             alat.micro = micro.toJSON()
+            alat.latitude = latitude
+            alat.longitude = longitude
+            alat.photo = photo
             await alat.save()
 
             respon = {

@@ -48,6 +48,7 @@ class SensorController extends BaseController {
         sensor.model = model;
         sensor.working_range = wr;
         sensor.water_pressure = wp;
+        sensor.photo = photo;
         await sensor.save();
         let respon = {
             message: this.addSuccessMessage,
@@ -67,11 +68,13 @@ class SensorController extends BaseController {
             let model = request.input("model");
             let wr = request.input("work_range");
             let wp = request.input("water_pressure");
+            let photo = request.input("photo");
 
             sensor.nama = nama;
             sensor.model = model;
             sensor.working_range = wr;
             sensor.water_pressure = wp;
+            sensor.photo = photo;
 
             await sensor.save();
 
