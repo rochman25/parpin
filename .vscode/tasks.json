@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "assets-watch",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: assets-watch",
+			"detail": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+		}
+	]
+}
