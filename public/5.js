@@ -265,6 +265,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../components/statistics-cards/StatisticsCardLine */ "./resources/assets/frontend/components/statistics-cards/StatisticsCardLine.vue");
 /* harmony import */ var _analyticData_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./analyticData.js */ "./resources/assets/frontend/views/pages/Alat/analyticData.js");
+/* harmony import */ var _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @adonisjs/websocket-client */ "./node_modules/@adonisjs/websocket-client/dist/Ws.browser.js");
+/* harmony import */ var _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5__);
 //
 //
 //
@@ -358,6 +360,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import alatWs from './../../../websocket/alat.js';
+
+var ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5___default()("ws://localhost:3333");
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -412,6 +417,33 @@ __webpack_require__.r(__webpack_exports__);
           id: id
         }
       })["catch"](function () {});
+    },
+    connect_ws: function connect_ws() {
+      var _this = this;
+
+      ws.connect();
+      ws.on("open", function () {
+        console.log("connected"); // $(".connection-status").addClass("connected");
+
+        _this.subscribeToChannel();
+      });
+      ws.on("error", function () {
+        // $(".connection-status").removeClass("connected");
+        console.log("not connected");
+      });
+    },
+    subscribeToChannel: function subscribeToChannel() {
+      var chat = ws.subscribe("alat");
+      chat.on("error", function () {
+        // $(".connection-status").removeClass("connected");
+        console.log("error");
+      });
+      chat.on("message", function (message) {
+        //   $(".messages").append(`
+        //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
+        // `);
+        console.log(message);
+      });
     }
   },
   computed: {
@@ -429,6 +461,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$store.dispatch("dataAlat/fetchDataAlat")["catch"](function (err) {
       console.error(err);
     });
+    this.connect_ws();
   },
   mounted: function mounted() {
     this.isMounted = true;

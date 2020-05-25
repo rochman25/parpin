@@ -66441,8 +66441,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_css_main_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_assets_css_main_css__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./router.js */ "./resources/assets/frontend/router.js");
 /* harmony import */ var _store_store_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store/store.js */ "./resources/assets/frontend/store/store.js");
-/* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue2-google-maps */ "./node_modules/vue2-google-maps/dist/main.js");
-/* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(vue2_google_maps__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue2-google-maps */ "./node_modules/vue2-google-maps/dist/main.js");
+/* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(vue2_google_maps__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var vue2_hammer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue2-hammer */ "./node_modules/vue2-hammer/index.min.js");
 /* harmony import */ var vue2_hammer__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(vue2_hammer__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! prismjs */ "./node_modules/prismjs/prism.js");
@@ -66476,7 +66476,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = _axios_js__WEBPACK_
  // Google Maps
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue2_google_maps__WEBPACK_IMPORTED_MODULE_17__, {
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue2_google_maps__WEBPACK_IMPORTED_MODULE_13__, {
   load: {
     // Add your API key here
     key: 'YOUR_API_KEY',
@@ -66538,7 +66538,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   {
     path: "",
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/assets/frontend/layouts/main/Main.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(16), __webpack_require__.e(4), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/assets/frontend/layouts/main/Main.vue"));
     },
     children: [//main page
     {
@@ -66548,7 +66548,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/dashboard',
       name: 'parpin-dashboard',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(14), __webpack_require__.e(1), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -66562,7 +66562,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/alat',
       name: 'parpin-alat',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(14), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/list_alat.vue */ "./resources/assets/frontend/views/pages/Alat/list_alat.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(16), __webpack_require__.e(2), __webpack_require__.e(15), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/list_alat.vue */ "./resources/assets/frontend/views/pages/Alat/list_alat.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -66576,7 +66576,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/alat/detail/:id',
       name: 'parpin-detail-alat',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(14), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/DetailAlat.vue */ "./resources/assets/frontend/views/pages/Alat/DetailAlat.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/DetailAlat.vue */ "./resources/assets/frontend/views/pages/Alat/DetailAlat.vue"));
       },
       meta: {
         authRequired: true
@@ -66585,7 +66585,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/pengguna',
       name: 'parpin-pengguna',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/pages/Pengguna/list_pengguna.vue */ "./resources/assets/frontend/views/pages/Pengguna/list_pengguna.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(16), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/pages/Pengguna/list_pengguna.vue */ "./resources/assets/frontend/views/pages/Pengguna/list_pengguna.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -66599,7 +66599,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/sensor',
       name: 'parpin-sensor',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/pages/Sensor/list_sensor.vue */ "./resources/assets/frontend/views/pages/Sensor/list_sensor.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(16), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/pages/Sensor/list_sensor.vue */ "./resources/assets/frontend/views/pages/Sensor/list_sensor.vue"));
       },
       meta: {
         authRequired: true
@@ -66608,7 +66608,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/microcontroller',
       name: 'parpin-microcontroller',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./views/pages/Microcontroller/list_microcontroller.vue */ "./resources/assets/frontend/views/pages/Microcontroller/list_microcontroller.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(16), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./views/pages/Microcontroller/list_microcontroller.vue */ "./resources/assets/frontend/views/pages/Microcontroller/list_microcontroller.vue"));
       },
       meta: {
         authRequired: true
@@ -66617,7 +66617,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/notifikasi',
       name: 'parpin-notifikasi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/pages/Notifikasi/view_notifikasi.vue */ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue"));
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/pages/Notifikasi/view_notifikasi.vue */ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue"));
       },
       meta: {
         authRequired: true
@@ -66626,20 +66626,20 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   }, {
     path: "",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./layouts/full-page/FullPage.vue */ "./resources/assets/frontend/layouts/full-page/FullPage.vue"));
+      return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./layouts/full-page/FullPage.vue */ "./resources/assets/frontend/layouts/full-page/FullPage.vue"));
     },
     children: [//fullpages
     {
       path: '/login',
       name: 'parpin-login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/pages/login.vue */ "./resources/assets/frontend/views/pages/login.vue"));
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/pages/login.vue */ "./resources/assets/frontend/views/pages/login.vue"));
       }
     }, {
       path: '/not-found',
       name: 'parpin-not-found',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/pages/404.vue */ "./resources/assets/frontend/views/pages/404.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/pages/404.vue */ "./resources/assets/frontend/views/pages/404.vue"));
       }
     } // {
     //     path: '/not-authorized',

@@ -92,6 +92,10 @@ import moduleAlat from "./../../../store/alat/moduleAlat.js";
 import VueApexCharts from "vue-apexcharts";
 import StatisticsCardLine from "./../../../components/statistics-cards/StatisticsCardLine";
 import analyticsData from "./analyticData.js";
+import Ws from "@adonisjs/websocket-client";
+// import alatWs from './../../../websocket/alat.js';
+
+const ws = Ws("ws://localhost:3333");
 
 export default {
   data() {
@@ -143,9 +147,37 @@ export default {
       this.$router
         .push({
           name: "parpin-detail-alat",
-          params: { id: id}
+          params: { id: id }
         })
         .catch(() => {});
+    },
+    connect_ws() {
+      ws.connect();
+      ws.on("open", () => {
+        console.log("connected");
+        // $(".connection-status").addClass("connected");
+        this.subscribeToChannel();
+      });
+
+      ws.on("error", () => {
+        // $(".connection-status").removeClass("connected");
+        console.log("not connected")
+      });
+    },
+    subscribeToChannel() {
+      const chat = ws.subscribe("alat");
+
+      chat.on("error", () => {
+        // $(".connection-status").removeClass("connected");
+        console.log("error");
+      });
+
+      chat.on("message", message => {
+      //   $(".messages").append(`
+      //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
+      // `);
+        console.log(message);
+      });
     }
   },
   computed: {
@@ -162,6 +194,7 @@ export default {
     this.$store.dispatch("dataAlat/fetchDataAlat").catch(err => {
       console.error(err);
     });
+    this.connect_ws()
   },
   mounted() {
     this.isMounted = true;
