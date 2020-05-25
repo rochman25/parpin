@@ -382,7 +382,8 @@ var ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5___default()("ws:/
       // Data Sidebar
       addNewDataSidebar: false,
       sidebarData: {},
-      popupActive: false
+      popupActive: false,
+      ws_stat: false
     };
   },
   components: {
@@ -425,7 +426,8 @@ var ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5___default()("ws:/
       ws.on("open", function () {
         console.log("connected"); // $(".connection-status").addClass("connected");
 
-        _this.subscribeToChannel();
+        _this.subscribeToChannel(); // this.ws_stat = true;
+
       });
       ws.on("error", function () {
         // $(".connection-status").removeClass("connected");
@@ -433,17 +435,21 @@ var ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5___default()("ws:/
       });
     },
     subscribeToChannel: function subscribeToChannel() {
-      var chat = ws.subscribe("alat");
-      chat.on("error", function () {
-        // $(".connection-status").removeClass("connected");
-        console.log("error");
-      });
-      chat.on("message", function (message) {
-        //   $(".messages").append(`
-        //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
-        // `);
-        console.log(message);
-      });
+      // if(getSubscription())
+      if (!ws) {
+        var chat = ws.subscribe("alat"); // console.log(ws.getSubsription('alat'));
+
+        chat.on("error", function () {
+          // $(".connection-status").removeClass("connected");
+          console.log("error");
+        });
+        chat.on("message", function (message) {
+          //   $(".messages").append(`
+          //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
+          // `);
+          console.log(message);
+        });
+      }
     }
   },
   computed: {
@@ -460,12 +466,12 @@ var ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5___default()("ws:/
 
     this.$store.dispatch("dataAlat/fetchDataAlat")["catch"](function (err) {
       console.error(err);
-    });
-    this.connect_ws();
+    }); // if (this.ws_stat == false) {
+
+    this.connect_ws(); // }
   },
   mounted: function mounted() {
-    this.isMounted = true;
-    console.log(this.$store.state.dataAlat);
+    this.isMounted = true; // console.log(this.$store.state.dataAlat);
   }
 });
 

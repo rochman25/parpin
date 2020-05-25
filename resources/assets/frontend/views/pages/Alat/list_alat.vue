@@ -116,7 +116,8 @@ export default {
       // Data Sidebar
       addNewDataSidebar: false,
       sidebarData: {},
-      popupActive: false
+      popupActive: false,
+      ws_stat: false
     };
   },
   components: {
@@ -157,27 +158,31 @@ export default {
         console.log("connected");
         // $(".connection-status").addClass("connected");
         this.subscribeToChannel();
+        // this.ws_stat = true;
       });
 
       ws.on("error", () => {
         // $(".connection-status").removeClass("connected");
-        console.log("not connected")
+        console.log("not connected");
       });
     },
     subscribeToChannel() {
-      const chat = ws.subscribe("alat");
+      // if(getSubscription())
+      if (!ws) {
+        const chat = ws.subscribe("alat");
+        // console.log(ws.getSubsription('alat'));
+        chat.on("error", () => {
+          // $(".connection-status").removeClass("connected");
+          console.log("error");
+        });
 
-      chat.on("error", () => {
-        // $(".connection-status").removeClass("connected");
-        console.log("error");
-      });
-
-      chat.on("message", message => {
-      //   $(".messages").append(`
-      //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
-      // `);
-        console.log(message);
-      });
+        chat.on("message", message => {
+          //   $(".messages").append(`
+          //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
+          // `);
+          console.log(message);
+        });
+      }
     }
   },
   computed: {
@@ -194,11 +199,13 @@ export default {
     this.$store.dispatch("dataAlat/fetchDataAlat").catch(err => {
       console.error(err);
     });
-    this.connect_ws()
+    // if (this.ws_stat == false) {
+    this.connect_ws();
+    // }
   },
   mounted() {
     this.isMounted = true;
-    console.log(this.$store.state.dataAlat);
+    // console.log(this.$store.state.dataAlat);
   }
 };
 </script>

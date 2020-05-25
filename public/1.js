@@ -507,7 +507,7 @@ __webpack_require__.r(__webpack_exports__);
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/alat").then(function (response) {
-        console.log(response.data.data);
+        // console.log(response.data.data)
         commit("SET_ALAT", response.data.data.data);
         commit("SET_TOTAL", response.data.data.total);
         resolve(response);
