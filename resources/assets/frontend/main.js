@@ -53,6 +53,11 @@ import 'prismjs/themes/prism-tomorrow.css'
 // Feather font icon
 require('./assets/css/iconfont.css')
 
+//adonis-vue-websocket
+import Ws from '@adonisjs/websocket-client'
+import WsPlugin from 'adonis-vue-websocket'
+Vue.use(WsPlugin, { adonisWS: Ws })
+
 Vue.config.productionTip = false
 
 new Vue({

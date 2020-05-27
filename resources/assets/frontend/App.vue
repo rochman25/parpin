@@ -7,6 +7,8 @@
 <script>
 import themeConfig from "./../../../themeConfig.js";
 import jwt from "@/http/requests/auth/jwt/index.js";
+import WsSubscriptions from './websocket/WsSubscriptions.js';
+
 export default {
   data() {
     return {
@@ -70,6 +72,11 @@ export default {
 
     window.addEventListener("resize", this.handleWindowResize);
     window.addEventListener("scroll", this.handleScroll);
+
+    //websocket
+    await WsSubscriptions()
+
+
   },
   destroyed() {
     window.removeEventListener("resize", this.handleWindowResize);

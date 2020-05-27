@@ -8,6 +8,7 @@ class AlatController {
 
     onMessage(message) {
         this.socket.broadcastToAll('message', message);
+        console.log(message)
     }
 
 }

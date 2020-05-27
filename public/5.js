@@ -360,9 +360,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import alatWs from './../../../websocket/alat.js';
 
-var ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5___default()("ws://localhost:3333");
+var topicName = "alat"; // import alatWs from './../../../websocket/alat.js';
+// const ws = Ws("ws://192.168.43.73:3333");
+// var arus = 100;
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -419,38 +421,47 @@ var ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5___default()("ws:/
         }
       })["catch"](function () {});
     },
-    connect_ws: function connect_ws() {
-      var _this = this;
-
-      ws.connect();
-      ws.on("open", function () {
-        console.log("connected"); // $(".connection-status").addClass("connected");
-
-        _this.subscribeToChannel(); // this.ws_stat = true;
-
-      });
-      ws.on("error", function () {
-        // $(".connection-status").removeClass("connected");
-        console.log("not connected");
-      });
+    handleAboutMessageEvent: function handleAboutMessageEvent(data) {
+      console.log("handled in src/views/list_alat.vue", data);
     },
-    subscribeToChannel: function subscribeToChannel() {
-      // if(getSubscription())
-      if (!ws) {
-        var chat = ws.subscribe("alat"); // console.log(ws.getSubsription('alat'));
+    sendHello: function sendHello() {
+      this.$ws.$emitToServer(topicName, 'hello', {
+        message: this.message
+      });
+    } // connect_ws() {
+    //   ws.connect();
+    //   ws.on("open", () => {
+    //     console.log("connected");
+    //     // $(".connection-status").addClass("connected");
+    //     this.subscribeToChannel();
+    //     // this.ws_stat = true;
+    //   });
+    //   ws.on("error", () => {
+    //     // $(".connection-status").removeClass("connected");
+    //     console.log("not connected");
+    //   });
+    // },
+    // subscribeToChannel() {
+    //   // if(getSubscription())
+    //   // if (!ws) {
+    //     const chat = ws.subscribe("alat");
+    //     // console.log(ws.getSubsription('alat'));
+    //     chat.on("error", () => {
+    //       // $(".connection-status").removeClass("connected");
+    //       console.log("error");
+    //     });
+    //     chat.on("message", message => {
+    //       //   $(".messages").append(`
+    //       //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
+    //       // `);
+    //       arus = (message.arus/5000) * 100
+    //       // this.arus.push(message.arus)
+    //       this.supportTracker.series = [(message.arus/5000) * 100]
+    //       console.log(this.supportTracker.series);
+    //     });
+    //   // }
+    // }
 
-        chat.on("error", function () {
-          // $(".connection-status").removeClass("connected");
-          console.log("error");
-        });
-        chat.on("message", function (message) {
-          //   $(".messages").append(`
-          //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
-          // `);
-          console.log(message);
-        });
-      }
-    }
   },
   computed: {
     list: function list() {
@@ -467,11 +478,20 @@ var ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_5___default()("ws:/
     this.$store.dispatch("dataAlat/fetchDataAlat")["catch"](function (err) {
       console.error(err);
     }); // if (this.ws_stat == false) {
-
-    this.connect_ws(); // }
+    // this.connect_ws();
+    // }
   },
   mounted: function mounted() {
     this.isMounted = true; // console.log(this.$store.state.dataAlat);
+    //ws
+
+    this.$ws.$on("".concat(topicName, "|ABOUT_MESSAGE"), this.handleAboutMessageEvent);
+    this.$ws.$on("ABOUT_MESSAGE", this.handleAboutMessageEvent);
+  },
+  beforeDestroy: function beforeDestroy() {
+    //Remove listeners when component destroy
+    this.$ws.$off("".concat(topicName, "|ABOUT_MESSAGE"), this.handleAboutMessageEvent);
+    this.$ws.$off('ABOUT_MESSAGE', this.handleAboutMessageEvent);
   }
 });
 

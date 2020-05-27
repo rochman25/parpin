@@ -92,10 +92,12 @@ import moduleAlat from "./../../../store/alat/moduleAlat.js";
 import VueApexCharts from "vue-apexcharts";
 import StatisticsCardLine from "./../../../components/statistics-cards/StatisticsCardLine";
 import analyticsData from "./analyticData.js";
-import Ws from "@adonisjs/websocket-client";
+// import Ws from "@adonisjs/websocket-client";
+const topicName = "alat";
 // import alatWs from './../../../websocket/alat.js';
 
-const ws = Ws("ws://localhost:3333");
+// const ws = Ws("ws://192.168.43.73:3333");
+// var arus = 100;
 
 export default {
   data() {
@@ -152,38 +154,47 @@ export default {
         })
         .catch(() => {});
     },
-    connect_ws() {
-      ws.connect();
-      ws.on("open", () => {
-        console.log("connected");
-        // $(".connection-status").addClass("connected");
-        this.subscribeToChannel();
-        // this.ws_stat = true;
-      });
-
-      ws.on("error", () => {
-        // $(".connection-status").removeClass("connected");
-        console.log("not connected");
-      });
+    handleAboutMessageEvent(data){
+        console.log("handled in src/views/list_alat.vue", data)
     },
-    subscribeToChannel() {
-      // if(getSubscription())
-      if (!ws) {
-        const chat = ws.subscribe("alat");
-        // console.log(ws.getSubsription('alat'));
-        chat.on("error", () => {
-          // $(".connection-status").removeClass("connected");
-          console.log("error");
-        });
-
-        chat.on("message", message => {
-          //   $(".messages").append(`
-          //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
-          // `);
-          console.log(message);
-        });
-      }
+    sendHello(){
+      this.$ws.$emitToServer(topicName, 'hello', {message: this.message})
     }
+    // connect_ws() {
+    //   ws.connect();
+    //   ws.on("open", () => {
+    //     console.log("connected");
+    //     // $(".connection-status").addClass("connected");
+    //     this.subscribeToChannel();
+    //     // this.ws_stat = true;
+    //   });
+
+    //   ws.on("error", () => {
+    //     // $(".connection-status").removeClass("connected");
+    //     console.log("not connected");
+    //   });
+    // },
+    // subscribeToChannel() {
+    //   // if(getSubscription())
+    //   // if (!ws) {
+    //     const chat = ws.subscribe("alat");
+    //     // console.log(ws.getSubsription('alat'));
+    //     chat.on("error", () => {
+    //       // $(".connection-status").removeClass("connected");
+    //       console.log("error");
+    //     });
+
+    //     chat.on("message", message => {
+    //       //   $(".messages").append(`
+    //       //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
+    //       // `);
+    //       arus = (message.arus/5000) * 100
+    //       // this.arus.push(message.arus)
+    //       this.supportTracker.series = [(message.arus/5000) * 100]
+    //       console.log(this.supportTracker.series);
+    //     });
+    //   // }
+    // }
   },
   computed: {
     list() {
@@ -200,13 +211,21 @@ export default {
       console.error(err);
     });
     // if (this.ws_stat == false) {
-    this.connect_ws();
+    // this.connect_ws();
     // }
   },
   mounted() {
     this.isMounted = true;
     // console.log(this.$store.state.dataAlat);
-  }
+    //ws
+    this.$ws.$on(`${topicName}|message`, this.handleAboutMessageEvent);
+    this.$ws.$on("message", this.handleAboutMessageEvent);
+  },
+  beforeDestroy(){
+    //Remove listeners when component destroy
+    this.$ws.$off(`${topicName}|message`, this.handleAboutMessageEvent);
+    this.$ws.$off('message', this.handleAboutMessageEvent);
+  },
 };
 </script>
 <style lang="scss">
