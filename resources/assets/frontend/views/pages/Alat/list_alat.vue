@@ -31,7 +31,7 @@
               <feather-icon icon="SettingsIcon" svgClasses="w-6 h-6 text-grey"></feather-icon>
               <vs-dropdown-menu>
                 <vs-dropdown-item>
-                  <span class="flex items-center" @click="navigate_to_detail_view(alatInfo._id)">
+                  <span class="flex items-center" @click="sendHello()">
                     <feather-icon icon="InfoIcon" svgClasses="h-4 w-4" class="mr-2" />
                     <span>Detail</span>
                   </span>
@@ -127,6 +127,37 @@ export default {
     StatisticsCardLine,
     DataViewSidebar
   },
+  computed: {
+    list() {
+      //   console.log(this.$store.state.dataAlat);
+      return this.$store.state.dataAlat.alat;
+    }
+  },
+  created() {
+    if (!moduleAlat.isRegistered) {
+      this.$store.registerModule("dataAlat", moduleAlat);
+      moduleAlat.isRegistered = true;
+    }
+    this.$store.dispatch("dataAlat/fetchDataAlat").catch(err => {
+      console.error(err);
+    });
+    // if (this.ws_stat == false) {
+    // this.connect_ws();
+    // }
+  },
+  mounted() {
+    this.isMounted = true;
+    // console.log(this.$store.state.dataAlat);
+    //ws
+    this.$ws.$on(`${topicName}|message`, this.handleAboutMessageEvent);
+    // this.sendHello()
+    this.$ws.$on("message", this.handleAboutMessageEvent);
+  },
+  beforeDestroy(){
+    //Remove listeners when component destroy
+    this.$ws.$off(`${topicName}|message`, this.handleAboutMessageEvent);
+    this.$ws.$off('message', this.handleAboutMessageEvent);
+  },
   methods: {
     addNewData() {
       this.sidebarData = {};
@@ -155,10 +186,12 @@ export default {
         .catch(() => {});
     },
     handleAboutMessageEvent(data){
+        this.supportTracker.series = [((data.arus/5000) * 100).toFixed(2)]
         console.log("handled in src/views/list_alat.vue", data)
     },
     sendHello(){
-      this.$ws.$emitToServer(topicName, 'hello', {message: this.message})
+      this.$ws.$emitToServer(topicName, 'message', {"pesan": "haalllo"})
+      this.handleAboutMessageEvent
     }
     // connect_ws() {
     //   ws.connect();
@@ -195,36 +228,6 @@ export default {
     //     });
     //   // }
     // }
-  },
-  computed: {
-    list() {
-      //   console.log(this.$store.state.dataAlat);
-      return this.$store.state.dataAlat.alat;
-    }
-  },
-  created() {
-    if (!moduleAlat.isRegistered) {
-      this.$store.registerModule("dataAlat", moduleAlat);
-      moduleAlat.isRegistered = true;
-    }
-    this.$store.dispatch("dataAlat/fetchDataAlat").catch(err => {
-      console.error(err);
-    });
-    // if (this.ws_stat == false) {
-    // this.connect_ws();
-    // }
-  },
-  mounted() {
-    this.isMounted = true;
-    // console.log(this.$store.state.dataAlat);
-    //ws
-    this.$ws.$on(`${topicName}|message`, this.handleAboutMessageEvent);
-    this.$ws.$on("message", this.handleAboutMessageEvent);
-  },
-  beforeDestroy(){
-    //Remove listeners when component destroy
-    this.$ws.$off(`${topicName}|message`, this.handleAboutMessageEvent);
-    this.$ws.$off('message', this.handleAboutMessageEvent);
   },
 };
 </script>

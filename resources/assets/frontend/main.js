@@ -54,9 +54,11 @@ import 'prismjs/themes/prism-tomorrow.css'
 require('./assets/css/iconfont.css')
 
 //adonis-vue-websocket
-import Ws from '@adonisjs/websocket-client'
+// import Ws from '@adonisjs/websocket-client'
+// import WsPlugin from 'adonis-vue-websocket'
+// Vue.use(WsPlugin, { adonisWS: Ws })
 import WsPlugin from 'adonis-vue-websocket'
-Vue.use(WsPlugin, { adonisWS: Ws })
+Vue.use(WsPlugin, { adonisWS: window.adonis.Ws })
 
 Vue.config.productionTip = false
 

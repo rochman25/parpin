@@ -9,6 +9,9 @@
 
 <body>
     <div id="app"></div>
+    {{ script('https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js') }}
+    {{ script('https://unpkg.com/@adonisjs/websocket-client@1.0.9/dist/Ws.browser.js') }}
+    {{ script('https://unpkg.com/jquery@3.3.1/dist/jquery.js') }}
     {{ script('/js/main.js') }}
 </body>
 

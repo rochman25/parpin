@@ -75,8 +75,6 @@ export default {
 
     //websocket
     await WsSubscriptions()
-
-
   },
   destroyed() {
     window.removeEventListener("resize", this.handleWindowResize);

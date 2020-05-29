@@ -1,31 +1,36 @@
 import Vue from "vue";
 
 const userTopicSubscriptions = id => {
-    if (id) {
-        let subscription = Vue.ws.socket.getSubscription(`alat`);
-        if (!subscription) {
-            subscription = Vue.ws.subscribe(`alat`);
-        }
-        subscription.on("message", data => {
-            console.log('Hello (event handled in src/WsSubscriptions.js)', data)
-        });
+    // if (id) {
+    let subscription = Vue.ws.socket.getSubscription("alat");
+    if (!subscription) {
+        subscription = Vue.ws.subscribe("alat");
     }
+    subscription.on("message", data => {
+        console.log("Hello (event handled in src/WsSubscriptions.js)", data);
+    });
+    console.log(subscription);
+    // }
 };
 
 export default async() => {
     return new Promise((resolve, reject) => {
-        Vue.ws.disconnect()
+        Vue.ws.disconnect();
         Vue.ws.connect({
-            wsDomain: "ws://192.168.1.19:3333",
-            jwtToken: null
+            wsDomain: "ws://localhost:3333",
+            // jwtToken: null
         }, {
-            path: 'adonis-ws',
-            reconnectionAttempts: 300,
-            reconnectionDelay: 5000
+            path: "adonis-ws"
+                // reconnectionAttempts: 30,
+                // reconnectionDelay: 100
         });
         Vue.ws.socket.on("open", () => {
             userTopicSubscriptions(1);
-            resolve()
+            resolve();
+            console.log("ws connected");
+        });
+        Vue.ws.socket.on("close", () => {
+            console.log("ws disconnected");
         });
 
         // FOR EXAMPLE you can observe for userId or another variable from Vuex
@@ -37,5 +42,5 @@ export default async() => {
         //     }
         //   }
         // );
-    })
+    });
 };
