@@ -7,7 +7,10 @@ const getters = {
         else if (state.windowWidth >= 768) return "md"
         else if (state.windowWidth >= 576) return "sm"
         else return "xs"
-    }
+    },
+    // alat_id: state => {
+    //     return 
+    // }
 }
 
 export default getters

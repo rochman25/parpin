@@ -15,7 +15,7 @@
 
 const Ws = use('Ws')
 
-Ws.channel('alat', 'AlatController')
+Ws.channel('alat:*', 'AlatController')
 
 // Ws.channel('chat', ({ socket }) => {
 //   console.log('user joined with %s socket id', socket.id)

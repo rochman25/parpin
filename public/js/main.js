@@ -65835,7 +65835,7 @@ var baseURL = "";
 var headers = "";
 /* harmony default export */ __webpack_exports__["default"] = (axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
   domain: domain,
-  baseURL: 'http://192.168.43.73:3333/',
+  baseURL: 'http://192.168.1.19:3333/',
   headers: {
     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
   } // You can add your headers here
@@ -67033,7 +67033,10 @@ var getters = {
   windowBreakPoint: function windowBreakPoint(state) {
     // This should be same as tailwind. So, it stays in sync with tailwind utility classes
     if (state.windowWidth >= 1200) return "xl";else if (state.windowWidth >= 992) return "lg";else if (state.windowWidth >= 768) return "md";else if (state.windowWidth >= 576) return "sm";else return "xs";
-  }
+  } // alat_id: state => {
+  //     return 
+  // }
+
 };
 /* harmony default export */ __webpack_exports__["default"] = (getters);
 
@@ -67255,7 +67258,8 @@ var state = {
   themePrimaryColor: _themeConfig_js__WEBPACK_IMPORTED_MODULE_2__["default"].primary,
   // Can be used to get current window with
   // Note: Above breakpoint state is for internal use of sidebar & navbar component
-  windowWidth: null
+  windowWidth: null,
+  alat_id: null
 };
 /* harmony default export */ __webpack_exports__["default"] = (state);
 
@@ -67326,24 +67330,24 @@ __webpack_require__.r(__webpack_exports__);
 
 var userTopicSubscriptions = function userTopicSubscriptions(id) {
   // if (id) {
-  var subscription = vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.socket.getSubscription("alat");
+  var subscription = vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.socket.getSubscription("alat:" + id);
 
   if (!subscription) {
-    subscription = vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.subscribe("alat");
+    subscription = vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.subscribe("alat:" + id);
   }
 
   subscription.on("message", function (data) {
     console.log("Hello (event handled in src/WsSubscriptions.js)", data);
-  });
-  console.log(subscription); // }
+  }); // console.log(subscription);
+  // }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/Object(_media_zaenur_1EFEDA3CFEDA0C41_dev_parpin_parpin_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/Object(_media_zaenur_1EFEDA3CFEDA0C41_dev_parpin_parpin_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
     while (1) {
-      switch (_context.prev = _context.next) {
+      switch (_context2.prev = _context2.next) {
         case 0:
-          return _context.abrupt("return", new Promise(function (resolve, reject) {
+          return _context2.abrupt("return", new Promise(function (resolve, reject) {
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.disconnect();
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.connect({
               wsDomain: "ws://localhost:3333" // jwtToken: null
@@ -67354,29 +67358,46 @@ var userTopicSubscriptions = function userTopicSubscriptions(id) {
 
             });
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.socket.on("open", function () {
-              userTopicSubscriptions(1);
+              userTopicSubscriptions("*");
               resolve();
               console.log("ws connected");
             });
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.socket.on("close", function () {
               console.log("ws disconnected");
             }); // FOR EXAMPLE you can observe for userId or another variable from Vuex
-            // store.watch(
-            //   () => store.getters.vgUserUid,
-            //   async id => {
-            //     if (id) {
-            //       userTopicSubscriptions(uid);
-            //     }
-            //   }
-            // );
+
+            store.watch(function () {
+              return store.getters.vgUserUid;
+            }, /*#__PURE__*/function () {
+              var _ref2 = Object(_media_zaenur_1EFEDA3CFEDA0C41_dev_parpin_parpin_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee(id) {
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
+                  while (1) {
+                    switch (_context.prev = _context.next) {
+                      case 0:
+                        if (id) {
+                          userTopicSubscriptions(uid);
+                        }
+
+                      case 1:
+                      case "end":
+                        return _context.stop();
+                    }
+                  }
+                }, _callee);
+              }));
+
+              return function (_x) {
+                return _ref2.apply(this, arguments);
+              };
+            }());
           }));
 
         case 1:
         case "end":
-          return _context.stop();
+          return _context2.stop();
       }
     }
-  }, _callee);
+  }, _callee2);
 })));
 
 /***/ }),

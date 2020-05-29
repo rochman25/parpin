@@ -92,12 +92,7 @@ import moduleAlat from "./../../../store/alat/moduleAlat.js";
 import VueApexCharts from "vue-apexcharts";
 import StatisticsCardLine from "./../../../components/statistics-cards/StatisticsCardLine";
 import analyticsData from "./analyticData.js";
-// import Ws from "@adonisjs/websocket-client";
-const topicName = "alat";
-// import alatWs from './../../../websocket/alat.js';
-
-// const ws = Ws("ws://192.168.43.73:3333");
-// var arus = 100;
+const topicName = "alat:*";
 
 export default {
   data() {
@@ -112,7 +107,7 @@ export default {
             "Waktu Response": 0.23 + " detik"
           }
         },
-        series: [100]
+        series: [0]
       },
       analyticsData: analyticsData,
       // Data Sidebar

@@ -361,12 +361,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import Ws from "@adonisjs/websocket-client";
 
-var topicName = "alat"; // import alatWs from './../../../websocket/alat.js';
-// const ws = Ws("ws://192.168.43.73:3333");
-// var arus = 100;
-
+var topicName = "alat:*";
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -380,7 +376,7 @@ var topicName = "alat"; // import alatWs from './../../../websocket/alat.js';
             "Waktu Response": 0.23 + " detik"
           }
         },
-        series: [100]
+        series: [0]
       },
       analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_5__["default"],
       // Data Sidebar
