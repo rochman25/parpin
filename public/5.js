@@ -367,23 +367,13 @@ var topicName = "alat:*";
   data: function data() {
     return {
       isMounted: false,
-      supportTracker: {
-        analyticsData: {
-          openTickets: 163,
-          meta: {
-            Status: "online",
-            // "": 63,
-            "Waktu Response": 0.23 + " detik"
-          }
-        },
-        series: [0]
-      },
       analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_5__["default"],
       // Data Sidebar
       addNewDataSidebar: false,
       sidebarData: {},
       popupActive: false,
-      ws_stat: false
+      ws_stat: false,
+      test_series: []
     };
   },
   components: {
@@ -394,6 +384,7 @@ var topicName = "alat:*";
   computed: {
     list: function list() {
       //   console.log(this.$store.state.dataAlat);
+      this.foo(this.$store.state.dataAlat.alat);
       return this.$store.state.dataAlat.alat;
     }
   },
@@ -405,22 +396,19 @@ var topicName = "alat:*";
 
     this.$store.dispatch("dataAlat/fetchDataAlat")["catch"](function (err) {
       console.error(err);
-    }); // if (this.ws_stat == false) {
-    // this.connect_ws();
-    // }
+    });
   },
   mounted: function mounted() {
     this.isMounted = true; // console.log(this.$store.state.dataAlat);
     //ws
 
-    this.$ws.$on("".concat(topicName, "|message"), this.handleAboutMessageEvent); // this.sendHello()
-
+    this.$ws.$on("".concat(topicName, "|message"), this.handleAboutMessageEvent);
     this.$ws.$on("message", this.handleAboutMessageEvent);
   },
   beforeDestroy: function beforeDestroy() {
     //Remove listeners when component destroy
     this.$ws.$off("".concat(topicName, "|message"), this.handleAboutMessageEvent);
-    this.$ws.$off('message', this.handleAboutMessageEvent);
+    this.$ws.$off("message", this.handleAboutMessageEvent);
   },
   methods: {
     addNewData: function addNewData() {
@@ -455,44 +443,32 @@ var topicName = "alat:*";
       console.log("handled in src/views/list_alat.vue", data);
     },
     sendHello: function sendHello() {
-      this.$ws.$emitToServer(topicName, 'message', {
-        "pesan": "haalllo"
+      this.$ws.$emitToServer(topicName, "message", {
+        pesan: "haalllo"
       });
       this.handleAboutMessageEvent;
-    } // connect_ws() {
-    //   ws.connect();
-    //   ws.on("open", () => {
-    //     console.log("connected");
-    //     // $(".connection-status").addClass("connected");
-    //     this.subscribeToChannel();
-    //     // this.ws_stat = true;
-    //   });
-    //   ws.on("error", () => {
-    //     // $(".connection-status").removeClass("connected");
-    //     console.log("not connected");
-    //   });
-    // },
-    // subscribeToChannel() {
-    //   // if(getSubscription())
-    //   // if (!ws) {
-    //     const chat = ws.subscribe("alat");
-    //     // console.log(ws.getSubsription('alat'));
-    //     chat.on("error", () => {
-    //       // $(".connection-status").removeClass("connected");
-    //       console.log("error");
-    //     });
-    //     chat.on("message", message => {
-    //       //   $(".messages").append(`
-    //       //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
-    //       // `);
-    //       arus = (message.arus/5000) * 100
-    //       // this.arus.push(message.arus)
-    //       this.supportTracker.series = [(message.arus/5000) * 100]
-    //       console.log(this.supportTracker.series);
-    //     });
-    //   // }
-    // }
+    },
+    foo: function foo(item) {
+      var i;
 
+      for (i = 0; i < item.length; i++) {
+        this.$store.commit("SET_ALAT_ID", item[i]._id);
+        this.test_series[item[i]._id] = {
+          supportTracker: {
+            analyticsData: {
+              openTickets: 163,
+              meta: {
+                Status: "online",
+                "Waktu Response": 0 + " detik"
+              }
+            },
+            series: [i]
+          }
+        };
+      }
+
+      console.log(this.test_series);
+    }
   }
 });
 
@@ -1139,7 +1115,9 @@ var render = function() {
                                     staticClass: "flex items-center",
                                     on: {
                                       click: function($event) {
-                                        return _vm.sendHello()
+                                        return _vm.navigate_to_detail_view(
+                                          alatInfo._id
+                                        )
                                       }
                                     }
                                   },
@@ -1221,7 +1199,7 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm.supportTracker.analyticsData
+                  _vm.test_series[alatInfo._id].supportTracker.analyticsData
                     ? _c(
                         "div",
                         { attrs: { slot: "no-body" }, slot: "no-body" },
@@ -1241,7 +1219,9 @@ var render = function() {
                                     options:
                                       _vm.analyticsData.supportTrackerRadialBar
                                         .chartOptions,
-                                    series: _vm.supportTracker.series
+                                    series:
+                                      _vm.test_series[alatInfo._id]
+                                        .supportTracker.series
                                   }
                                 })
                               ],
@@ -1256,7 +1236,8 @@ var render = function() {
                                 "flex flex-row justify-between px-8 pb-5"
                             },
                             _vm._l(
-                              _vm.supportTracker.analyticsData.meta,
+                              _vm.test_series[alatInfo._id].supportTracker
+                                .analyticsData.meta,
                               function(val, key) {
                                 return _c(
                                   "p",

@@ -7,6 +7,7 @@ const headers = ""
 export default axios.create({
     domain,
     baseURL: 'http://192.168.1.19:3333/',
+    // baseURL: 'http://127.0.0.1:3333/',
     headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
     }

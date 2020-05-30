@@ -31,7 +31,7 @@
               <feather-icon icon="SettingsIcon" svgClasses="w-6 h-6 text-grey"></feather-icon>
               <vs-dropdown-menu>
                 <vs-dropdown-item>
-                  <span class="flex items-center" @click="sendHello()">
+                  <span class="flex items-center" @click="navigate_to_detail_view(alatInfo._id)">
                     <feather-icon icon="InfoIcon" svgClasses="h-4 w-4" class="mr-2" />
                     <span>Detail</span>
                   </span>
@@ -54,7 +54,7 @@
             </vs-dropdown>
           </template>
 
-          <div slot="no-body" v-if="supportTracker.analyticsData">
+          <div slot="no-body" v-if="test_series[alatInfo._id].supportTracker.analyticsData">
             <div class="vx-row text-center">
               <!-- Chart -->
               <div
@@ -64,7 +64,7 @@
                   type="radialBar"
                   height="350"
                   :options="analyticsData.supportTrackerRadialBar.chartOptions"
-                  :series="supportTracker.series"
+                  :series="test_series[alatInfo._id].supportTracker.series"
                 />
               </div>
             </div>
@@ -72,7 +72,7 @@
             <div class="flex flex-row justify-between px-8 pb-5">
               <p
                 class="text-center"
-                v-for="(val, key) in supportTracker.analyticsData.meta"
+                v-for="(val, key) in test_series[alatInfo._id].supportTracker.analyticsData.meta"
                 :key="key"
               >
                 <span class="block">{{ key }}</span>
@@ -98,23 +98,13 @@ export default {
   data() {
     return {
       isMounted: false,
-      supportTracker: {
-        analyticsData: {
-          openTickets: 163,
-          meta: {
-            Status: "online",
-            // "": 63,
-            "Waktu Response": 0.23 + " detik"
-          }
-        },
-        series: [0]
-      },
       analyticsData: analyticsData,
       // Data Sidebar
       addNewDataSidebar: false,
       sidebarData: {},
       popupActive: false,
-      ws_stat: false
+      ws_stat: false,
+      test_series: []
     };
   },
   components: {
@@ -125,6 +115,7 @@ export default {
   computed: {
     list() {
       //   console.log(this.$store.state.dataAlat);
+      this.foo(this.$store.state.dataAlat.alat);
       return this.$store.state.dataAlat.alat;
     }
   },
@@ -136,22 +127,18 @@ export default {
     this.$store.dispatch("dataAlat/fetchDataAlat").catch(err => {
       console.error(err);
     });
-    // if (this.ws_stat == false) {
-    // this.connect_ws();
-    // }
   },
   mounted() {
     this.isMounted = true;
     // console.log(this.$store.state.dataAlat);
     //ws
     this.$ws.$on(`${topicName}|message`, this.handleAboutMessageEvent);
-    // this.sendHello()
     this.$ws.$on("message", this.handleAboutMessageEvent);
   },
-  beforeDestroy(){
+  beforeDestroy() {
     //Remove listeners when component destroy
     this.$ws.$off(`${topicName}|message`, this.handleAboutMessageEvent);
-    this.$ws.$off('message', this.handleAboutMessageEvent);
+    this.$ws.$off("message", this.handleAboutMessageEvent);
   },
   methods: {
     addNewData() {
@@ -180,50 +167,34 @@ export default {
         })
         .catch(() => {});
     },
-    handleAboutMessageEvent(data){
-        this.supportTracker.series = [((data.arus/5000) * 100).toFixed(2)]
-        console.log("handled in src/views/list_alat.vue", data)
+    handleAboutMessageEvent(data) {
+      this.supportTracker.series = [((data.arus / 5000) * 100).toFixed(2)];
+      console.log("handled in src/views/list_alat.vue", data);
     },
-    sendHello(){
-      this.$ws.$emitToServer(topicName, 'message', {"pesan": "haalllo"})
-      this.handleAboutMessageEvent
+    sendHello() {
+      this.$ws.$emitToServer(topicName, "message", { pesan: "haalllo" });
+      this.handleAboutMessageEvent;
+    },
+    foo(item) {
+      var i;
+      for (i = 0; i < item.length; i++) {
+        this.$store.commit("SET_ALAT_ID",item[i]._id)
+        this.test_series[item[i]._id] = {
+          supportTracker: {
+            analyticsData: {
+              openTickets: 163,
+              meta: {
+                Status: "online",
+                "Waktu Response": 0 + " detik"
+              }
+            },
+            series: [i]
+          }
+        };
+      }
+      console.log(this.test_series);
     }
-    // connect_ws() {
-    //   ws.connect();
-    //   ws.on("open", () => {
-    //     console.log("connected");
-    //     // $(".connection-status").addClass("connected");
-    //     this.subscribeToChannel();
-    //     // this.ws_stat = true;
-    //   });
-
-    //   ws.on("error", () => {
-    //     // $(".connection-status").removeClass("connected");
-    //     console.log("not connected");
-    //   });
-    // },
-    // subscribeToChannel() {
-    //   // if(getSubscription())
-    //   // if (!ws) {
-    //     const chat = ws.subscribe("alat");
-    //     // console.log(ws.getSubsription('alat'));
-    //     chat.on("error", () => {
-    //       // $(".connection-status").removeClass("connected");
-    //       console.log("error");
-    //     });
-
-    //     chat.on("message", message => {
-    //       //   $(".messages").append(`
-    //       //   <div class="message"><h3> ${message.userId} </h3> <p> ${message.body} </p> </div>
-    //       // `);
-    //       arus = (message.arus/5000) * 100
-    //       // this.arus.push(message.arus)
-    //       this.supportTracker.series = [(message.arus/5000) * 100]
-    //       console.log(this.supportTracker.series);
-    //     });
-    //   // }
-    // }
-  },
+  }
 };
 </script>
 <style lang="scss">

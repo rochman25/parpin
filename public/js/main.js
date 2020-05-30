@@ -65836,6 +65836,7 @@ var headers = "";
 /* harmony default export */ __webpack_exports__["default"] = (axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
   domain: domain,
   baseURL: 'http://192.168.1.19:3333/',
+  // baseURL: 'http://127.0.0.1:3333/',
   headers: {
     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
   } // You can add your headers here
@@ -67033,10 +67034,10 @@ var getters = {
   windowBreakPoint: function windowBreakPoint(state) {
     // This should be same as tailwind. So, it stays in sync with tailwind utility classes
     if (state.windowWidth >= 1200) return "xl";else if (state.windowWidth >= 992) return "lg";else if (state.windowWidth >= 768) return "md";else if (state.windowWidth >= 576) return "sm";else return "xs";
-  } // alat_id: state => {
-  //     return 
-  // }
-
+  },
+  getAlatId: function getAlatId(state) {
+    return state.alat_id;
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = (getters);
 
@@ -67178,6 +67179,9 @@ var mutations = {
 
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
     console.log(localStorage.getItem('userInfo'));
+  },
+  SET_ALAT_ID: function SET_ALAT_ID(state, val) {
+    return state.alat_id = val;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -67321,10 +67325,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _media_zaenur_1EFEDA3CFEDA0C41_dev_parpin_parpin_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _store_store_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../store/store.js */ "./resources/assets/frontend/store/store.js");
 
 
 
 
+
+ // Vuex Store
 
 
 
@@ -67358,16 +67365,28 @@ var userTopicSubscriptions = function userTopicSubscriptions(id) {
 
             });
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.socket.on("open", function () {
-              userTopicSubscriptions("*");
+              // console.log(store.watch())
+              // console.log(store)
+              // if (store.getters.getAlatId != null) {
+              // userTopicSubscriptions(store.getters.getAlatId)
+              // } else {
+              userTopicSubscriptions("all"); // }
+
               resolve();
-              console.log("ws connected");
+              console.log("ws connected"); // store.watch(
+              //         () => store.getters.getAlatId,
+              //         async id => {
+              //             console.log(id)
+              //         }
+              //     )
+              // console.log(store.getters.getAlatId)
             });
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.socket.on("close", function () {
               console.log("ws disconnected");
             }); // FOR EXAMPLE you can observe for userId or another variable from Vuex
 
-            store.watch(function () {
-              return store.getters.vgUserUid;
+            _store_store_js__WEBPACK_IMPORTED_MODULE_5__["default"].watch(function () {
+              return _store_store_js__WEBPACK_IMPORTED_MODULE_5__["default"].getters.getAlatId;
             }, /*#__PURE__*/function () {
               var _ref2 = Object(_media_zaenur_1EFEDA3CFEDA0C41_dev_parpin_parpin_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee(id) {
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
@@ -67375,10 +67394,14 @@ var userTopicSubscriptions = function userTopicSubscriptions(id) {
                     switch (_context.prev = _context.next) {
                       case 0:
                         if (id) {
-                          userTopicSubscriptions(uid);
+                          userTopicSubscriptions(id);
+                        } else {
+                          userTopicSubscriptions("*");
                         }
 
-                      case 1:
+                        console.log(id);
+
+                      case 2:
                       case "end":
                         return _context.stop();
                     }

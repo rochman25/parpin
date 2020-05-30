@@ -102,6 +102,9 @@ const mutations = {
         localStorage.setItem("userInfo", JSON.stringify(userInfo))
         console.log(localStorage.getItem('userInfo'));
     },
+    SET_ALAT_ID(state, val) {
+        return state.alat_id = val
+    }
 
 }
 
