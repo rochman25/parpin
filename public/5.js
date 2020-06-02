@@ -362,7 +362,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var topicName = "alat:*";
+var topicName = "alat:5ebe4cd46246ed22f9afc08f";
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -373,7 +373,8 @@ var topicName = "alat:*";
       sidebarData: {},
       popupActive: false,
       ws_stat: false,
-      test_series: []
+      test_series: new Array(),
+      series: [0]
     };
   },
   components: {
@@ -386,6 +387,9 @@ var topicName = "alat:*";
       //   console.log(this.$store.state.dataAlat);
       this.foo(this.$store.state.dataAlat.alat);
       return this.$store.state.dataAlat.alat;
+    },
+    getSeries: function getSeries() {
+      return [this.$store.state.alat_id["5ebe4cd46246ed22f9afc08f"].series];
     }
   },
   created: function created() {
@@ -397,18 +401,20 @@ var topicName = "alat:*";
     this.$store.dispatch("dataAlat/fetchDataAlat")["catch"](function (err) {
       console.error(err);
     });
+    console.log(this.$ws.socket);
   },
   mounted: function mounted() {
-    this.isMounted = true; // console.log(this.$store.state.dataAlat);
-    //ws
-
-    this.$ws.$on("".concat(topicName, "|message"), this.handleAboutMessageEvent);
-    this.$ws.$on("message", this.handleAboutMessageEvent);
+    this.isMounted = true; //ws
+    // var i;
+    // console.log("ini"+this.test_series)
+    // for (i = 0; i < this.test_series.length; i++) {
+    // this.$ws.$on(`${topicName}|message`, this.handleAboutMessageEvent);
+    // this.$ws.$on("message", this.handleAboutMessageEvent);
+    // }
   },
-  beforeDestroy: function beforeDestroy() {
-    //Remove listeners when component destroy
-    this.$ws.$off("".concat(topicName, "|message"), this.handleAboutMessageEvent);
-    this.$ws.$off("message", this.handleAboutMessageEvent);
+  beforeDestroy: function beforeDestroy() {//Remove listeners when component destroy
+    // this.$ws.$off(`${topicName}|message`, this.handleAboutMessageEvent);
+    // this.$ws.$off("message", this.handleAboutMessageEvent);
   },
   methods: {
     addNewData: function addNewData() {
@@ -439,7 +445,12 @@ var topicName = "alat:*";
       })["catch"](function () {});
     },
     handleAboutMessageEvent: function handleAboutMessageEvent(data) {
-      this.supportTracker.series = [(data.arus / 5000 * 100).toFixed(2)];
+      // this.$store.commit("SET_SERIES_ALAT_ID", data);
+      this.test_series[data.alat_id].supportTracker.series = [data.arus]; // console.log(this.test_series[data.alat_id].supportTracker.series)
+      // this.$store[data.alat_id].supportTracker.series = [
+      //   ((data.arus / 5000) * 100).toFixed(2)
+      // ];
+
       console.log("handled in src/views/list_alat.vue", data);
     },
     sendHello: function sendHello() {
@@ -452,23 +463,55 @@ var topicName = "alat:*";
       var i;
 
       for (i = 0; i < item.length; i++) {
-        this.$store.commit("SET_ALAT_ID", item[i]._id);
-        this.test_series[item[i]._id] = {
+        this.$store.commit("SET_ALAT_ID", item[i]);
+        this.bar(item[i]._id);
+        this.$set(this.test_series, item[i]._id, {
           supportTracker: {
             analyticsData: {
               openTickets: 163,
               meta: {
-                Status: "online",
+                Status: "offline",
                 "Waktu Response": 0 + " detik"
               }
             },
-            series: [i]
+            series: [this.$store.state.alat_id[item[i]._id].series]
           }
-        };
+        }); // this.test_series[item[i]._id] = {
+        //   supportTracker: {
+        //     analyticsData: {
+        //       openTickets: 163,
+        //       meta: {
+        //         Status: "online",
+        //         "Waktu Response": 0 + " detik"
+        //       }
+        //     },
+        //     series: [this.$store.state.alat_id[item[i]._id].series]
+        //   }
+        // };
+      } // console.log(this.test_series);
+
+    },
+    bar: function bar(id) {
+      var _this = this;
+
+      var subscription = this.$ws.socket.getSubscription("alat:" + id);
+
+      if (!subscription) {
+        subscription = this.$ws.subscribe("alat:" + id);
       }
 
-      console.log(this.test_series);
-    }
+      subscription.on("message", function (data) {
+        _this.test_series[id].supportTracker.series = [data.arus.toFixed(2)];
+        _this.series = [data.arus.toFixed(2)]; // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
+
+        console.log("Message subscribe with id " + id, _this.test_series[id]);
+      });
+    } // getSeriess(id) {
+    //   // console.log(this.$store.state.alat_id[id]);
+    //   // this.$ws.$on('|message', this.handleAboutMessageEvent);
+    //   return [this.$store.state.alat_id[id].series];
+    // }
+
   }
 });
 
@@ -1085,7 +1128,7 @@ var render = function() {
             [
               _c(
                 "vx-card",
-                { attrs: { title: alatInfo.nama } },
+                { attrs: { title: alatInfo._id } },
                 [
                   _c(
                     "template",

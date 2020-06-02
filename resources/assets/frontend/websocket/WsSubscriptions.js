@@ -8,10 +8,12 @@ const userTopicSubscriptions = id => {
     if (!subscription) {
         subscription = Vue.ws.subscribe("alat:" + id);
     }
-    subscription.on("message", data => {
-        console.log("Hello (event handled in src/WsSubscriptions.js)", data);
-    });
+    // subscription.on("message", data => {
+    //     console.log("Hello (event handled in src/WsSubscriptions.js)", data);
+    // });
+    // subscription.forEach(function(val, key) {
     // console.log(subscription);
+    // });
     // }
 };
 
@@ -33,8 +35,8 @@ export default async() => {
             // if (store.getters.getAlatId != null) {
             // userTopicSubscriptions(store.getters.getAlatId)
             // } else {
-            userTopicSubscriptions("all")
-                // }
+            // userTopicSubscriptions("all")
+            // }
             resolve();
             console.log("ws connected");
             // store.watch(
@@ -49,16 +51,19 @@ export default async() => {
             console.log("ws disconnected");
         });
         // FOR EXAMPLE you can observe for userId or another variable from Vuex
-        store.watch(
-            () => store.getters.getAlatId,
-            async id => {
-                if (id) {
-                    userTopicSubscriptions(id);
-                } else {
-                    userTopicSubscriptions("*");
-                }
-                console.log(id)
-            }
-        );
+        // store.watch(
+        //     () => store.getters.getAlatId,
+        //     async id => {
+        //         if (id) {
+        //             var i;
+        //             for (i = 0; i < id.length; i++) {
+        //                 userTopicSubscriptions(id[i])
+        //             }
+        //             // userTopicSubscriptions(id);
+        //             // console.log(id)
+        //         }
+        //         // console.log(id)
+        //     }
+        // );
     });
 };

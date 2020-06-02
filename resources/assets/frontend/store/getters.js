@@ -10,6 +10,9 @@ const getters = {
     },
     getAlatId: state => {
         return state.alat_id
+    },
+    getSeries: state => {
+        return state.alat_id.arus
     }
 }
 

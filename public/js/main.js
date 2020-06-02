@@ -65835,7 +65835,7 @@ var baseURL = "";
 var headers = "";
 /* harmony default export */ __webpack_exports__["default"] = (axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
   domain: domain,
-  baseURL: 'http://192.168.1.19:3333/',
+  baseURL: 'http://192.168.43.73:3333/',
   // baseURL: 'http://127.0.0.1:3333/',
   headers: {
     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
@@ -67037,6 +67037,9 @@ var getters = {
   },
   getAlatId: function getAlatId(state) {
     return state.alat_id;
+  },
+  getSeries: function getSeries(state) {
+    return state.alat_id.arus;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (getters);
@@ -67178,10 +67181,15 @@ var mutations = {
 
 
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
-    console.log(localStorage.getItem('userInfo'));
+    console.log(localStorage.getItem("userInfo"));
   },
   SET_ALAT_ID: function SET_ALAT_ID(state, val) {
-    return state.alat_id = val;
+    state.alat_id[val._id] = val;
+    state.alat_id[val._id]["series"] = 0;
+    return state.alat_id;
+  },
+  SET_SERIES_ALAT_ID: function SET_SERIES_ALAT_ID(state, val) {
+    return state.alat_id[val.alat_id]["series"] = val.arus;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -67263,7 +67271,7 @@ var state = {
   // Can be used to get current window with
   // Note: Above breakpoint state is for internal use of sidebar & navbar component
   windowWidth: null,
-  alat_id: null
+  alat_id: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (state);
 
@@ -67341,20 +67349,22 @@ var userTopicSubscriptions = function userTopicSubscriptions(id) {
 
   if (!subscription) {
     subscription = vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.subscribe("alat:" + id);
-  }
-
-  subscription.on("message", function (data) {
-    console.log("Hello (event handled in src/WsSubscriptions.js)", data);
-  }); // console.log(subscription);
+  } // subscription.on("message", data => {
+  //     console.log("Hello (event handled in src/WsSubscriptions.js)", data);
+  // });
+  // subscription.forEach(function(val, key) {
+  // console.log(subscription);
+  // });
   // }
+
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/Object(_media_zaenur_1EFEDA3CFEDA0C41_dev_parpin_parpin_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/Object(_media_zaenur_1EFEDA3CFEDA0C41_dev_parpin_parpin_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee() {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
     while (1) {
-      switch (_context2.prev = _context2.next) {
+      switch (_context.prev = _context.next) {
         case 0:
-          return _context2.abrupt("return", new Promise(function (resolve, reject) {
+          return _context.abrupt("return", new Promise(function (resolve, reject) {
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.disconnect();
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.connect({
               wsDomain: "ws://localhost:3333" // jwtToken: null
@@ -67370,8 +67380,8 @@ var userTopicSubscriptions = function userTopicSubscriptions(id) {
               // if (store.getters.getAlatId != null) {
               // userTopicSubscriptions(store.getters.getAlatId)
               // } else {
-              userTopicSubscriptions("all"); // }
-
+              // userTopicSubscriptions("all")
+              // }
               resolve();
               console.log("ws connected"); // store.watch(
               //         () => store.getters.getAlatId,
@@ -67384,43 +67394,28 @@ var userTopicSubscriptions = function userTopicSubscriptions(id) {
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.socket.on("close", function () {
               console.log("ws disconnected");
             }); // FOR EXAMPLE you can observe for userId or another variable from Vuex
-
-            _store_store_js__WEBPACK_IMPORTED_MODULE_5__["default"].watch(function () {
-              return _store_store_js__WEBPACK_IMPORTED_MODULE_5__["default"].getters.getAlatId;
-            }, /*#__PURE__*/function () {
-              var _ref2 = Object(_media_zaenur_1EFEDA3CFEDA0C41_dev_parpin_parpin_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee(id) {
-                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
-                  while (1) {
-                    switch (_context.prev = _context.next) {
-                      case 0:
-                        if (id) {
-                          userTopicSubscriptions(id);
-                        } else {
-                          userTopicSubscriptions("*");
-                        }
-
-                        console.log(id);
-
-                      case 2:
-                      case "end":
-                        return _context.stop();
-                    }
-                  }
-                }, _callee);
-              }));
-
-              return function (_x) {
-                return _ref2.apply(this, arguments);
-              };
-            }());
+            // store.watch(
+            //     () => store.getters.getAlatId,
+            //     async id => {
+            //         if (id) {
+            //             var i;
+            //             for (i = 0; i < id.length; i++) {
+            //                 userTopicSubscriptions(id[i])
+            //             }
+            //             // userTopicSubscriptions(id);
+            //             // console.log(id)
+            //         }
+            //         // console.log(id)
+            //     }
+            // );
           }));
 
         case 1:
         case "end":
-          return _context2.stop();
+          return _context.stop();
       }
     }
-  }, _callee2);
+  }, _callee);
 })));
 
 /***/ }),
