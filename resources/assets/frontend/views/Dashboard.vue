@@ -42,7 +42,7 @@
           class="mb-base"
           icon="AlertOctagonIcon"
           icon-right
-          statistic="13"
+          :statistic="totalNotifikasi"
           statisticTitle="Kasus Kebocoran"
           color="warning"
         />
@@ -64,6 +64,9 @@ export default {
     totalAlat() {
         // console.log(this.$store.state.dataAlat.jumlah);
       return this.$store.state.dataAlat.jumlah;
+    },
+    totalNotifikasi(){
+      return this.$store.state.dataNotifikasi.jumlah;
     }
   },
   created() {

@@ -76,6 +76,9 @@ __webpack_require__.r(__webpack_exports__);
     totalAlat: function totalAlat() {
       // console.log(this.$store.state.dataAlat.jumlah);
       return this.$store.state.dataAlat.jumlah;
+    },
+    totalNotifikasi: function totalNotifikasi() {
+      return this.$store.state.dataNotifikasi.jumlah;
     }
   },
   created: function created() {
@@ -175,7 +178,7 @@ var render = function() {
               hideChart: "",
               icon: "AlertOctagonIcon",
               "icon-right": "",
-              statistic: "13",
+              statistic: _vm.totalNotifikasi,
               statisticTitle: "Kasus Kebocoran",
               color: "warning"
             }
