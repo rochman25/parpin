@@ -43,6 +43,9 @@ Route.group(function() {
     Route.put("/microcontroller/update/:id", 'MicroController.update_action');
     Route.delete("/microcontroller/delete", 'MicroController.delete_action');
 
+    //notifikasi
+    Route.get("/notifikasi", 'NotifikasiController.index')
+
 }).prefix("api/v1").middleware('auth')
 
 // This has to be the last route
