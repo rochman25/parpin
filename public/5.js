@@ -405,12 +405,6 @@ var topicName = "alat:5ebe4cd46246ed22f9afc08f";
   },
   mounted: function mounted() {
     this.isMounted = true; //ws
-    // var i;
-    // console.log("ini"+this.test_series)
-    // for (i = 0; i < this.test_series.length; i++) {
-    // this.$ws.$on(`${topicName}|message`, this.handleAboutMessageEvent);
-    // this.$ws.$on("message", this.handleAboutMessageEvent);
-    // }
   },
   beforeDestroy: function beforeDestroy() {//Remove listeners when component destroy
     // this.$ws.$off(`${topicName}|message`, this.handleAboutMessageEvent);
@@ -444,14 +438,9 @@ var topicName = "alat:5ebe4cd46246ed22f9afc08f";
         }
       })["catch"](function () {});
     },
-    handleAboutMessageEvent: function handleAboutMessageEvent(data) {
-      // this.$store.commit("SET_SERIES_ALAT_ID", data);
-      this.test_series[data.alat_id].supportTracker.series = [data.arus]; // console.log(this.test_series[data.alat_id].supportTracker.series)
-      // this.$store[data.alat_id].supportTracker.series = [
-      //   ((data.arus / 5000) * 100).toFixed(2)
-      // ];
-
-      console.log("handled in src/views/list_alat.vue", data);
+    handleAboutMessageEvent: function handleAboutMessageEvent(data) {// this.test_series[data.alat_id].supportTracker.series = [data.arus]
+      // this.test_series[data.alat_id].supportTracker.analyticsData.meta.Status = data.status
+      // console.log("handled in src/views/list_alat.vue", data);
     },
     sendHello: function sendHello() {
       this.$ws.$emitToServer(topicName, "message", {
@@ -476,18 +465,7 @@ var topicName = "alat:5ebe4cd46246ed22f9afc08f";
             },
             series: [this.$store.state.alat_id[item[i]._id].series]
           }
-        }); // this.test_series[item[i]._id] = {
-        //   supportTracker: {
-        //     analyticsData: {
-        //       openTickets: 163,
-        //       meta: {
-        //         Status: "online",
-        //         "Waktu Response": 0 + " detik"
-        //       }
-        //     },
-        //     series: [this.$store.state.alat_id[item[i]._id].series]
-        //   }
-        // };
+        });
       } // console.log(this.test_series);
 
     },
@@ -501,8 +479,9 @@ var topicName = "alat:5ebe4cd46246ed22f9afc08f";
       }
 
       subscription.on("message", function (data) {
-        _this.test_series[id].supportTracker.series = [data.arus.toFixed(2)];
-        _this.series = [data.arus.toFixed(2)]; // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
+        var arus = data.arus / 5000 * 100;
+        _this.test_series[id].supportTracker.series = [arus.toFixed(2)];
+        _this.test_series[id].supportTracker.analyticsData.meta.Status = data.status; // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
 
         console.log("Message subscribe with id " + id, _this.test_series[id]);
       });
@@ -1128,7 +1107,7 @@ var render = function() {
             [
               _c(
                 "vx-card",
-                { attrs: { title: alatInfo._id } },
+                { attrs: { title: alatInfo.nama } },
                 [
                   _c(
                     "template",

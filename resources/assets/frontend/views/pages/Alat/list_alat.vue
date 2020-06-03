@@ -24,7 +24,7 @@
         v-for="(alatInfo,index) in list"
         :key="index"
       >
-        <vx-card :title="alatInfo._id">
+        <vx-card :title="alatInfo.nama">
           <!-- CARD ACTION -->
           <template slot="actions">
             <vs-dropdown vs-trigger-click class="dd-actions cursor-pointer mb-4">
@@ -137,12 +137,6 @@ export default {
     this.isMounted = true;
 
     //ws
-    // var i;
-    // console.log("ini"+this.test_series)
-    // for (i = 0; i < this.test_series.length; i++) {
-    // this.$ws.$on(`${topicName}|message`, this.handleAboutMessageEvent);
-    // this.$ws.$on("message", this.handleAboutMessageEvent);
-    // }
   },
   beforeDestroy() {
     //Remove listeners when component destroy
@@ -177,13 +171,9 @@ export default {
         .catch(() => {});
     },
     handleAboutMessageEvent(data) {
-      // this.$store.commit("SET_SERIES_ALAT_ID", data);
-      this.test_series[data.alat_id].supportTracker.series = [data.arus]
-      // console.log(this.test_series[data.alat_id].supportTracker.series)
-      // this.$store[data.alat_id].supportTracker.series = [
-      //   ((data.arus / 5000) * 100).toFixed(2)
-      // ];
-      console.log("handled in src/views/list_alat.vue", data);
+      // this.test_series[data.alat_id].supportTracker.series = [data.arus]
+      // this.test_series[data.alat_id].supportTracker.analyticsData.meta.Status = data.status
+      // console.log("handled in src/views/list_alat.vue", data);
     },
     sendHello() {
       this.$ws.$emitToServer(topicName, "message", { pesan: "haalllo" });
@@ -206,18 +196,6 @@ export default {
             series: [this.$store.state.alat_id[item[i]._id].series]
           }
         });
-        // this.test_series[item[i]._id] = {
-        //   supportTracker: {
-        //     analyticsData: {
-        //       openTickets: 163,
-        //       meta: {
-        //         Status: "online",
-        //         "Waktu Response": 0 + " detik"
-        //       }
-        //     },
-        //     series: [this.$store.state.alat_id[item[i]._id].series]
-        //   }
-        // };
       }
       // console.log(this.test_series);
     },
@@ -227,8 +205,9 @@ export default {
         subscription = this.$ws.subscribe("alat:" + id);
       }
       subscription.on("message", data => {
-        this.test_series[id].supportTracker.series = [data.arus.toFixed(2)];
-        this.series = [data.arus.toFixed(2)]
+        var arus = (data.arus/5000) * 100
+        this.test_series[id].supportTracker.series = [arus.toFixed(2)];
+        this.test_series[id].supportTracker.analyticsData.meta.Status = data.status
         // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
         console.log("Message subscribe with id " + id, this.test_series[id]);
       });
