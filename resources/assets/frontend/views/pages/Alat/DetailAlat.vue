@@ -33,11 +33,11 @@
               <div class="vx-col md:w-3/5 w-full">
                 <h3>{{alat.nama}}</h3>
 
-                <!-- <p class="my-2">
-                  <span class="mr-2">by</span>
-                  <span>brand item</span>
+                <p class="my-2">
+                  <span class="mr-2">id</span>
+                  <span>{{alat._id}}</span>
                 </p>
-                <p class="flex items-center flex-wrap">
+                <!-- <p class="flex items-center flex-wrap">
                   <span class="text-2xl leading-none font-medium text-primary mr-4 mt-2">harga</span>
                   <span
                     class="pl-4 mr-2 mt-2 border border-solid d-theme-border-grey-light border-t-0 border-b-0 border-r-0"
@@ -58,14 +58,19 @@
                     icon-pack="feather"
                     icon="icon-truck"
                   ></vs-list-item>
-                  <p>{{alat.sensor}}</p>
+                  <p>Nama Sensor : {{alat.sensor.nama}}</p>
+                  <p>Model Sensor : {{alat.sensor.model}}</p>
+                  <p>Working Range : {{alat.sensor.working_range}}</p>
+                  <p>Water Pressure : {{alat.sensor.water_pressure}}</p>
                   <vs-list-item
                     class="p-0 border-none"
                     title="Microcontroller"
                     icon-pack="feather"
                     icon="icon-dollar-sign"
                   ></vs-list-item>
-                  <p>{{alat.micro}}</p>
+                  <p>Nama Microcontroller : {{alat.micro.nama}}</p>
+                  <p>Model Microcontroller : {{alat.micro.model}}</p>
+                  <p>Connection Type : {{alat.micro.connection_type}}</p>
                 </vs-list>
 
                 <vs-divider />
@@ -101,43 +106,46 @@
                     class="block mb-4"
                   />
                   <span class="font-semibold text-lg">Statistik Alat</span>
-                  <div slot="no-body" v-if="supportTracker.analyticsData">
-                    <div class="vx-row text-center">
-                      <!-- Chart -->
-                      <div
-                        class="vx-col w-full lg:w-5/5 md:w-full sm:w-5/5 justify-center mx-auto lg:mt-0 md:mt-6 sm:mt-0 mt-3"
-                      >
-                        <vue-apex-charts
-                          type="radialBar"
-                          height="350"
-                          :options="analyticsData.supportTrackerRadialBar.chartOptions"
-                          :series="supportTracker.series"
-                        />
-                      </div>
+                  <div class="vx-row text-center">
+                    <!-- LINE CHART -->
+                    <div class="vx-col p-10 w-full md:mb-0 mb-16 mx-auto">
+                      <vx-card title="Statistik Alat">
+                        <template slot="actions">
+                          <feather-icon icon="SettingsIcon" svgClasses="w-6 h-6 text-grey"></feather-icon>
+                        </template>
+
+                        <div slot="no-body" class="p-6 pb-0">
+                          <div class="flex" v-if="revenueComparisonLine.analyticsData">
+                            <div class="mr-6">
+                              <p class="mb-1 font-semibold">This Month</p>
+                              <p class="text-3xl text-success">
+                                <sup class="text-base mr-1">$</sup>
+                                {{ revenueComparisonLine.analyticsData.thisMonth.toLocaleString() }}
+                              </p>
+                            </div>
+                            <div>
+                              <p class="mb-1 font-semibold">Last Month</p>
+                              <p class="text-3xl">
+                                <sup class="text-base mr-1">$</sup>
+                                {{ revenueComparisonLine.analyticsData.lastMonth.toLocaleString() }}
+                              </p>
+                            </div>
+                          </div>
+
+                          <vue-apex-charts
+                            type="line"
+                            height="300"
+                            :options="analyticsData.revenueComparisonLine.chartOptions"
+                            :series="revenueComparisonLine.series"
+                          />
+                        </div>
+                      </vx-card>
                     </div>
-                    <!-- Support Tracker Meta Data -->
-                    <!-- <div class="flex flex-row justify-between px-8 pb-5">
-                      <p
-                        class="text-center"
-                        v-for="(val, key) in supportTracker.analyticsData.meta"
-                        :key="key"
-                      >
-                        <span class="block">{{ key }}</span>
-                        <span class="text-2xl font-semibold">{{ val }}</span>
-                      </p>
-                    </div>-->
                   </div>
-                  <!-- <feather-icon
-                    icon="AwardIcon"
-                    svgClasses="h-12 w-12 text-primary stroke-current"
-                    class="block mb-4"
-                  />
-                  <span class="font-semibold text-lg">100% Original</span>
-                  <p class="mt-2">Chocolate bar candy canes ice cream toffee cookie halvah.</p>-->
                 </div>
               </div>
               <div class="vx-col md:w-1/2 w-full">
-                <div class="w-full mx-auto mb-16 md:mb-0">
+                <div class="w-full p-10 mx-auto mb-16 md:mb-0">
                   <feather-icon
                     icon="MapIcon"
                     svgClasses="h-12 w-12 text-primary stroke-current"
@@ -186,16 +194,22 @@ export default {
         { position: { lat: 10.0, lng: 10.0 } },
         { position: { lat: 11.0, lng: 11.0 } }
       ],
-      supportTracker: {
+      goalOverview: {},
+      revenueComparisonLine: {
         analyticsData: {
-          openTickets: 163,
-          meta: {
-            Status: "online",
-            // "": 63,
-            "Waktu Response": 0.23 + " detik"
-          }
+          thisMonth: 86589,
+          lastMonth: 73683
         },
-        series: [100]
+        series: [
+          {
+            name: "This Month",
+            data: [45000, 47000, 44800, 47500, 45500, 48000, 46500, 48600]
+          },
+          {
+            name: "Last Month",
+            data: [46000, 48000, 45500, 46600, 44500, 46500, 45000, 47000]
+          }
+        ]
       },
       analyticsData: analyticsData,
       item_data: null,

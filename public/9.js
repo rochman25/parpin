@@ -189,6 +189,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -211,16 +219,19 @@ __webpack_require__.r(__webpack_exports__);
           lng: 11.0
         }
       }],
-      supportTracker: {
+      goalOverview: {},
+      revenueComparisonLine: {
         analyticsData: {
-          openTickets: 163,
-          meta: {
-            Status: "online",
-            // "": 63,
-            "Waktu Response": 0.23 + " detik"
-          }
+          thisMonth: 86589,
+          lastMonth: 73683
         },
-        series: [100]
+        series: [{
+          name: "This Month",
+          data: [45000, 47000, 44800, 47500, 45500, 48000, 46500, 48600]
+        }, {
+          name: "Last Month",
+          data: [46000, 48000, 45500, 46600, 44500, 46500, 45000, 47000]
+        }]
       },
       analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_3__["default"],
       item_data: null,
@@ -269,6 +280,191 @@ __webpack_require__.r(__webpack_exports__);
     // this.fetch_item_details(this.$route.params.item_id);
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/string-repeat.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/string-repeat.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var toInteger = __webpack_require__(/*! ../internals/to-integer */ "./node_modules/core-js/internals/to-integer.js");
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
+
+// `String.prototype.repeat` method implementation
+// https://tc39.github.io/ecma262/#sec-string.prototype.repeat
+module.exports = ''.repeat || function repeat(count) {
+  var str = String(requireObjectCoercible(this));
+  var result = '';
+  var n = toInteger(count);
+  if (n < 0 || n == Infinity) throw RangeError('Wrong number of repetitions');
+  for (;n > 0; (n >>>= 1) && (str += str)) if (n & 1) result += str;
+  return result;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/this-number-value.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/internals/this-number-value.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var classof = __webpack_require__(/*! ../internals/classof-raw */ "./node_modules/core-js/internals/classof-raw.js");
+
+// `thisNumberValue` abstract operation
+// https://tc39.github.io/ecma262/#sec-thisnumbervalue
+module.exports = function (value) {
+  if (typeof value != 'number' && classof(value) != 'Number') {
+    throw TypeError('Incorrect invocation');
+  }
+  return +value;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.number.to-fixed.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.number.to-fixed.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var toInteger = __webpack_require__(/*! ../internals/to-integer */ "./node_modules/core-js/internals/to-integer.js");
+var thisNumberValue = __webpack_require__(/*! ../internals/this-number-value */ "./node_modules/core-js/internals/this-number-value.js");
+var repeat = __webpack_require__(/*! ../internals/string-repeat */ "./node_modules/core-js/internals/string-repeat.js");
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
+
+var nativeToFixed = 1.0.toFixed;
+var floor = Math.floor;
+
+var pow = function (x, n, acc) {
+  return n === 0 ? acc : n % 2 === 1 ? pow(x, n - 1, acc * x) : pow(x * x, n / 2, acc);
+};
+
+var log = function (x) {
+  var n = 0;
+  var x2 = x;
+  while (x2 >= 4096) {
+    n += 12;
+    x2 /= 4096;
+  }
+  while (x2 >= 2) {
+    n += 1;
+    x2 /= 2;
+  } return n;
+};
+
+var FORCED = nativeToFixed && (
+  0.00008.toFixed(3) !== '0.000' ||
+  0.9.toFixed(0) !== '1' ||
+  1.255.toFixed(2) !== '1.25' ||
+  1000000000000000128.0.toFixed(0) !== '1000000000000000128'
+) || !fails(function () {
+  // V8 ~ Android 4.3-
+  nativeToFixed.call({});
+});
+
+// `Number.prototype.toFixed` method
+// https://tc39.github.io/ecma262/#sec-number.prototype.tofixed
+$({ target: 'Number', proto: true, forced: FORCED }, {
+  // eslint-disable-next-line max-statements
+  toFixed: function toFixed(fractionDigits) {
+    var number = thisNumberValue(this);
+    var fractDigits = toInteger(fractionDigits);
+    var data = [0, 0, 0, 0, 0, 0];
+    var sign = '';
+    var result = '0';
+    var e, z, j, k;
+
+    var multiply = function (n, c) {
+      var index = -1;
+      var c2 = c;
+      while (++index < 6) {
+        c2 += n * data[index];
+        data[index] = c2 % 1e7;
+        c2 = floor(c2 / 1e7);
+      }
+    };
+
+    var divide = function (n) {
+      var index = 6;
+      var c = 0;
+      while (--index >= 0) {
+        c += data[index];
+        data[index] = floor(c / n);
+        c = (c % n) * 1e7;
+      }
+    };
+
+    var dataToString = function () {
+      var index = 6;
+      var s = '';
+      while (--index >= 0) {
+        if (s !== '' || index === 0 || data[index] !== 0) {
+          var t = String(data[index]);
+          s = s === '' ? t : s + repeat.call('0', 7 - t.length) + t;
+        }
+      } return s;
+    };
+
+    if (fractDigits < 0 || fractDigits > 20) throw RangeError('Incorrect fraction digits');
+    // eslint-disable-next-line no-self-compare
+    if (number != number) return 'NaN';
+    if (number <= -1e21 || number >= 1e21) return String(number);
+    if (number < 0) {
+      sign = '-';
+      number = -number;
+    }
+    if (number > 1e-21) {
+      e = log(number * pow(2, 69, 1)) - 69;
+      z = e < 0 ? number * pow(2, -e, 1) : number / pow(2, e, 1);
+      z *= 0x10000000000000;
+      e = 52 - e;
+      if (e > 0) {
+        multiply(0, z);
+        j = fractDigits;
+        while (j >= 7) {
+          multiply(1e7, 0);
+          j -= 7;
+        }
+        multiply(pow(10, j, 1), 0);
+        j = e - 1;
+        while (j >= 23) {
+          divide(1 << 23);
+          j -= 23;
+        }
+        divide(1 << j);
+        multiply(1, 1);
+        divide(2);
+        result = dataToString();
+      } else {
+        multiply(0, z);
+        multiply(1 << -e, 0);
+        result = dataToString() + repeat.call('0', fractDigits);
+      }
+    }
+    if (fractDigits > 0) {
+      k = result.length;
+      result = sign + (k <= fractDigits
+        ? '0.' + repeat.call('0', fractDigits - k) + result
+        : result.slice(0, k - fractDigits) + '.' + result.slice(k - fractDigits));
+    } else {
+      result = sign + result;
+    } return result;
+  }
+});
+
 
 /***/ }),
 
@@ -378,6 +574,12 @@ var render = function() {
                     [
                       _c("h3", [_vm._v(_vm._s(_vm.alat.nama))]),
                       _vm._v(" "),
+                      _c("p", { staticClass: "my-2" }, [
+                        _c("span", { staticClass: "mr-2" }, [_vm._v("id")]),
+                        _vm._v(" "),
+                        _c("span", [_vm._v(_vm._s(_vm.alat._id))])
+                      ]),
+                      _vm._v(" "),
                       _c("vs-divider"),
                       _vm._v(" "),
                       _c(
@@ -393,7 +595,31 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(_vm.alat.sensor))]),
+                          _c("p", [
+                            _vm._v(
+                              "Nama Sensor : " + _vm._s(_vm.alat.sensor.nama)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Model Sensor : " + _vm._s(_vm.alat.sensor.model)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Working Range : " +
+                                _vm._s(_vm.alat.sensor.working_range)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Water Pressure : " +
+                                _vm._s(_vm.alat.sensor.water_pressure)
+                            )
+                          ]),
                           _vm._v(" "),
                           _c("vs-list-item", {
                             staticClass: "p-0 border-none",
@@ -404,7 +630,26 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(_vm.alat.micro))])
+                          _c("p", [
+                            _vm._v(
+                              "Nama Microcontroller : " +
+                                _vm._s(_vm.alat.micro.nama)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Model Microcontroller : " +
+                                _vm._s(_vm.alat.micro.model)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Connection Type : " +
+                                _vm._s(_vm.alat.micro.connection_type)
+                            )
+                          ])
                         ],
                         1
                       ),
@@ -459,41 +704,139 @@ var render = function() {
                             _vm._v("Statistik Alat")
                           ]),
                           _vm._v(" "),
-                          _vm.supportTracker.analyticsData
-                            ? _c(
-                                "div",
-                                { attrs: { slot: "no-body" }, slot: "no-body" },
-                                [
-                                  _c(
-                                    "div",
-                                    { staticClass: "vx-row text-center" },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "vx-col w-full lg:w-5/5 md:w-full sm:w-5/5 justify-center mx-auto lg:mt-0 md:mt-6 sm:mt-0 mt-3"
-                                        },
-                                        [
-                                          _c("vue-apex-charts", {
-                                            attrs: {
-                                              type: "radialBar",
-                                              height: "350",
-                                              options:
-                                                _vm.analyticsData
-                                                  .supportTrackerRadialBar
-                                                  .chartOptions,
-                                              series: _vm.supportTracker.series
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            : _vm._e()
+                          _c("div", { staticClass: "vx-row text-center" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "vx-col p-10 w-full md:mb-0 mb-16 mx-auto"
+                              },
+                              [
+                                _c(
+                                  "vx-card",
+                                  { attrs: { title: "Statistik Alat" } },
+                                  [
+                                    _c(
+                                      "template",
+                                      { slot: "actions" },
+                                      [
+                                        _c("feather-icon", {
+                                          attrs: {
+                                            icon: "SettingsIcon",
+                                            svgClasses: "w-6 h-6 text-grey"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "p-6 pb-0",
+                                        attrs: { slot: "no-body" },
+                                        slot: "no-body"
+                                      },
+                                      [
+                                        _vm.revenueComparisonLine.analyticsData
+                                          ? _c("div", { staticClass: "flex" }, [
+                                              _c(
+                                                "div",
+                                                { staticClass: "mr-6" },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass:
+                                                        "mb-1 font-semibold"
+                                                    },
+                                                    [_vm._v("This Month")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass:
+                                                        "text-3xl text-success"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "sup",
+                                                        {
+                                                          staticClass:
+                                                            "text-base mr-1"
+                                                        },
+                                                        [_vm._v("$")]
+                                                      ),
+                                                      _vm._v(
+                                                        "\n                              " +
+                                                          _vm._s(
+                                                            _vm.revenueComparisonLine.analyticsData.thisMonth.toLocaleString()
+                                                          ) +
+                                                          "\n                            "
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "mb-1 font-semibold"
+                                                  },
+                                                  [_vm._v("Last Month")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  { staticClass: "text-3xl" },
+                                                  [
+                                                    _c(
+                                                      "sup",
+                                                      {
+                                                        staticClass:
+                                                          "text-base mr-1"
+                                                      },
+                                                      [_vm._v("$")]
+                                                    ),
+                                                    _vm._v(
+                                                      "\n                              " +
+                                                        _vm._s(
+                                                          _vm.revenueComparisonLine.analyticsData.lastMonth.toLocaleString()
+                                                        ) +
+                                                        "\n                            "
+                                                    )
+                                                  ]
+                                                )
+                                              ])
+                                            ])
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _c("vue-apex-charts", {
+                                          attrs: {
+                                            type: "line",
+                                            height: "300",
+                                            options:
+                                              _vm.analyticsData
+                                                .revenueComparisonLine
+                                                .chartOptions,
+                                            series:
+                                              _vm.revenueComparisonLine.series
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  2
+                                )
+                              ],
+                              1
+                            )
+                          ])
                         ],
                         1
                       )
@@ -502,7 +845,7 @@ var render = function() {
                     _c("div", { staticClass: "vx-col md:w-1/2 w-full" }, [
                       _c(
                         "div",
-                        { staticClass: "w-full mx-auto mb-16 md:mb-0" },
+                        { staticClass: "w-full p-10 mx-auto mb-16 md:mb-0" },
                         [
                           _c("feather-icon", {
                             staticClass: "block mb-4",
@@ -686,6 +1029,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.to-fixed */ "./node_modules/core-js/modules/es.number.to-fixed.js");
+/* harmony import */ var core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_0__);
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   supportTrackerRadialBar: {
     // chartData: {
@@ -702,30 +1049,30 @@ __webpack_require__.r(__webpack_exports__);
           startAngle: -150,
           endAngle: 150,
           hollow: {
-            size: '65%'
+            size: "65%"
           },
           track: {
             background: "rgba(0,0,0,0)",
-            strokeWidth: '100%'
+            strokeWidth: "100%"
           },
           dataLabels: {
             value: {
               offsetY: 30,
-              color: '#99a2ac',
-              fontSize: '3rem'
+              color: "#99a2ac",
+              fontSize: "3rem"
             }
           }
         }
       },
-      colors: ['#5eb089'],
+      colors: ["#5eb089"],
       fill: {
-        type: 'gradient',
+        type: "gradient",
         gradient: {
           enabled: true,
-          shade: 'dark',
-          type: 'horizontal',
+          shade: "dark",
+          type: "horizontal",
           shadeIntensity: 0.5,
-          gradientToColors: ['#EA5455'],
+          gradientToColors: ["#EA5455"],
           inverseColors: true,
           opacityFrom: 1,
           opacityTo: 1,
@@ -738,7 +1085,93 @@ __webpack_require__.r(__webpack_exports__);
       chart: {
         sparkline: {}
       },
-      labels: ['Tekanan Air']
+      labels: ["Tekanan Air"]
+    }
+  },
+  revenueComparisonLine: {
+    // series: [{
+    //         name: "This Month",
+    //         data: [45000, 47000, 44800, 47500, 45500, 48000, 46500, 48600]
+    //     },
+    //     {
+    //         name: "Last Month",
+    //         data: [46000, 48000, 45500, 46600, 44500, 46500, 45000, 47000]
+    //     }
+    // ],
+    chartOptions: {
+      chart: {
+        toolbar: {
+          show: false
+        },
+        dropShadow: {
+          enabled: true,
+          top: 5,
+          left: 0,
+          blur: 4,
+          opacity: 0.1
+        }
+      },
+      stroke: {
+        curve: "smooth",
+        dashArray: [0, 8],
+        width: [4, 2]
+      },
+      grid: {
+        borderColor: "#e7e7e7"
+      },
+      legend: {
+        show: false
+      },
+      colors: ["#F97794", "#b8c2cc"],
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "dark",
+          inverseColors: false,
+          gradientToColors: ["#7367F0", "#b8c2cc"],
+          shadeIntensity: 1,
+          type: "horizontal",
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 100, 100, 100]
+        }
+      },
+      markers: {
+        size: 0,
+        hover: {
+          size: 5
+        }
+      },
+      xaxis: {
+        labels: {
+          style: {
+            cssClass: "text-grey fill-current"
+          }
+        },
+        axisTicks: {
+          show: false
+        },
+        categories: ["01", "05", "09", "13", "17", "21", "26", "31"],
+        axisBorder: {
+          show: false
+        }
+      },
+      yaxis: {
+        tickAmount: 5,
+        labels: {
+          style: {
+            cssClass: "text-grey fill-current"
+          },
+          formatter: function formatter(val) {
+            return val > 999 ? (val / 1000).toFixed(1) + "k" : val;
+          }
+        }
+      },
+      tooltip: {
+        x: {
+          show: false
+        }
+      }
     }
   }
 });
