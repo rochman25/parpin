@@ -1406,6 +1406,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
 /* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../../../store/notifikasi/moduleNotifikasi.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js");
 
  //
 //
@@ -1457,6 +1458,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1467,55 +1474,27 @@ __webpack_require__.r(__webpack_exports__);
     return {
       unreadNotifications: [{
         index: 0,
-        title: 'New Message',
-        msg: 'Are your going to meet me tonight?',
-        icon: 'MessageSquareIcon',
-        time: this.randomDate({
-          sec: 10
-        }),
-        category: 'primary'
-      }, {
-        index: 1,
-        title: 'New Order Recieved',
-        msg: 'You got new order of goods.',
-        icon: 'PackageIcon',
-        time: this.randomDate({
-          sec: 40
-        }),
-        category: 'success'
-      }, {
-        index: 2,
-        title: 'Server Limit Reached!',
-        msg: 'Server have 99% CPU usage.',
-        icon: 'AlertOctagonIcon',
+        title: "Server Limit Reached!",
+        msg: "Server have 99% CPU usage.",
+        icon: "AlertOctagonIcon",
         time: this.randomDate({
           min: 1
         }),
-        category: 'danger'
-      }, {
-        index: 3,
-        title: 'New Mail From Peter',
-        msg: 'Cake sesame snaps cupcake',
-        icon: 'MailIcon',
-        time: this.randomDate({
-          min: 6
-        }),
-        category: 'primary'
-      }, {
-        index: 4,
-        title: 'Bruce\'s Party',
-        msg: 'Chocolate cake oat cake tiramisu',
-        icon: 'CalendarIcon',
-        time: this.randomDate({
-          hr: 2
-        }),
-        category: 'warning'
+        category: "danger"
       }],
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: .60
+        wheelSpeed: 0.6
       }
     };
+  },
+  computed: {
+    totalNotifikasi: function totalNotifikasi() {
+      return this.$store.state.dataNotifikasi.jumlah;
+    },
+    notifikasi: function notifikasi() {
+      return this.$store.state.dataNotifikasi.notifikasi;
+    }
   },
   methods: {
     elapsedTime: function elapsedTime(startTime) {
@@ -1534,18 +1513,18 @@ __webpack_require__.r(__webpack_exports__);
       var years = timeDiff;
 
       if (years > 0) {
-        return years + (years > 1 ? ' Years ' : ' Year ') + 'ago';
+        return years + (years > 1 ? " Years " : " Year ") + "ago";
       } else if (days > 0) {
-        return days + (days > 1 ? ' Days ' : ' Day ') + 'ago';
+        return days + (days > 1 ? " Days " : " Day ") + "ago";
       } else if (hours > 0) {
-        return hours + (hours > 1 ? ' Hrs ' : ' Hour ') + 'ago';
+        return hours + (hours > 1 ? " Hrs " : " Hour ") + "ago";
       } else if (minutes > 0) {
-        return minutes + (minutes > 1 ? ' Mins ' : ' Min ') + 'ago';
+        return minutes + (minutes > 1 ? " Mins " : " Min ") + "ago";
       } else if (seconds > 0) {
-        return seconds + (seconds > 1 ? ' sec ago' : 'just now');
+        return seconds + (seconds > 1 ? " sec ago" : "just now");
       }
 
-      return 'Just Now';
+      return "Just Now";
     },
     // Method for creating dummy notification time
     randomDate: function randomDate(_ref) {
@@ -1557,7 +1536,22 @@ __webpack_require__.r(__webpack_exports__);
       if (min) date.setMinutes(date.getMinutes() - min);
       if (sec) date.setSeconds(date.getSeconds() - sec);
       return date;
+    },
+    navigate_to_notifikasi_view: function navigate_to_notifikasi_view() {
+      this.$router.push({
+        name: "parpin-notifikasi"
+      })["catch"](function () {});
     }
+  },
+  created: function created() {
+    if (!_store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered) {
+      this.$store.registerModule("dataNotifikasi", _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
+      _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered = true;
+    }
+
+    this.$store.dispatch("dataNotifikasi/fetchDataNotifikasi")["catch"](function (err) {
+      console.error(err);
+    });
   }
 });
 
@@ -4465,7 +4459,7 @@ var render = function() {
     [
       _c("feather-icon", {
         staticClass: "cursor-pointer mt-1 sm:mr-6 mr-2",
-        attrs: { icon: "BellIcon", badge: _vm.unreadNotifications.length }
+        attrs: { icon: "BellIcon", badge: _vm.totalNotifikasi }
       }),
       _vm._v(" "),
       _c(
@@ -4483,11 +4477,11 @@ var render = function() {
             },
             [
               _c("h3", { staticClass: "text-white" }, [
-                _vm._v(_vm._s(_vm.unreadNotifications.length) + " New")
+                _vm._v(_vm._s(_vm.totalNotifikasi) + " Notifikasi Baru")
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "opacity-75" }, [
-                _vm._v("App Notifications")
+                _vm._v("Notifikasi kebocoran")
               ])
             ]
           ),
@@ -4504,7 +4498,7 @@ var render = function() {
               _c(
                 "ul",
                 { staticClass: "bordered-items" },
-                _vm._l(_vm.unreadNotifications, function(ntf) {
+                _vm._l(_vm.notifikasi, function(ntf) {
                   return _c(
                     "li",
                     {
@@ -4559,7 +4553,12 @@ var render = function() {
             "div",
             {
               staticClass:
-                "\n      checkout-footer\n      fixed\n      bottom-0\n      rounded-b-lg\n      text-primary\n      w-full\n      p-2\n      font-semibold\n      text-center\n      border\n      border-b-0\n      border-l-0\n      border-r-0\n      border-solid\n      d-theme-border-grey-light\n      cursor-pointer"
+                "checkout-footer fixed bottom-0 rounded-b-lg text-primary w-full p-2 font-semibold text-center border border-b-0 border-l-0 border-r-0 border-solid d-theme-border-grey-light cursor-pointer",
+              on: {
+                click: function($event) {
+                  return _vm.navigate_to_notifikasi_view()
+                }
+              }
             },
             [_c("span", [_vm._v("View All Notifications")])]
           )
@@ -6903,6 +6902,139 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Main_vue_vue_type_template_id_8c6399a0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js":
+/*!************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _moduleNotifikasiState_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moduleNotifikasiState.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiState.js");
+/* harmony import */ var _moduleNotifikasiActions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./moduleNotifikasiActions.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiActions.js");
+/* harmony import */ var _moduleNotifikasiGetters_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./moduleNotifikasiGetters.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiGetters.js");
+/* harmony import */ var _moduleNotifikasiMutations_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./moduleNotifikasiMutations.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiMutations.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  isRegistered: false,
+  namespaced: true,
+  state: _moduleNotifikasiState_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+  mutations: _moduleNotifikasiMutations_js__WEBPACK_IMPORTED_MODULE_3__["default"],
+  actions: _moduleNotifikasiActions_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  getters: _moduleNotifikasiGetters_js__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiActions.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiActions.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../axios.js */ "./resources/assets/frontend/axios.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  fetchDataNotifikasi: function fetchDataNotifikasi(_ref) {
+    var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/notifikasi").then(function (response) {
+        // console.log(response.data.data)
+        commit("SET_NOTIFIKASI", response.data.data.data);
+        commit("SET_TOTAL", response.data.data.total);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiGetters.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiGetters.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiMutations.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiMutations.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find-index */ "./node_modules/core-js/modules/es.array.find-index.js");
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.splice */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  ADD_ITEM: function ADD_ITEM(state, item) {
+    state.notifikasi.unshift(item);
+  },
+  SET_NOTIFIKASI: function SET_NOTIFIKASI(state, notifikasi) {
+    state.notifikasi = notifikasi; // console.log(state.alat)
+  },
+  SET_TOTAL: function SET_TOTAL(state, notifikasi) {
+    state.jumlah = notifikasi; // console.log(state.alat)
+  },
+  UPDATE_NOTIFIKASI: function UPDATE_NOTIFIKASI(state, notifikasi) {
+    var productIndex = state.notifikasi.findIndex(function (p) {
+      return p._id == notifikasi._id;
+    });
+    Object.assign(state.notifikasi[productIndex], notifikasi);
+  },
+  REMOVE_ITEM: function REMOVE_ITEM(state, itemId) {
+    var ItemIndex = state.notifikasi.findIndex(function (p) {
+      return p._id == itemId;
+    });
+    state.notifikasi.splice(ItemIndex, 1);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiState.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiState.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  notifikasi: [],
+  jumlah: 0
+});
 
 /***/ })
 
