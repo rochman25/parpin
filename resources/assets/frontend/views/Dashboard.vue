@@ -8,7 +8,7 @@
           class="mb-base"
           icon="CpuIcon"
           icon-right
-          :statistic=totalAlat
+          :statistic="totalAlat"
           statisticTitle="Jumlah Alat"
         />
       </div>
@@ -53,6 +53,7 @@
 <script>
 import StatisticsCardLine from "@/components/statistics-cards/StatisticsCardLine.vue";
 import moduleAlat from "./../store/alat/moduleAlat.js";
+import moduleNotifikasi from "./../store/notifikasi/moduleNotifikasi.js";
 export default {
   components: {
     StatisticsCardLine
@@ -62,10 +63,10 @@ export default {
   },
   computed: {
     totalAlat() {
-        // console.log(this.$store.state.dataAlat.jumlah);
+      // console.log(this.$store.state.dataAlat.jumlah);
       return this.$store.state.dataAlat.jumlah;
     },
-    totalNotifikasi(){
+    totalNotifikasi() {
       return this.$store.state.dataNotifikasi.jumlah;
     }
   },
@@ -75,6 +76,14 @@ export default {
       moduleAlat.isRegistered = true;
     }
     this.$store.dispatch("dataAlat/fetchDataAlat").catch(err => {
+      console.error(err);
+    });
+
+    if (!moduleNotifikasi.isRegistered) {
+      this.$store.registerModule("dataNotifikasi", moduleNotifikasi);
+      moduleNotifikasi.isRegistered = true;
+    }
+    this.$store.dispatch("dataNotifikasi/fetchDataNotifikasi").catch(err => {
       console.error(err);
     });
   }

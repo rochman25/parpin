@@ -1,7 +1,7 @@
 import axios from "./../../axios.js";
 
 export default {
-    fetchDataAlat({ commit }) {
+    fetchDataNotifikasi({ commit }) {
         return new Promise((resolve, reject) => {
             axios
                 .get("api/v1/notifikasi")
