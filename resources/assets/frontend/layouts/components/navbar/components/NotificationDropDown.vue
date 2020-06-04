@@ -10,7 +10,7 @@
     <vs-dropdown-menu class="notification-dropdown dropdown-custom vx-navbar-dropdown">
       <div class="notification-top text-center p-5 bg-primary text-white">
         <h3 class="text-white">{{ totalNotifikasi }} Notifikasi Baru</h3>
-        <p class="opacity-75">Notifikasi kebocoran</p>
+        <p class="opacity-75">Notifikasi Alat</p>
       </div>
 
       <VuePerfectScrollbar
@@ -38,7 +38,7 @@
                 <small>{{ ntf.msg }}</small>
               </div>
             </div>
-            <small class="mt-1 whitespace-no-wrap">{{ elapsedTime(ntf.time) }}</small>
+            <small class="mt-1 whitespace-no-wrap">{{ elapsedTime(ntf.created_at) }}</small>
           </li>
         </ul>
       </VuePerfectScrollbar>

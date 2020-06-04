@@ -1,6 +1,6 @@
 <template>
   <vx-card title="Notifikasi Alat">
-    <!-- <p>You can add custom content to the item. It will be pushed to the right side</p> -->
+    <p>Berikut daftar notifikasi alat yang terbagi menjadi 2 : </p>
 
     <div class="demo-alignment">
       <vs-list>
@@ -19,13 +19,21 @@
             :title="ntf.title"
             :subtitle="ntf.msg"
           >
-            <vs-button
-              size="small"
-              color="primary"
-              type="border"
-              icon-pack="feather"
-              icon="icon-eye"
-            >detail</vs-button>
+            <vs-row>
+              <vs-col vs-w="6">
+                <vs-chip v-if="ntf.status==1" color="#C5C1C1"></vs-chip>
+                <vs-chip v-if="ntf.status==0" color="primary"></vs-chip>
+              </vs-col>
+              <vs-col vs-w="6">
+                <vs-button
+                  size="small"
+                  color="primary"
+                  type="border"
+                  icon-pack="feather"
+                  icon="icon-eye"
+                >detail</vs-button>
+              </vs-col>
+            </vs-row>
           </vs-list-item>
         </vs-list>
         <vs-list-header
@@ -43,13 +51,21 @@
             :title="ntf.title"
             :subtitle="ntf.msg"
           >
-            <vs-button
-              size="small"
-              color="primary"
-              type="border"
-              icon-pack="feather"
-              icon="icon-eye"
-            >detail</vs-button>
+            <vs-row>
+              <vs-col vs-w="6">
+                <vs-chip v-if="ntf.status == 1" color="#C5C1C1"></vs-chip>
+                <vs-chip v-if="ntf.status == 0" color="primary"></vs-chip>
+              </vs-col>
+              <vs-col vs-w="6">
+                <vs-button
+                  size="small"
+                  color="primary"
+                  type="border"
+                  icon-pack="feather"
+                  icon="icon-eye"
+                >detail</vs-button>
+              </vs-col>
+            </vs-row>
           </vs-list-item>
         </vs-list>
       </vs-list>

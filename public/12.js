@@ -68,6 +68,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -115,6 +131,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("vx-card", { attrs: { title: "Notifikasi Alat" } }, [
+    _c("p", [
+      _vm._v("Berikut daftar notifikasi alat yang terbagi menjadi 2 : ")
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "demo-alignment" },
@@ -150,17 +170,49 @@ var render = function() {
                         },
                         [
                           _c(
-                            "vs-button",
-                            {
-                              attrs: {
-                                size: "small",
-                                color: "primary",
-                                type: "border",
-                                "icon-pack": "feather",
-                                icon: "icon-eye"
-                              }
-                            },
-                            [_vm._v("detail")]
+                            "vs-row",
+                            [
+                              _c(
+                                "vs-col",
+                                { attrs: { "vs-w": "6" } },
+                                [
+                                  ntf.status == 1
+                                    ? _c("vs-chip", {
+                                        attrs: { color: "#C5C1C1" }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  ntf.status == 0
+                                    ? _c("vs-chip", {
+                                        attrs: { color: "primary" }
+                                      })
+                                    : _vm._e()
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "vs-col",
+                                { attrs: { "vs-w": "6" } },
+                                [
+                                  _c(
+                                    "vs-button",
+                                    {
+                                      attrs: {
+                                        size: "small",
+                                        color: "primary",
+                                        type: "border",
+                                        "icon-pack": "feather",
+                                        icon: "icon-eye"
+                                      }
+                                    },
+                                    [_vm._v("detail")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
                           )
                         ],
                         1
@@ -199,17 +251,49 @@ var render = function() {
                         },
                         [
                           _c(
-                            "vs-button",
-                            {
-                              attrs: {
-                                size: "small",
-                                color: "primary",
-                                type: "border",
-                                "icon-pack": "feather",
-                                icon: "icon-eye"
-                              }
-                            },
-                            [_vm._v("detail")]
+                            "vs-row",
+                            [
+                              _c(
+                                "vs-col",
+                                { attrs: { "vs-w": "6" } },
+                                [
+                                  ntf.status == 1
+                                    ? _c("vs-chip", {
+                                        attrs: { color: "#C5C1C1" }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  ntf.status == 0
+                                    ? _c("vs-chip", {
+                                        attrs: { color: "primary" }
+                                      })
+                                    : _vm._e()
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "vs-col",
+                                { attrs: { "vs-w": "6" } },
+                                [
+                                  _c(
+                                    "vs-button",
+                                    {
+                                      attrs: {
+                                        size: "small",
+                                        color: "primary",
+                                        type: "border",
+                                        "icon-pack": "feather",
+                                        icon: "icon-eye"
+                                      }
+                                    },
+                                    [_vm._v("detail")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
                           )
                         ],
                         1

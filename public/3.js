@@ -4481,7 +4481,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "opacity-75" }, [
-                _vm._v("Notifikasi kebocoran")
+                _vm._v("Notifikasi Alat")
               ])
             ]
           ),
@@ -4539,7 +4539,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("small", { staticClass: "mt-1 whitespace-no-wrap" }, [
-                        _vm._v(_vm._s(_vm.elapsedTime(ntf.time)))
+                        _vm._v(_vm._s(_vm.elapsedTime(ntf.created_at)))
                       ])
                     ]
                   )
