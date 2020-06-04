@@ -189,6 +189,7 @@ import analyticsData from "./analyticData.js";
 export default {
   data() {
     return {
+      isMounted: false,
       center: { lat: 10.0, lng: 10.0 },
       markers: [
         { position: { lat: 10.0, lng: 10.0 } },
@@ -265,6 +266,9 @@ export default {
       });
     // console.log(this.$store.state.dataAlat)
     // this.fetch_item_details(this.$route.params.item_id);
+  },
+  mounted() {
+    this.isMounted = true;
   }
 };
 </script>

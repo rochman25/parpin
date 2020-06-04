@@ -84,6 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -97,7 +98,16 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.state.dataNotifikasi.notifikasi;
     }
   },
-  methods: function methods() {},
+  methods: {
+    navigate_to_detail_alat: function navigate_to_detail_alat(id) {
+      this.$router.push({
+        name: "parpin-detail-alat",
+        params: {
+          id: id
+        }
+      })["catch"](function () {});
+    }
+  },
   created: function created() {
     if (!_store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegistered) {
       this.$store.registerModule("dataNotifikasi", _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
@@ -132,7 +142,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("vx-card", { attrs: { title: "Notifikasi Alat" } }, [
     _c("p", [
-      _vm._v("Berikut daftar notifikasi alat yang terbagi menjadi 2 : ")
+      _vm._v("Berikut daftar notifikasi alat yang terbagi menjadi 2 :")
     ]),
     _vm._v(" "),
     _c(
@@ -204,9 +214,16 @@ var render = function() {
                                         type: "border",
                                         "icon-pack": "feather",
                                         icon: "icon-eye"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.navigate_to_detail_alat(
+                                            ntf.alat._id
+                                          )
+                                        }
                                       }
                                     },
-                                    [_vm._v("detail")]
+                                    [_vm._v("lihat")]
                                   )
                                 ],
                                 1
@@ -287,7 +304,7 @@ var render = function() {
                                         icon: "icon-eye"
                                       }
                                     },
-                                    [_vm._v("detail")]
+                                    [_vm._v("lihat")]
                                   )
                                 ],
                                 1

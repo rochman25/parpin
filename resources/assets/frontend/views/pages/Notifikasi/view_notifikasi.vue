@@ -1,6 +1,6 @@
 <template>
   <vx-card title="Notifikasi Alat">
-    <p>Berikut daftar notifikasi alat yang terbagi menjadi 2 : </p>
+    <p>Berikut daftar notifikasi alat yang terbagi menjadi 2 :</p>
 
     <div class="demo-alignment">
       <vs-list>
@@ -31,7 +31,8 @@
                   type="border"
                   icon-pack="feather"
                   icon="icon-eye"
-                >detail</vs-button>
+                  @click="navigate_to_detail_alat(ntf.alat._id)"
+                >lihat</vs-button>
               </vs-col>
             </vs-row>
           </vs-list-item>
@@ -63,7 +64,7 @@
                   type="border"
                   icon-pack="feather"
                   icon="icon-eye"
-                >detail</vs-button>
+                >lihat</vs-button>
               </vs-col>
             </vs-row>
           </vs-list-item>
@@ -86,7 +87,17 @@ export default {
       return this.$store.state.dataNotifikasi.notifikasi;
     }
   },
-  methods() {},
+  methods: {
+    navigate_to_detail_alat(id) {
+      
+      this.$router
+        .push({
+          name: "parpin-detail-alat",
+          params: { id: id }
+        })
+        .catch(() => {});
+    }
+  },
   created() {
     if (!moduleNotifikasi.isRegistered) {
       this.$store.registerModule("dataNotifikasi", moduleNotifikasi);

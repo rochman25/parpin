@@ -204,6 +204,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      isMounted: false,
       center: {
         lat: 10.0,
         lng: 10.0
@@ -278,6 +279,9 @@ __webpack_require__.r(__webpack_exports__);
       console.error(err);
     }); // console.log(this.$store.state.dataAlat)
     // this.fetch_item_details(this.$route.params.item_id);
+  },
+  mounted: function mounted() {
+    this.isMounted = true;
   }
 });
 
