@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ././../../../store/notifikasi/moduleNotifikasi.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js");
 //
 //
 //
@@ -34,20 +35,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      val: false
+      val: false,
+      isMounted: false
     };
+  },
+  computed: {
+    notifikasi: function notifikasi() {
+      return this.$store.state.dataNotifikasi.notifikasi;
+    }
+  },
+  methods: function methods() {},
+  created: function created() {
+    if (!_store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegistered) {
+      this.$store.registerModule("dataNotifikasi", _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+      _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegistered = true;
+    }
+
+    this.$store.dispatch("dataNotifikasi/fetchDataNotifikasi")["catch"](function (err) {
+      console.error(err);
+    });
+  },
+  mounted: function mounted() {
+    this.isMounted = true;
   }
 });
 
@@ -69,98 +82,38 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("vx-card", { attrs: { title: "Notifikasi Alat" } }, [
-    _c("p", [
-      _vm._v(
-        "You can add custom content to the item. It will be pushed to the right side"
-      )
-    ]),
-    _vm._v(" "),
     _c(
       "div",
       { staticClass: "demo-alignment" },
       [
-        _c(
-          "vs-list",
-          [
-            _c("vs-list-header", { attrs: { title: "Group 1" } }),
-            _vm._v(" "),
-            _c(
-              "vs-list-item",
-              {
+        _c("vs-list-header", {
+          attrs: { title: "Notifikasi Bocor", color: "danger" }
+        }),
+        _vm._v(" "),
+        _vm._l(_vm.notifikasi, function(ntf) {
+          return _c(
+            "vs-list",
+            { key: ntf.index },
+            [
+              _c("vs-list-item", {
                 attrs: {
-                  title: "Snickerdoodle",
-                  subtitle: "An excellent companion"
+                  "icon-pack": "feather",
+                  icon: "icon-alert-octagon",
+                  color: "success",
+                  title: ntf.title,
+                  subtitle: ntf.msg
                 }
-              },
-              [
-                _c("vs-button", { attrs: { color: "danger" } }, [
-                  _vm._v("One action")
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "vs-list-item",
-              {
-                attrs: {
-                  title: "Sapporo Haru",
-                  subtitle:
-                    "An excellent polish restaurant, quick delivery and hearty, filling meals"
-                }
-              },
-              [_c("vs-checkbox", { attrs: { color: "danger" } })],
-              1
-            ),
-            _vm._v(" "),
-            _c("vs-list-header", {
-              attrs: { title: "Group 2", color: "success" }
-            }),
-            _vm._v(" "),
-            _c(
-              "vs-list-item",
-              {
-                attrs: {
-                  title: "Enid's",
-                  subtitle:
-                    "At night a bar, during the day a delicious brunch spot."
-                }
-              },
-              [
-                _c("vs-chip", { attrs: { color: "warning mr-0" } }, [
-                  _vm._v("Another component")
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "vs-list-item",
-              {
-                attrs: {
-                  title: "Veronika Ossi",
-                  subtitle: "Has not watched anything recently"
-                }
-              },
-              [
-                _c("vs-switch", {
-                  attrs: { color: "warning" },
-                  model: {
-                    value: _vm.val,
-                    callback: function($$v) {
-                      _vm.val = $$v
-                    },
-                    expression: "val"
-                  }
-                })
-              ],
-              1
-            )
-          ],
-          1
-        )
+              })
+            ],
+            1
+          )
+        }),
+        _vm._v(" "),
+        _c("vs-list-header", {
+          attrs: { title: "Notifikasi Waspada", color: "warning" }
+        })
       ],
-      1
+      2
     )
   ])
 }
@@ -168,6 +121,139 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js":
+/*!************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _moduleNotifikasiState_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moduleNotifikasiState.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiState.js");
+/* harmony import */ var _moduleNotifikasiActions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./moduleNotifikasiActions.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiActions.js");
+/* harmony import */ var _moduleNotifikasiGetters_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./moduleNotifikasiGetters.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiGetters.js");
+/* harmony import */ var _moduleNotifikasiMutations_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./moduleNotifikasiMutations.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiMutations.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  isRegistered: false,
+  namespaced: true,
+  state: _moduleNotifikasiState_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+  mutations: _moduleNotifikasiMutations_js__WEBPACK_IMPORTED_MODULE_3__["default"],
+  actions: _moduleNotifikasiActions_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  getters: _moduleNotifikasiGetters_js__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiActions.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiActions.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../axios.js */ "./resources/assets/frontend/axios.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  fetchDataNotifikasi: function fetchDataNotifikasi(_ref) {
+    var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/notifikasi").then(function (response) {
+        // console.log(response.data.data)
+        commit("SET_NOTIFIKASI", response.data.data.data);
+        commit("SET_TOTAL", response.data.data.total);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiGetters.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiGetters.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiMutations.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiMutations.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find-index */ "./node_modules/core-js/modules/es.array.find-index.js");
+/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.splice */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  ADD_ITEM: function ADD_ITEM(state, item) {
+    state.notifikasi.unshift(item);
+  },
+  SET_NOTIFIKASI: function SET_NOTIFIKASI(state, notifikasi) {
+    state.notifikasi = notifikasi; // console.log(state.alat)
+  },
+  SET_TOTAL: function SET_TOTAL(state, notifikasi) {
+    state.jumlah = notifikasi; // console.log(state.alat)
+  },
+  UPDATE_NOTIFIKASI: function UPDATE_NOTIFIKASI(state, notifikasi) {
+    var productIndex = state.notifikasi.findIndex(function (p) {
+      return p._id == notifikasi._id;
+    });
+    Object.assign(state.notifikasi[productIndex], notifikasi);
+  },
+  REMOVE_ITEM: function REMOVE_ITEM(state, itemId) {
+    var ItemIndex = state.notifikasi.findIndex(function (p) {
+      return p._id == itemId;
+    });
+    state.notifikasi.splice(ItemIndex, 1);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiState.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiState.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  notifikasi: [],
+  jumlah: 0
+});
 
 /***/ }),
 

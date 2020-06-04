@@ -27,7 +27,7 @@
           >
             <div class="flex items-start">
               <feather-icon
-                :icon="ntf.icon"
+                icon="AlertOctagonIcon"
                 :svgClasses="[`text-${ntf.category}`, 'stroke-current mr-1 h-6 w-6']"
               ></feather-icon>
               <div class="mx-2">

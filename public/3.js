@@ -4513,7 +4513,7 @@ var render = function() {
                         [
                           _c("feather-icon", {
                             attrs: {
-                              icon: ntf.icon,
+                              icon: "AlertOctagonIcon",
                               svgClasses: [
                                 "text-" + ntf.category,
                                 "stroke-current mr-1 h-6 w-6"
