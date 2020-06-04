@@ -279,6 +279,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -679,36 +681,30 @@ var render = function() {
                         "vs-tr",
                         { key: indextr },
                         [
-                          data[indextr].username != _vm.username
-                            ? _c(
-                                "vs-td",
-                                { attrs: { data: data[indextr].email } },
-                                [_vm._v(_vm._s(data[indextr].email))]
-                              )
-                            : _vm._e(),
+                          _c(
+                            "vs-td",
+                            { attrs: { data: data[indextr].email } },
+                            [_vm._v(_vm._s(data[indextr].email))]
+                          ),
                           _vm._v(" "),
-                          data[indextr].username != _vm.username
-                            ? _c(
-                                "vs-td",
-                                { attrs: { data: data[indextr].username } },
-                                [_vm._v(_vm._s(data[indextr].username))]
-                              )
-                            : _vm._e(),
+                          _c(
+                            "vs-td",
+                            { attrs: { data: data[indextr].username } },
+                            [_vm._v(_vm._s(data[indextr].username))]
+                          ),
                           _vm._v(" "),
-                          data[indextr].username != _vm.username
-                            ? _c(
-                                "vs-td",
-                                { attrs: { data: data[indextr].no_telp } },
-                                [_vm._v(_vm._s(data[indextr].no_telp))]
-                              )
-                            : _vm._e(),
+                          _c(
+                            "vs-td",
+                            { attrs: { data: data[indextr].no_telp } },
+                            [_vm._v(_vm._s(data[indextr].no_telp))]
+                          ),
                           _vm._v(" "),
-                          data[indextr].username != _vm.username
-                            ? _c(
-                                "vs-td",
-                                { staticClass: "whitespace-no-wrap" },
-                                [
-                                  _c("feather-icon", {
+                          _c(
+                            "vs-td",
+                            { staticClass: "whitespace-no-wrap" },
+                            [
+                              data[indextr].username != _vm.username
+                                ? _c("feather-icon", {
                                     attrs: {
                                       icon: "EditIcon",
                                       svgClasses:
@@ -720,9 +716,11 @@ var render = function() {
                                         return _vm.editData(tr)
                                       }
                                     }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("feather-icon", {
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              data[indextr].username != _vm.username
+                                ? _c("feather-icon", {
                                     staticClass: "ml-2",
                                     attrs: {
                                       icon: "TrashIcon",
@@ -736,10 +734,10 @@ var render = function() {
                                       }
                                     }
                                   })
-                                ],
-                                1
-                              )
-                            : _vm._e()
+                                : _vm._e()
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
