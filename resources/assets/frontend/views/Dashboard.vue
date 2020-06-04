@@ -43,7 +43,7 @@
           icon="AlertOctagonIcon"
           icon-right
           :statistic="totalNotifikasi"
-          statisticTitle="Kasus Kebocoran"
+          statisticTitle="Notifikasi Alat"
           color="warning"
         />
       </div>

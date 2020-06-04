@@ -367,7 +367,17 @@ __webpack_require__.r(__webpack_exports__);
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/notifikasi").then(function (response) {
         // console.log(response.data.data)
+        var total = 0;
         commit("SET_NOTIFIKASI", response.data.data.data);
+
+        for (var i = 0; i < response.data.data.data.length; i++) {
+          // console.log(i)
+          if (response.data.data.data[i].status == 0) {
+            total += 1;
+          }
+        }
+
+        commit("SET_TOTAL_NEW", total);
         commit("SET_TOTAL", response.data.data.total);
         resolve(response);
       })["catch"](function (error) {
@@ -419,6 +429,9 @@ __webpack_require__.r(__webpack_exports__);
   SET_TOTAL: function SET_TOTAL(state, notifikasi) {
     state.jumlah = notifikasi; // console.log(state.alat)
   },
+  SET_TOTAL_NEW: function SET_TOTAL_NEW(state, notifikasi) {
+    state.jumlah_baru = notifikasi; // console.log(state.alat)
+  },
   UPDATE_NOTIFIKASI: function UPDATE_NOTIFIKASI(state, notifikasi) {
     var productIndex = state.notifikasi.findIndex(function (p) {
       return p._id == notifikasi._id;
@@ -446,7 +459,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   notifikasi: [],
-  jumlah: 0
+  jumlah: 0,
+  jumlah_baru: 0
 });
 
 /***/ }),

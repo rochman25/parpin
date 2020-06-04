@@ -21,8 +21,8 @@
           >
             <vs-row>
               <vs-col vs-w="6">
-                <vs-chip v-if="ntf.status==1" color="#C5C1C1"></vs-chip>
-                <vs-chip v-if="ntf.status==0" color="primary"></vs-chip>
+                <vs-chip v-if="ntf.status == 1" color="#C5C1C1"></vs-chip>
+                <vs-chip v-if="ntf.status == 0" color="primary"></vs-chip>
               </vs-col>
               <vs-col vs-w="6">
                 <vs-button

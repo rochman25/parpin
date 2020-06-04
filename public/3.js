@@ -1492,6 +1492,9 @@ __webpack_require__.r(__webpack_exports__);
     totalNotifikasi: function totalNotifikasi() {
       return this.$store.state.dataNotifikasi.jumlah;
     },
+    totalNotifikasiBaru: function totalNotifikasiBaru() {
+      return this.$store.state.dataNotifikasi.jumlah_baru;
+    },
     notifikasi: function notifikasi() {
       return this.$store.state.dataNotifikasi.notifikasi;
     }
@@ -4459,7 +4462,7 @@ var render = function() {
     [
       _c("feather-icon", {
         staticClass: "cursor-pointer mt-1 sm:mr-6 mr-2",
-        attrs: { icon: "BellIcon", badge: _vm.totalNotifikasi }
+        attrs: { icon: "BellIcon", badge: _vm.totalNotifikasiBaru }
       }),
       _vm._v(" "),
       _c(
@@ -4507,36 +4510,38 @@ var render = function() {
                         "flex justify-between px-4 py-4 notification cursor-pointer"
                     },
                     [
-                      _c(
-                        "div",
-                        { staticClass: "flex items-start" },
-                        [
-                          _c("feather-icon", {
-                            attrs: {
-                              icon: "AlertOctagonIcon",
-                              svgClasses: [
-                                "text-" + ntf.category,
-                                "stroke-current mr-1 h-6 w-6"
-                              ]
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "mx-2" }, [
-                            _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "font-medium block notification-title",
-                                class: ["text-" + ntf.category]
-                              },
-                              [_vm._v(_vm._s(ntf.title))]
-                            ),
-                            _vm._v(" "),
-                            _c("small", [_vm._v(_vm._s(ntf.msg))])
-                          ])
-                        ],
-                        1
-                      ),
+                      ntf.status == 0
+                        ? _c(
+                            "div",
+                            { staticClass: "flex items-start" },
+                            [
+                              _c("feather-icon", {
+                                attrs: {
+                                  icon: "AlertOctagonIcon",
+                                  svgClasses: [
+                                    "text-" + ntf.category,
+                                    "stroke-current mr-1 h-6 w-6"
+                                  ]
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "mx-2" }, [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "font-medium block notification-title",
+                                    class: ["text-" + ntf.category]
+                                  },
+                                  [_vm._v(_vm._s(ntf.title))]
+                                ),
+                                _vm._v(" "),
+                                _c("small", [_vm._v(_vm._s(ntf.msg))])
+                              ])
+                            ],
+                            1
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("small", { staticClass: "mt-1 whitespace-no-wrap" }, [
                         _vm._v(_vm._s(_vm.elapsedTime(ntf.created_at)))
@@ -4560,7 +4565,7 @@ var render = function() {
                 }
               }
             },
-            [_c("span", [_vm._v("View All Notifications")])]
+            [_c("span", [_vm._v("Lihat semua notifikasi")])]
           )
         ],
         1
@@ -6954,7 +6959,17 @@ __webpack_require__.r(__webpack_exports__);
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/notifikasi").then(function (response) {
         // console.log(response.data.data)
+        var total = 0;
         commit("SET_NOTIFIKASI", response.data.data.data);
+
+        for (var i = 0; i < response.data.data.data.length; i++) {
+          // console.log(i)
+          if (response.data.data.data[i].status == 0) {
+            total += 1;
+          }
+        }
+
+        commit("SET_TOTAL_NEW", total);
         commit("SET_TOTAL", response.data.data.total);
         resolve(response);
       })["catch"](function (error) {
@@ -7006,6 +7021,9 @@ __webpack_require__.r(__webpack_exports__);
   SET_TOTAL: function SET_TOTAL(state, notifikasi) {
     state.jumlah = notifikasi; // console.log(state.alat)
   },
+  SET_TOTAL_NEW: function SET_TOTAL_NEW(state, notifikasi) {
+    state.jumlah_baru = notifikasi; // console.log(state.alat)
+  },
   UPDATE_NOTIFIKASI: function UPDATE_NOTIFIKASI(state, notifikasi) {
     var productIndex = state.notifikasi.findIndex(function (p) {
       return p._id == notifikasi._id;
@@ -7033,7 +7051,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   notifikasi: [],
-  jumlah: 0
+  jumlah: 0,
+  jumlah_baru: 0
 });
 
 /***/ })

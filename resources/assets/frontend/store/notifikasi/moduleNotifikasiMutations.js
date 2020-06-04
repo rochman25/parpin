@@ -10,6 +10,10 @@ export default {
         state.jumlah = notifikasi
             // console.log(state.alat)
     },
+    SET_TOTAL_NEW(state, notifikasi) {
+        state.jumlah_baru = notifikasi
+            // console.log(state.alat)
+    },
     UPDATE_NOTIFIKASI(state, notifikasi) {
         const productIndex = state.notifikasi.findIndex((p) => p._id == notifikasi._id)
         Object.assign(state.notifikasi[productIndex], notifikasi)

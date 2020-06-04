@@ -4,7 +4,7 @@
     <feather-icon
       icon="BellIcon"
       class="cursor-pointer mt-1 sm:mr-6 mr-2"
-      :badge="totalNotifikasi"
+      :badge="totalNotifikasiBaru"
     />
 
     <vs-dropdown-menu class="notification-dropdown dropdown-custom vx-navbar-dropdown">
@@ -25,7 +25,7 @@
             :key="ntf.index"
             class="flex justify-between px-4 py-4 notification cursor-pointer"
           >
-            <div class="flex items-start">
+            <div v-if="ntf.status == 0" class="flex items-start">
               <feather-icon
                 icon="AlertOctagonIcon"
                 :svgClasses="[`text-${ntf.category}`, 'stroke-current mr-1 h-6 w-6']"
@@ -47,7 +47,7 @@
         class="checkout-footer fixed bottom-0 rounded-b-lg text-primary w-full p-2 font-semibold text-center border border-b-0 border-l-0 border-r-0 border-solid d-theme-border-grey-light cursor-pointer"
         @click="navigate_to_notifikasi_view()"
       >
-        <span>View All Notifications</span>
+        <span>Lihat semua notifikasi</span>
       </div>
     </vs-dropdown-menu>
   </vs-dropdown>
@@ -82,6 +82,9 @@ export default {
   computed: {
     totalNotifikasi() {
       return this.$store.state.dataNotifikasi.jumlah;
+    },
+    totalNotifikasiBaru() {
+      return this.$store.state.dataNotifikasi.jumlah_baru;
     },
     notifikasi() {
       return this.$store.state.dataNotifikasi.notifikasi;
@@ -135,7 +138,7 @@ export default {
     navigate_to_notifikasi_view() {
       this.$router
         .push({
-          name: "parpin-notifikasi",
+          name: "parpin-notifikasi"
         })
         .catch(() => {});
     }
