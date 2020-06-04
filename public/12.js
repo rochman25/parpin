@@ -35,6 +35,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -86,34 +119,111 @@ var render = function() {
       "div",
       { staticClass: "demo-alignment" },
       [
-        _c("vs-list-header", {
-          attrs: { title: "Notifikasi Bocor", color: "danger" }
-        }),
-        _vm._v(" "),
-        _vm._l(_vm.notifikasi, function(ntf) {
-          return _c(
-            "vs-list",
-            { key: ntf.index },
-            [
-              _c("vs-list-item", {
-                attrs: {
-                  "icon-pack": "feather",
-                  icon: "icon-alert-octagon",
-                  color: "success",
-                  title: ntf.title,
-                  subtitle: ntf.msg
-                }
-              })
-            ],
-            1
-          )
-        }),
-        _vm._v(" "),
-        _c("vs-list-header", {
-          attrs: { title: "Notifikasi Waspada", color: "warning" }
-        })
+        _c(
+          "vs-list",
+          [
+            _c("vs-list-header", {
+              attrs: {
+                "icon-pack": "feather",
+                icon: "icon-alert-octagon",
+                title: "Notifikasi Bocor",
+                color: "danger"
+              }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.notifikasi, function(ntf) {
+              return _c(
+                "vs-list",
+                { key: ntf.index },
+                [
+                  ntf.category == "danger"
+                    ? _c(
+                        "vs-list-item",
+                        {
+                          attrs: {
+                            "icon-pack": "feather",
+                            icon: "icon-alert-octagon",
+                            color: "success",
+                            title: ntf.title,
+                            subtitle: ntf.msg
+                          }
+                        },
+                        [
+                          _c(
+                            "vs-button",
+                            {
+                              attrs: {
+                                size: "small",
+                                color: "primary",
+                                type: "border",
+                                "icon-pack": "feather",
+                                icon: "icon-eye"
+                              }
+                            },
+                            [_vm._v("detail")]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            }),
+            _vm._v(" "),
+            _c("vs-list-header", {
+              attrs: {
+                "icon-pack": "feather",
+                icon: "icon-alert-octagon",
+                title: "Notifikasi Waspada",
+                color: "warning"
+              }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.notifikasi, function(ntf) {
+              return _c(
+                "vs-list",
+                { key: ntf.index },
+                [
+                  ntf.category == "warning"
+                    ? _c(
+                        "vs-list-item",
+                        {
+                          attrs: {
+                            "icon-pack": "feather",
+                            icon: "icon-alert-octagon",
+                            color: "success",
+                            title: ntf.title,
+                            subtitle: ntf.msg
+                          }
+                        },
+                        [
+                          _c(
+                            "vs-button",
+                            {
+                              attrs: {
+                                size: "small",
+                                color: "primary",
+                                type: "border",
+                                "icon-pack": "feather",
+                                icon: "icon-eye"
+                              }
+                            },
+                            [_vm._v("detail")]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            })
+          ],
+          2
+        )
       ],
-      2
+      1
     )
   ])
 }

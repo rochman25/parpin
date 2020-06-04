@@ -3,23 +3,56 @@
     <!-- <p>You can add custom content to the item. It will be pushed to the right side</p> -->
 
     <div class="demo-alignment">
-      <vs-list-header title="Notifikasi Bocor" color="danger"></vs-list-header>
-      <vs-list v-for="ntf in notifikasi" :key="ntf.index">
-        <vs-list-item
+      <vs-list>
+        <vs-list-header
           icon-pack="feather"
           icon="icon-alert-octagon"
-          color="success"
-          :title="ntf.title"
-          :subtitle="ntf.msg"
-        >
-          <!-- <feather-icon
-            icon="AlertOctagonIcon"
-            :svgClasses="[`text-${ntf.category}`, 'stroke-current mr-1 h-6 w-6']"
-          ></feather-icon>-->
-          <!-- <vs-checkbox color="danger" /> -->
-        </vs-list-item>
+          title="Notifikasi Bocor"
+          color="danger"
+        ></vs-list-header>
+        <vs-list v-for="ntf in notifikasi" :key="ntf.index">
+          <vs-list-item
+            v-if="ntf.category == 'danger'"
+            icon-pack="feather"
+            icon="icon-alert-octagon"
+            color="success"
+            :title="ntf.title"
+            :subtitle="ntf.msg"
+          >
+            <vs-button
+              size="small"
+              color="primary"
+              type="border"
+              icon-pack="feather"
+              icon="icon-eye"
+            >detail</vs-button>
+          </vs-list-item>
+        </vs-list>
+        <vs-list-header
+          icon-pack="feather"
+          icon="icon-alert-octagon"
+          title="Notifikasi Waspada"
+          color="warning"
+        ></vs-list-header>
+        <vs-list v-for="ntf in notifikasi" :key="ntf.index">
+          <vs-list-item
+            v-if="ntf.category == 'warning'"
+            icon-pack="feather"
+            icon="icon-alert-octagon"
+            color="success"
+            :title="ntf.title"
+            :subtitle="ntf.msg"
+          >
+            <vs-button
+              size="small"
+              color="primary"
+              type="border"
+              icon-pack="feather"
+              icon="icon-eye"
+            >detail</vs-button>
+          </vs-list-item>
+        </vs-list>
       </vs-list>
-      <vs-list-header title="Notifikasi Waspada" color="warning"></vs-list-header>
     </div>
   </vx-card>
 </template>
