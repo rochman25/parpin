@@ -51,7 +51,8 @@ class NotifikasiController extends BaseController {
         notifikasi.title = title;
         notifikasi.msg = msg;
         notifikasi.alat = alat.toJSON();
-        notifikasi.category = category
+        notifikasi.category = category;
+        notifikasi.status = 0;
         await notifikasi.save();
         let respon = {
             message: this.addSuccessMessage,
@@ -60,6 +61,37 @@ class NotifikasiController extends BaseController {
             }
         };
         return response.json(this.successResponse(respon));
+    }
+
+    async update_action({ request, response, params }) {
+        let id = params.id;
+        let notifikasi = await Notifikasi.find(id);
+        let respon = {};
+
+        if (notifikasi) {
+            // let title = request.input("title");
+            // let msg = request.input("msg");
+            // let idAlat = request.input("id_alat");
+            // let category = request.input("category");
+            // let alat = await Alat.find(idAlat);
+            // notifikasi.title = title;
+            // notifikasi.msg = msg;
+            // notifikasi.alat = alat.toJSON();
+            // notifikasi.category = category;
+            notifikasi.status = 1;
+            await notifikasi.save()
+
+            respon = {
+                message: this.updateSuccessMessage,
+                data: notifikasi
+            };
+            return response.json(this.successResponse(respon));
+        } else {
+            respon = {
+                message: this.dataNotFound
+            };
+            return response.json(this.successResponse(respon));
+        }
     }
 }
 

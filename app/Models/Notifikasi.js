@@ -4,6 +4,10 @@
 const Model = use('Model')
 
 class Notifikasi extends Model {
+
+    static get collection() {
+        return 'notifikasi'
+    }
 }
 
 module.exports = Notifikasi

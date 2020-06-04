@@ -46,6 +46,7 @@ Route.group(function() {
     //notifikasi
     Route.get("/notifikasi", 'NotifikasiController.index')
     Route.post("/notifikasi/add", 'NotifikasiController.add_action')
+    Route.put("/notifikasi/update/:id", 'NotifikasiController.update_action')
 
 }).prefix("api/v1").middleware('auth')
 
