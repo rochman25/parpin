@@ -9,7 +9,7 @@
 
     <vs-dropdown-menu class="notification-dropdown dropdown-custom vx-navbar-dropdown">
       <div class="notification-top text-center p-5 bg-primary text-white">
-        <h3 class="text-white">{{ totalNotifikasi }} Notifikasi Baru</h3>
+        <h3 class="text-white">{{ totalNotifikasiBaru }} Notifikasi Baru</h3>
         <p class="opacity-75">Notifikasi Alat</p>
       </div>
 
@@ -25,7 +25,7 @@
             :key="ntf.index"
             class="flex justify-between px-4 py-4 notification cursor-pointer"
           >
-            <div v-if="ntf.status == 0" class="flex items-start">
+            <div class="flex items-start">
               <feather-icon
                 icon="AlertOctagonIcon"
                 :svgClasses="[`text-${ntf.category}`, 'stroke-current mr-1 h-6 w-6']"
@@ -87,7 +87,9 @@ export default {
       return this.$store.state.dataNotifikasi.jumlah_baru;
     },
     notifikasi() {
-      return this.$store.state.dataNotifikasi.notifikasi;
+      return this.$store.state.dataNotifikasi.notifikasi.filter(function(u){
+        return u.status == 0;
+      })
     }
   },
   methods: {

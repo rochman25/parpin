@@ -85,6 +85,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -99,11 +100,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    navigate_to_detail_alat: function navigate_to_detail_alat(id) {
+    navigate_to_detail_alat: function navigate_to_detail_alat(id, id_alat) {
+      this.$store.dispatch("dataNotifikasi/updateItem", id)["catch"](function (err) {
+        console.error(err);
+      });
       this.$router.push({
         name: "parpin-detail-alat",
         params: {
-          id: id
+          id: id_alat
         }
       })["catch"](function () {});
     }
@@ -218,6 +222,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.navigate_to_detail_alat(
+                                            ntf._id,
                                             ntf.alat._id
                                           )
                                         }
@@ -302,6 +307,14 @@ var render = function() {
                                         type: "border",
                                         "icon-pack": "feather",
                                         icon: "icon-eye"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.navigate_to_detail_alat(
+                                            ntf._id,
+                                            ntf.alat._id
+                                          )
+                                        }
                                       }
                                     },
                                     [_vm._v("lihat")]
@@ -396,6 +409,18 @@ __webpack_require__.r(__webpack_exports__);
 
         commit("SET_TOTAL_NEW", total);
         commit("SET_TOTAL", response.data.data.total);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  updateItem: function updateItem(_ref2, item) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/notifikasi/update/".concat(item)).then(function (response) {
+        console.log(response); // commit("UPDATE_NOTIFIKASI", response.data.data);
+
         resolve(response);
       })["catch"](function (error) {
         reject(error);

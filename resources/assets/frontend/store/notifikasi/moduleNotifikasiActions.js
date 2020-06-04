@@ -24,4 +24,18 @@ export default {
                 });
         });
     },
+    updateItem({ commit }, item) {
+        return new Promise((resolve, reject) => {
+            axios
+                .put(`/api/v1/notifikasi/update/${item}`)
+                .then(response => {
+                    console.log(response)
+                        // commit("UPDATE_NOTIFIKASI", response.data.data);
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    },
 }

@@ -1402,11 +1402,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.date.to-string */ "./node_modules/core-js/modules/es.date.to-string.js");
-/* harmony import */ var core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
-/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../../../store/notifikasi/moduleNotifikasi.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js");
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.filter */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.date.to-string */ "./node_modules/core-js/modules/es.date.to-string.js");
+/* harmony import */ var core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-perfect-scrollbar */ "./node_modules/vue-perfect-scrollbar/dist/index.js");
+/* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../store/notifikasi/moduleNotifikasi.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js");
+
+
 
  //
 //
@@ -1468,7 +1472,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    VuePerfectScrollbar: vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default.a
+    VuePerfectScrollbar: vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_2___default.a
   },
   data: function data() {
     return {
@@ -1496,7 +1500,9 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.state.dataNotifikasi.jumlah_baru;
     },
     notifikasi: function notifikasi() {
-      return this.$store.state.dataNotifikasi.notifikasi;
+      return this.$store.state.dataNotifikasi.notifikasi.filter(function (u) {
+        return u.status == 0;
+      });
     }
   },
   methods: {
@@ -1547,9 +1553,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    if (!_store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered) {
-      this.$store.registerModule("dataNotifikasi", _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
-      _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered = true;
+    if (!_store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_3__["default"].isRegistered) {
+      this.$store.registerModule("dataNotifikasi", _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
+      _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_3__["default"].isRegistered = true;
     }
 
     this.$store.dispatch("dataNotifikasi/fetchDataNotifikasi")["catch"](function (err) {
@@ -4480,7 +4486,7 @@ var render = function() {
             },
             [
               _c("h3", { staticClass: "text-white" }, [
-                _vm._v(_vm._s(_vm.totalNotifikasi) + " Notifikasi Baru")
+                _vm._v(_vm._s(_vm.totalNotifikasiBaru) + " Notifikasi Baru")
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "opacity-75" }, [
@@ -4510,38 +4516,36 @@ var render = function() {
                         "flex justify-between px-4 py-4 notification cursor-pointer"
                     },
                     [
-                      ntf.status == 0
-                        ? _c(
-                            "div",
-                            { staticClass: "flex items-start" },
-                            [
-                              _c("feather-icon", {
-                                attrs: {
-                                  icon: "AlertOctagonIcon",
-                                  svgClasses: [
-                                    "text-" + ntf.category,
-                                    "stroke-current mr-1 h-6 w-6"
-                                  ]
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mx-2" }, [
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "font-medium block notification-title",
-                                    class: ["text-" + ntf.category]
-                                  },
-                                  [_vm._v(_vm._s(ntf.title))]
-                                ),
-                                _vm._v(" "),
-                                _c("small", [_vm._v(_vm._s(ntf.msg))])
-                              ])
-                            ],
-                            1
-                          )
-                        : _vm._e(),
+                      _c(
+                        "div",
+                        { staticClass: "flex items-start" },
+                        [
+                          _c("feather-icon", {
+                            attrs: {
+                              icon: "AlertOctagonIcon",
+                              svgClasses: [
+                                "text-" + ntf.category,
+                                "stroke-current mr-1 h-6 w-6"
+                              ]
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "mx-2" }, [
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "font-medium block notification-title",
+                                class: ["text-" + ntf.category]
+                              },
+                              [_vm._v(_vm._s(ntf.title))]
+                            ),
+                            _vm._v(" "),
+                            _c("small", [_vm._v(_vm._s(ntf.msg))])
+                          ])
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("small", { staticClass: "mt-1 whitespace-no-wrap" }, [
                         _vm._v(_vm._s(_vm.elapsedTime(ntf.created_at)))
@@ -6971,6 +6975,18 @@ __webpack_require__.r(__webpack_exports__);
 
         commit("SET_TOTAL_NEW", total);
         commit("SET_TOTAL", response.data.data.total);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  updateItem: function updateItem(_ref2, item) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/notifikasi/update/".concat(item)).then(function (response) {
+        console.log(response); // commit("UPDATE_NOTIFIKASI", response.data.data);
+
         resolve(response);
       })["catch"](function (error) {
         reject(error);

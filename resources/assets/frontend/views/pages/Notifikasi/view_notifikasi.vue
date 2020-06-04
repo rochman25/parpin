@@ -31,7 +31,7 @@
                   type="border"
                   icon-pack="feather"
                   icon="icon-eye"
-                  @click="navigate_to_detail_alat(ntf.alat._id)"
+                  @click="navigate_to_detail_alat(ntf._id,ntf.alat._id)"
                 >lihat</vs-button>
               </vs-col>
             </vs-row>
@@ -64,6 +64,7 @@
                   type="border"
                   icon-pack="feather"
                   icon="icon-eye"
+                  @click="navigate_to_detail_alat(ntf._id,ntf.alat._id)"
                 >lihat</vs-button>
               </vs-col>
             </vs-row>
@@ -88,12 +89,14 @@ export default {
     }
   },
   methods: {
-    navigate_to_detail_alat(id) {
-      
+    navigate_to_detail_alat(id, id_alat) {
+      this.$store.dispatch("dataNotifikasi/updateItem", id).catch(err => {
+        console.error(err);
+      });
       this.$router
         .push({
           name: "parpin-detail-alat",
-          params: { id: id }
+          params: { id: id_alat }
         })
         .catch(() => {});
     }

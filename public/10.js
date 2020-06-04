@@ -273,6 +273,18 @@ __webpack_require__.r(__webpack_exports__);
         reject(error);
       });
     });
+  },
+  updateItem: function updateItem(_ref2, item) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/notifikasi/update/".concat(item)).then(function (response) {
+        console.log(response); // commit("UPDATE_NOTIFIKASI", response.data.data);
+
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
   }
 });
 
