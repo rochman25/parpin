@@ -27,10 +27,10 @@
         </template>
         <template slot-scope="{data}">
           <vs-tr :key="indextr" v-for="(tr,indextr) in data">
-            <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
-            <vs-td :data="data[indextr].username">{{data[indextr].username}}</vs-td>
-            <vs-td :data="data[indextr].no_telp">{{data[indextr].no_telp}}</vs-td>
-            <vs-td class="whitespace-no-wrap">
+            <vs-td v-if="data[indextr].username != username" :data="data[indextr].email">{{data[indextr].email}}</vs-td>
+            <vs-td v-if="data[indextr].username != username" :data="data[indextr].username">{{data[indextr].username}}</vs-td>
+            <vs-td v-if="data[indextr].username != username" :data="data[indextr].no_telp">{{data[indextr].no_telp}}</vs-td>
+            <vs-td v-if="data[indextr].username != username" class="whitespace-no-wrap">
               <feather-icon
                 icon="EditIcon"
                 svgClasses="w-5 h-5 hover:text-primary stroke-current"
@@ -68,6 +68,10 @@ export default {
   computed: {
     list() {
       return this.$store.state.dataPengguna.pengguna;
+    },
+    username(){
+      // console.log(JSON.parse(localStorage.getItem("userInfo")).username)
+      return JSON.parse(localStorage.getItem("userInfo")).username
     }
   },
   methods: {

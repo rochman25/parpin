@@ -296,6 +296,10 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     list: function list() {
       return this.$store.state.dataPengguna.pengguna;
+    },
+    username: function username() {
+      // console.log(JSON.parse(localStorage.getItem("userInfo")).username)
+      return JSON.parse(localStorage.getItem("userInfo")).username;
     }
   },
   methods: {
@@ -675,59 +679,67 @@ var render = function() {
                         "vs-tr",
                         { key: indextr },
                         [
-                          _c(
-                            "vs-td",
-                            { attrs: { data: data[indextr].email } },
-                            [_vm._v(_vm._s(data[indextr].email))]
-                          ),
+                          data[indextr].username != _vm.username
+                            ? _c(
+                                "vs-td",
+                                { attrs: { data: data[indextr].email } },
+                                [_vm._v(_vm._s(data[indextr].email))]
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c(
-                            "vs-td",
-                            { attrs: { data: data[indextr].username } },
-                            [_vm._v(_vm._s(data[indextr].username))]
-                          ),
+                          data[indextr].username != _vm.username
+                            ? _c(
+                                "vs-td",
+                                { attrs: { data: data[indextr].username } },
+                                [_vm._v(_vm._s(data[indextr].username))]
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c(
-                            "vs-td",
-                            { attrs: { data: data[indextr].no_telp } },
-                            [_vm._v(_vm._s(data[indextr].no_telp))]
-                          ),
+                          data[indextr].username != _vm.username
+                            ? _c(
+                                "vs-td",
+                                { attrs: { data: data[indextr].no_telp } },
+                                [_vm._v(_vm._s(data[indextr].no_telp))]
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c(
-                            "vs-td",
-                            { staticClass: "whitespace-no-wrap" },
-                            [
-                              _c("feather-icon", {
-                                attrs: {
-                                  icon: "EditIcon",
-                                  svgClasses:
-                                    "w-5 h-5 hover:text-primary stroke-current"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    $event.stopPropagation()
-                                    return _vm.editData(tr)
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("feather-icon", {
-                                staticClass: "ml-2",
-                                attrs: {
-                                  icon: "TrashIcon",
-                                  svgClasses:
-                                    "w-5 h-5 hover:text-danger stroke-current"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    $event.stopPropagation()
-                                    return _vm.deleteData(tr._id)
-                                  }
-                                }
-                              })
-                            ],
-                            1
-                          )
+                          data[indextr].username != _vm.username
+                            ? _c(
+                                "vs-td",
+                                { staticClass: "whitespace-no-wrap" },
+                                [
+                                  _c("feather-icon", {
+                                    attrs: {
+                                      icon: "EditIcon",
+                                      svgClasses:
+                                        "w-5 h-5 hover:text-primary stroke-current"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        $event.stopPropagation()
+                                        return _vm.editData(tr)
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("feather-icon", {
+                                    staticClass: "ml-2",
+                                    attrs: {
+                                      icon: "TrashIcon",
+                                      svgClasses:
+                                        "w-5 h-5 hover:text-danger stroke-current"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        $event.stopPropagation()
+                                        return _vm.deleteData(tr._id)
+                                      }
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            : _vm._e()
                         ],
                         1
                       )
