@@ -1,15 +1,14 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/babel-loader/lib??ref--10-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/views/pages/login.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/babel-loader/lib??ref--10-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/frontend/views/pages/login.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ././../../../store/notifikasi/moduleNotifikasi.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js");
 //
 //
 //
@@ -68,71 +67,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      val: false,
-      isMounted: false
+      username: "",
+      password: ""
     };
   },
-  computed: {
-    notifikasi: function notifikasi() {
-      return this.$store.state.dataNotifikasi.notifikasi;
-    }
-  },
   methods: {
-    navigate_to_detail_alat: function navigate_to_detail_alat(id, id_alat) {
-      this.$store.dispatch("dataNotifikasi/updateItem", id)["catch"](function (err) {
-        console.error(err);
-      });
-      this.$router.push({
-        name: "parpin-detail-alat",
-        params: {
-          id: id_alat
-        }
-      })["catch"](function () {});
-    }
-  },
-  created: function created() {
-    if (!_store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegistered) {
-      this.$store.registerModule("dataNotifikasi", _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
-      _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegistered = true;
-    }
+    checkLogin: function checkLogin() {
+      if (this.$store.state.auth.isUserLoggedIn()) {
+        this.$vs.notify({
+          title: "Login Info",
+          text: "You are already logged in!",
+          iconPack: "feather",
+          icon: "icon-alert-circle",
+          color: "warning"
+        });
+        return false;
+      }
 
-    this.$store.dispatch("dataNotifikasi/fetchDataNotifikasi")["catch"](function (err) {
-      console.error(err);
-    });
-  },
-  mounted: function mounted() {
-    this.isMounted = true;
+      return true;
+    },
+    loginJWT: function loginJWT() {
+      var _this = this;
+
+      if (!this.checkLogin()) return;
+      this.$vs.loading();
+      var payload = {
+        userDetails: {
+          username: this.username,
+          password: this.password
+        }
+      };
+      this.$store.dispatch("auth/loginJwt", payload).then(function () {
+        _this.$vs.loading.close();
+      })["catch"](function (error) {
+        _this.$vs.loading.close();
+
+        _this.$vs.notify({
+          title: "Error",
+          text: error.message,
+          iconPack: "feather",
+          icon: "icon-alert-circle",
+          color: "danger"
+        });
+
+        console.log(error.message);
+      });
+    },
+    validateForm: function validateForm() {}
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=template&id=c46799ac&":
-/*!*******************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=template&id=c46799ac& ***!
-  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/views/pages/login.vue?vue&type=template&id=7b4637f8&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/frontend/views/pages/login.vue?vue&type=template&id=7b4637f8& ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -144,202 +137,133 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("vx-card", { attrs: { title: "Notifikasi Alat" } }, [
-    _c("p", [
-      _vm._v("Berikut daftar notifikasi alat yang terbagi menjadi 2 :")
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "demo-alignment" },
-      [
-        _c(
-          "vs-list",
-          [
-            _c("vs-list-header", {
-              attrs: {
-                "icon-pack": "feather",
-                icon: "icon-alert-octagon",
-                title: "Notifikasi Bocor",
-                color: "danger"
-              }
-            }),
-            _vm._v(" "),
-            _vm._l(_vm.notifikasi, function(ntf) {
-              return _c(
-                "vs-list",
-                { key: ntf.index },
-                [
-                  ntf.category == "danger"
-                    ? _c(
-                        "vs-list-item",
-                        {
+  return _c(
+    "div",
+    {
+      staticClass:
+        "h-screen flex w-full bg-img vx-row no-gutter items-center justify-center",
+      attrs: { id: "page-login" }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 sm:m-0 m-4"
+        },
+        [
+          _c("vx-card", [
+            _c(
+              "div",
+              {
+                staticClass: "full-page-bg-color",
+                attrs: { slot: "no-body" },
+                slot: "no-body"
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "vx-row no-gutter justify-center items-center"
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "vx-col hidden lg:block lg:w-1/2" },
+                      [
+                        _c("img", {
+                          staticClass: "mx-auto",
                           attrs: {
-                            "icon-pack": "feather",
-                            icon: "icon-alert-octagon",
-                            color: "success",
-                            title: ntf.title,
-                            subtitle: ntf.msg
+                            src: __webpack_require__(/*! @/assets/images/pages/login.png */ "./resources/assets/frontend/assets/images/pages/login.png"),
+                            alt: "login"
                           }
-                        },
-                        [
-                          _c(
-                            "vs-row",
-                            [
-                              _c(
-                                "vs-col",
-                                { attrs: { "vs-w": "6" } },
-                                [
-                                  ntf.status == 1
-                                    ? _c("vs-chip", {
-                                        attrs: { color: "#C5C1C1" }
-                                      })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  ntf.status == 0
-                                    ? _c("vs-chip", {
-                                        attrs: { color: "primary" }
-                                      })
-                                    : _vm._e()
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "vs-col",
-                                { attrs: { "vs-w": "6" } },
-                                [
-                                  _c(
-                                    "vs-button",
-                                    {
-                                      attrs: {
-                                        size: "small",
-                                        color: "primary",
-                                        type: "border",
-                                        "icon-pack": "feather",
-                                        icon: "icon-eye"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.navigate_to_detail_alat(
-                                            ntf._id,
-                                            ntf.alat._id
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("lihat")]
-                                  )
-                                ],
-                                1
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "vx-col sm:w-full md:w-full lg:w-1/2 d-theme-dark-bg"
+                      },
+                      [
+                        _c("div", { staticClass: "p-8 login-tabs-container" }, [
+                          _c("div", { staticClass: "vx-card__title mb-4" }, [
+                            _c("h4", { staticClass: "mb-4" }, [
+                              _vm._v("Login")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "Selamat datang. Silahkan Login untuk melanjutkan."
                               )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            [
+                              _c("vs-input", {
+                                staticClass: "w-full",
+                                attrs: {
+                                  name: "username",
+                                  "icon-no-border": "",
+                                  icon: "icon icon-user",
+                                  "icon-pack": "feather",
+                                  "label-placeholder": "Username"
+                                },
+                                model: {
+                                  value: _vm.username,
+                                  callback: function($$v) {
+                                    _vm.username = $$v
+                                  },
+                                  expression: "username"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("vs-input", {
+                                staticClass: "w-full mt-6",
+                                attrs: {
+                                  type: "password",
+                                  name: "password",
+                                  "icon-no-border": "",
+                                  icon: "icon icon-lock",
+                                  "icon-pack": "feather",
+                                  "label-placeholder": "Password"
+                                },
+                                model: {
+                                  value: _vm.password,
+                                  callback: function($$v) {
+                                    _vm.password = $$v
+                                  },
+                                  expression: "password"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("div", {
+                                staticClass:
+                                  "flex flex-wrap justify-between my-5"
+                              }),
+                              _vm._v(" "),
+                              _c("vs-button", { on: { click: _vm.loginJWT } }, [
+                                _vm._v("Login")
+                              ])
                             ],
                             1
                           )
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                ],
-                1
-              )
-            }),
-            _vm._v(" "),
-            _c("vs-list-header", {
-              attrs: {
-                "icon-pack": "feather",
-                icon: "icon-alert-octagon",
-                title: "Notifikasi Waspada",
-                color: "warning"
-              }
-            }),
-            _vm._v(" "),
-            _vm._l(_vm.notifikasi, function(ntf) {
-              return _c(
-                "vs-list",
-                { key: ntf.index },
-                [
-                  ntf.category == "warning"
-                    ? _c(
-                        "vs-list-item",
-                        {
-                          attrs: {
-                            "icon-pack": "feather",
-                            icon: "icon-alert-octagon",
-                            color: "success",
-                            title: ntf.title,
-                            subtitle: ntf.msg
-                          }
-                        },
-                        [
-                          _c(
-                            "vs-row",
-                            [
-                              _c(
-                                "vs-col",
-                                { attrs: { "vs-w": "6" } },
-                                [
-                                  ntf.status == 1
-                                    ? _c("vs-chip", {
-                                        attrs: { color: "#C5C1C1" }
-                                      })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  ntf.status == 0
-                                    ? _c("vs-chip", {
-                                        attrs: { color: "primary" }
-                                      })
-                                    : _vm._e()
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "vs-col",
-                                { attrs: { "vs-w": "6" } },
-                                [
-                                  _c(
-                                    "vs-button",
-                                    {
-                                      attrs: {
-                                        size: "small",
-                                        color: "primary",
-                                        type: "border",
-                                        "icon-pack": "feather",
-                                        icon: "icon-eye"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.navigate_to_detail_alat(
-                                            ntf._id,
-                                            ntf.alat._id
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("lihat")]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                ],
-                1
-              )
-            })
-          ],
-          2
-        )
-      ],
-      1
-    )
-  ])
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
+          ])
+        ],
+        1
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -348,177 +272,29 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js":
-/*!************************************************************************!*\
-  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js ***!
-  \************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./resources/assets/frontend/assets/images/pages/login.png":
+/*!*****************************************************************!*\
+  !*** ./resources/assets/frontend/assets/images/pages/login.png ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _moduleNotifikasiState_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moduleNotifikasiState.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiState.js");
-/* harmony import */ var _moduleNotifikasiActions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./moduleNotifikasiActions.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiActions.js");
-/* harmony import */ var _moduleNotifikasiGetters_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./moduleNotifikasiGetters.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiGetters.js");
-/* harmony import */ var _moduleNotifikasiMutations_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./moduleNotifikasiMutations.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiMutations.js");
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  isRegistered: false,
-  namespaced: true,
-  state: _moduleNotifikasiState_js__WEBPACK_IMPORTED_MODULE_0__["default"],
-  mutations: _moduleNotifikasiMutations_js__WEBPACK_IMPORTED_MODULE_3__["default"],
-  actions: _moduleNotifikasiActions_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  getters: _moduleNotifikasiGetters_js__WEBPACK_IMPORTED_MODULE_2__["default"]
-});
+module.exports = "/images/login.png?d814adb752d2d047b8292d6de603025f";
 
 /***/ }),
 
-/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiActions.js":
-/*!*******************************************************************************!*\
-  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiActions.js ***!
-  \*******************************************************************************/
+/***/ "./resources/assets/frontend/views/pages/login.vue":
+/*!*********************************************************!*\
+  !*** ./resources/assets/frontend/views/pages/login.vue ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../axios.js */ "./resources/assets/frontend/axios.js");
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  fetchDataNotifikasi: function fetchDataNotifikasi(_ref) {
-    var commit = _ref.commit;
-    return new Promise(function (resolve, reject) {
-      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/notifikasi").then(function (response) {
-        // console.log(response.data.data)
-        var total = 0;
-        commit("SET_NOTIFIKASI", response.data.data.data);
-
-        for (var i = 0; i < response.data.data.data.length; i++) {
-          // console.log(i)
-          if (response.data.data.data[i].status == 0) {
-            total += 1;
-          }
-        }
-
-        commit("SET_TOTAL_NEW", total);
-        commit("SET_TOTAL", response.data.data.total);
-        resolve(response);
-      })["catch"](function (error) {
-        reject(error);
-      });
-    });
-  },
-  updateItem: function updateItem(_ref2, item) {
-    var commit = _ref2.commit;
-    return new Promise(function (resolve, reject) {
-      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/notifikasi/update/".concat(item)).then(function (response) {
-        console.log(response); // commit("UPDATE_NOTIFIKASI", response.data.data);
-
-        resolve(response);
-      })["catch"](function (error) {
-        reject(error);
-      });
-    });
-  }
-});
-
-/***/ }),
-
-/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiGetters.js":
-/*!*******************************************************************************!*\
-  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiGetters.js ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-/***/ }),
-
-/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiMutations.js":
-/*!*********************************************************************************!*\
-  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiMutations.js ***!
-  \*********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find-index */ "./node_modules/core-js/modules/es.array.find-index.js");
-/* harmony import */ var core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.splice */ "./node_modules/core-js/modules/es.array.splice.js");
-/* harmony import */ var core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  ADD_ITEM: function ADD_ITEM(state, item) {
-    state.notifikasi.unshift(item);
-  },
-  SET_NOTIFIKASI: function SET_NOTIFIKASI(state, notifikasi) {
-    state.notifikasi = notifikasi; // console.log(state.alat)
-  },
-  SET_TOTAL: function SET_TOTAL(state, notifikasi) {
-    state.jumlah = notifikasi; // console.log(state.alat)
-  },
-  SET_TOTAL_NEW: function SET_TOTAL_NEW(state, notifikasi) {
-    state.jumlah_baru = notifikasi; // console.log(state.alat)
-  },
-  UPDATE_NOTIFIKASI: function UPDATE_NOTIFIKASI(state, notifikasi) {
-    var productIndex = state.notifikasi.findIndex(function (p) {
-      return p._id == notifikasi._id;
-    });
-    Object.assign(state.notifikasi[productIndex], notifikasi);
-  },
-  REMOVE_ITEM: function REMOVE_ITEM(state, itemId) {
-    var ItemIndex = state.notifikasi.findIndex(function (p) {
-      return p._id == itemId;
-    });
-    state.notifikasi.splice(ItemIndex, 1);
-  }
-});
-
-/***/ }),
-
-/***/ "./resources/assets/frontend/store/notifikasi/moduleNotifikasiState.js":
-/*!*****************************************************************************!*\
-  !*** ./resources/assets/frontend/store/notifikasi/moduleNotifikasiState.js ***!
-  \*****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  notifikasi: [],
-  jumlah: 0,
-  jumlah_baru: 0
-});
-
-/***/ }),
-
-/***/ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue":
-/*!******************************************************************************!*\
-  !*** ./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue ***!
-  \******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _view_notifikasi_vue_vue_type_template_id_c46799ac___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view_notifikasi.vue?vue&type=template&id=c46799ac& */ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=template&id=c46799ac&");
-/* harmony import */ var _view_notifikasi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view_notifikasi.vue?vue&type=script&lang=js& */ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _login_vue_vue_type_template_id_7b4637f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./login.vue?vue&type=template&id=7b4637f8& */ "./resources/assets/frontend/views/pages/login.vue?vue&type=template&id=7b4637f8&");
+/* harmony import */ var _login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.vue?vue&type=script&lang=js& */ "./resources/assets/frontend/views/pages/login.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -527,9 +303,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _view_notifikasi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _view_notifikasi_vue_vue_type_template_id_c46799ac___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _view_notifikasi_vue_vue_type_template_id_c46799ac___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _login_vue_vue_type_template_id_7b4637f8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _login_vue_vue_type_template_id_7b4637f8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -539,38 +315,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue"
+component.options.__file = "resources/assets/frontend/views/pages/login.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************/
+/***/ "./resources/assets/frontend/views/pages/login.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/assets/frontend/views/pages/login.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_10_0_node_modules_vue_loader_lib_index_js_vue_loader_options_view_notifikasi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/babel-loader/lib??ref--10-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./view_notifikasi.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_10_0_node_modules_vue_loader_lib_index_js_vue_loader_options_view_notifikasi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_10_0_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/babel-loader/lib??ref--10-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./login.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/views/pages/login.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_10_0_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=template&id=c46799ac&":
-/*!*************************************************************************************************************!*\
-  !*** ./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=template&id=c46799ac& ***!
-  \*************************************************************************************************************/
+/***/ "./resources/assets/frontend/views/pages/login.vue?vue&type=template&id=7b4637f8&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/frontend/views/pages/login.vue?vue&type=template&id=7b4637f8& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_view_notifikasi_vue_vue_type_template_id_c46799ac___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./view_notifikasi.vue?vue&type=template&id=c46799ac& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/views/pages/Notifikasi/view_notifikasi.vue?vue&type=template&id=c46799ac&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_view_notifikasi_vue_vue_type_template_id_c46799ac___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_template_id_7b4637f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./login.vue?vue&type=template&id=7b4637f8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/frontend/views/pages/login.vue?vue&type=template&id=7b4637f8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_template_id_7b4637f8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_view_notifikasi_vue_vue_type_template_id_c46799ac___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_login_vue_vue_type_template_id_7b4637f8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

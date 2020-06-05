@@ -14,17 +14,17 @@
           <vs-list-item
             v-if="ntf.category == 'danger'"
             icon-pack="feather"
-            icon="icon-alert-octagon"
+            :icon="icons[ntf.status]"
             color="success"
             :title="ntf.title"
             :subtitle="ntf.msg"
           >
             <vs-row>
-              <vs-col vs-w="6">
+              <vs-col vs-type="flex" vs-w="6">
                 <vs-chip v-if="ntf.status == 1" color="#C5C1C1"></vs-chip>
                 <vs-chip v-if="ntf.status == 0" color="primary"></vs-chip>
               </vs-col>
-              <vs-col vs-w="6">
+              <vs-col vs-type="flex" vs-w="6">
                 <vs-button
                   size="small"
                   color="primary"
@@ -47,17 +47,17 @@
           <vs-list-item
             v-if="ntf.category == 'warning'"
             icon-pack="feather"
-            icon="icon-alert-octagon"
+            :icon="icons[ntf.status]"
             color="success"
             :title="ntf.title"
             :subtitle="ntf.msg"
           >
             <vs-row>
-              <vs-col vs-w="6">
+              <vs-col vs-type="flex" vs-w="6">
                 <vs-chip v-if="ntf.status == 1" color="#C5C1C1"></vs-chip>
                 <vs-chip v-if="ntf.status == 0" color="primary"></vs-chip>
               </vs-col>
-              <vs-col vs-w="6">
+              <vs-col vs-type="flex" vs-w="6">
                 <vs-button
                   size="small"
                   color="primary"
@@ -80,7 +80,8 @@ export default {
   data() {
     return {
       val: false,
-      isMounted: false
+      isMounted: false,
+      icons: ["icon-alert-octagon","icon-check"]
     };
   },
   computed: {

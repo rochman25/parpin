@@ -197,6 +197,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -233,6 +275,16 @@ __webpack_require__.r(__webpack_exports__);
           name: "Last Month",
           data: [46000, 48000, 45500, 46600, 44500, 46500, 45000, 47000]
         }]
+      },
+      supportTracker: {
+        analyticsData: {
+          openTickets: 163,
+          meta: {
+            Status: "offline",
+            "Waktu Response": 0 + " detik"
+          }
+        },
+        series: [83]
       },
       analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_3__["default"],
       item_data: null,
@@ -690,24 +742,30 @@ var render = function() {
                 { staticClass: "py-24 mb-16 mt-10 text-center item-features" },
                 [
                   _c("div", { staticClass: "vx-row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "vx-col md:w-1/1 w-full" },
+                      [
+                        _c("feather-icon", {
+                          staticClass: "block mb-4",
+                          attrs: {
+                            icon: "PieChartIcon",
+                            svgClasses: "h-12 w-12 text-primary stroke-current"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "font-semibold text-lg" }, [
+                          _vm._v("Statistik Alat")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
                     _c("div", { staticClass: "vx-col md:w-1/2 w-full" }, [
                       _c(
                         "div",
                         { staticClass: "w-full mx-auto mb-16 md:mb-0" },
                         [
-                          _c("feather-icon", {
-                            staticClass: "block mb-4",
-                            attrs: {
-                              icon: "PieChartIcon",
-                              svgClasses:
-                                "h-12 w-12 text-primary stroke-current"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "font-semibold text-lg" }, [
-                            _vm._v("Statistik Alat")
-                          ]),
-                          _vm._v(" "),
                           _c("div", { staticClass: "vx-row text-center" }, [
                             _c(
                               "div",
@@ -742,83 +800,6 @@ var render = function() {
                                         slot: "no-body"
                                       },
                                       [
-                                        _vm.revenueComparisonLine.analyticsData
-                                          ? _c("div", { staticClass: "flex" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "mr-6" },
-                                                [
-                                                  _c(
-                                                    "p",
-                                                    {
-                                                      staticClass:
-                                                        "mb-1 font-semibold"
-                                                    },
-                                                    [_vm._v("This Month")]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "p",
-                                                    {
-                                                      staticClass:
-                                                        "text-3xl text-success"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "sup",
-                                                        {
-                                                          staticClass:
-                                                            "text-base mr-1"
-                                                        },
-                                                        [_vm._v("$")]
-                                                      ),
-                                                      _vm._v(
-                                                        "\n                              " +
-                                                          _vm._s(
-                                                            _vm.revenueComparisonLine.analyticsData.thisMonth.toLocaleString()
-                                                          ) +
-                                                          "\n                            "
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c("div", [
-                                                _c(
-                                                  "p",
-                                                  {
-                                                    staticClass:
-                                                      "mb-1 font-semibold"
-                                                  },
-                                                  [_vm._v("Last Month")]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "p",
-                                                  { staticClass: "text-3xl" },
-                                                  [
-                                                    _c(
-                                                      "sup",
-                                                      {
-                                                        staticClass:
-                                                          "text-base mr-1"
-                                                      },
-                                                      [_vm._v("$")]
-                                                    ),
-                                                    _vm._v(
-                                                      "\n                              " +
-                                                        _vm._s(
-                                                          _vm.revenueComparisonLine.analyticsData.lastMonth.toLocaleString()
-                                                        ) +
-                                                        "\n                            "
-                                                    )
-                                                  ]
-                                                )
-                                              ])
-                                            ])
-                                          : _vm._e(),
-                                        _vm._v(" "),
                                         _c("vue-apex-charts", {
                                           attrs: {
                                             type: "line",
@@ -841,12 +822,120 @@ var render = function() {
                               1
                             )
                           ])
-                        ],
-                        1
+                        ]
                       )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "vx-col md:w-1/2 w-full" }, [
+                      _c(
+                        "div",
+                        { staticClass: "w-full mx-auto mb-16 md:mb-0" },
+                        [
+                          _c("div", { staticClass: "vx-row text-center" }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "vx-col p-10 w-full md:mb-0 mb-16 mx-auto"
+                            },
+                            [
+                              _c(
+                                "vx-card",
+                                { attrs: { title: _vm.alat.nama } },
+                                [
+                                  _vm.supportTracker.analyticsData
+                                    ? _c(
+                                        "div",
+                                        {
+                                          attrs: { slot: "no-body" },
+                                          slot: "no-body"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "vx-row text-center"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "vx-col w-full lg:w-5/5 md:w-full sm:w-5/5 justify-center mx-auto lg:mt-0 md:mt-6 sm:mt-0 mt-3"
+                                                },
+                                                [
+                                                  _c("vue-apex-charts", {
+                                                    attrs: {
+                                                      type: "radialBar",
+                                                      height: "300",
+                                                      options:
+                                                        _vm.analyticsData
+                                                          .supportTrackerRadialBar
+                                                          .chartOptions,
+                                                      series:
+                                                        _vm.supportTracker
+                                                          .series
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "flex flex-row justify-between px-8 pb-4 mt-0"
+                                            },
+                                            _vm._l(
+                                              _vm.supportTracker.analyticsData
+                                                .meta,
+                                              function(val, key) {
+                                                return _c(
+                                                  "p",
+                                                  {
+                                                    key: key,
+                                                    staticClass: "text-center"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      { staticClass: "block" },
+                                                      [_vm._v(_vm._s(key))]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "text-2xl font-semibold"
+                                                      },
+                                                      [_vm._v(_vm._s(val))]
+                                                    )
+                                                  ]
+                                                )
+                                              }
+                                            ),
+                                            0
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "vx-row" }, [
+                    _c("div", { staticClass: "vx-col md:w-1/1 w-full" }, [
                       _c(
                         "div",
                         { staticClass: "w-full p-10 mx-auto mb-16 md:mb-0" },
@@ -867,6 +956,7 @@ var render = function() {
                           _c(
                             "div",
                             {
+                              staticClass: "mt-10",
                               attrs: { id: "extra-component-google-map-demo" }
                             },
                             [

@@ -98,14 +98,16 @@
           <!-- Product Feature/Meta Row -->
           <div class="py-24 mb-16 mt-10 text-center item-features">
             <div class="vx-row">
+              <div class="vx-col md:w-1/1 w-full">
+                <feather-icon
+                  icon="PieChartIcon"
+                  svgClasses="h-12 w-12 text-primary stroke-current"
+                  class="block mb-4"
+                />
+                <span class="font-semibold text-lg">Statistik Alat</span>
+              </div>
               <div class="vx-col md:w-1/2 w-full">
                 <div class="w-full mx-auto mb-16 md:mb-0">
-                  <feather-icon
-                    icon="PieChartIcon"
-                    svgClasses="h-12 w-12 text-primary stroke-current"
-                    class="block mb-4"
-                  />
-                  <span class="font-semibold text-lg">Statistik Alat</span>
                   <div class="vx-row text-center">
                     <!-- LINE CHART -->
                     <div class="vx-col p-10 w-full md:mb-0 mb-16 mx-auto">
@@ -115,7 +117,7 @@
                         </template>
 
                         <div slot="no-body" class="p-6 pb-0">
-                          <div class="flex" v-if="revenueComparisonLine.analyticsData">
+                          <!-- <div class="flex" v-if="revenueComparisonLine.analyticsData">
                             <div class="mr-6">
                               <p class="mb-1 font-semibold">This Month</p>
                               <p class="text-3xl text-success">
@@ -130,7 +132,7 @@
                                 {{ revenueComparisonLine.analyticsData.lastMonth.toLocaleString() }}
                               </p>
                             </div>
-                          </div>
+                          </div> -->
 
                           <vue-apex-charts
                             type="line"
@@ -145,6 +147,46 @@
                 </div>
               </div>
               <div class="vx-col md:w-1/2 w-full">
+                <div class="w-full mx-auto mb-16 md:mb-0">
+                  <div class="vx-row text-center"></div>
+                  <div class="vx-col p-10 w-full md:mb-0 mb-16 mx-auto">
+                    <vx-card :title="alat.nama">
+                      <!-- CARD ACTION -->
+
+                      <div slot="no-body" v-if="supportTracker.analyticsData">
+                        <div class="vx-row text-center">
+                          <!-- Chart -->
+                          <div
+                            class="vx-col w-full lg:w-5/5 md:w-full sm:w-5/5 justify-center mx-auto lg:mt-0 md:mt-6 sm:mt-0 mt-3"
+                          >
+                            <vue-apex-charts
+                              type="radialBar"
+                              height="300"
+                              :options="analyticsData.supportTrackerRadialBar.chartOptions"
+                              :series="supportTracker.series"
+                            />
+                          </div>
+                        </div>
+
+                        <!-- Support Tracker Meta Data -->
+                        <div class="flex flex-row justify-between px-8 pb-4 mt-0">
+                          <p
+                            class="text-center"
+                            v-for="(val, key) in supportTracker.analyticsData.meta"
+                            :key="key"
+                          >
+                            <span class="block">{{ key }}</span>
+                            <span class="text-2xl font-semibold">{{ val }}</span>
+                          </p>
+                        </div>
+                      </div>
+                    </vx-card>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="vx-row">
+              <div class="vx-col md:w-1/1 w-full">
                 <div class="w-full p-10 mx-auto mb-16 md:mb-0">
                   <feather-icon
                     icon="MapIcon"
@@ -152,7 +194,7 @@
                     class="block mb-4"
                   />
                   <span class="font-semibold text-lg">Lokasi Alat</span>
-                  <div id="extra-component-google-map-demo">
+                  <div id="extra-component-google-map-demo" class="mt-10">
                     <GmapMap
                       :center="center"
                       :zoom="7"
@@ -211,6 +253,16 @@ export default {
             data: [46000, 48000, 45500, 46600, 44500, 46500, 45000, 47000]
           }
         ]
+      },
+      supportTracker: {
+        analyticsData: {
+          openTickets: 163,
+          meta: {
+            Status: "offline",
+            "Waktu Response": 0 + " detik"
+          }
+        },
+        series: [83]
       },
       analyticsData: analyticsData,
       item_data: null,
