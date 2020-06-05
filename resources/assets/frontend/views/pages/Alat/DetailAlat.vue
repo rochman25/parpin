@@ -31,11 +31,11 @@
 
               <!-- Item Content -->
               <div class="vx-col md:w-3/5 w-full">
-                <h3>{{alat.nama}}</h3>
+                <h3>{{ alat.nama }}</h3>
 
                 <p class="my-2">
                   <span class="mr-2">id</span>
-                  <span>{{alat._id}}</span>
+                  <span>{{ alat._id }}</span>
                 </p>
                 <!-- <p class="flex items-center flex-wrap">
                   <span class="text-2xl leading-none font-medium text-primary mr-4 mt-2">harga</span>
@@ -56,21 +56,21 @@
                     class="p-0 border-none"
                     title="Sensor"
                     icon-pack="feather"
-                    icon="icon-truck"
+                    icon="icon-rss"
                   ></vs-list-item>
-                  <p>Nama Sensor : {{alat.sensor.nama}}</p>
-                  <p>Model Sensor : {{alat.sensor.model}}</p>
-                  <p>Working Range : {{alat.sensor.working_range}}</p>
-                  <p>Water Pressure : {{alat.sensor.water_pressure}}</p>
+                  <p v-if="sensor">Nama Sensor : {{ sensor.nama }}</p>
+                  <p v-if="sensor">Model Sensor : {{ sensor.model }}</p>
+                  <p v-if="sensor">Working Range : {{ sensor.working_range }}</p>
+                  <p v-if="sensor">Water Pressure : {{ sensor.water_pressure }}</p>
                   <vs-list-item
                     class="p-0 border-none"
                     title="Microcontroller"
                     icon-pack="feather"
-                    icon="icon-dollar-sign"
+                    icon="icon-cpu"
                   ></vs-list-item>
-                  <p>Nama Microcontroller : {{alat.micro.nama}}</p>
-                  <p>Model Microcontroller : {{alat.micro.model}}</p>
-                  <p>Connection Type : {{alat.micro.connection_type}}</p>
+                  <p v-if="micro">Nama Microcontroller : {{micro.nama}}</p>
+                  <p v-if="micro">Model Microcontroller : {{micro.model}}</p>
+                  <p v-if="micro">Connection Type : {{micro.connection_type}}</p>
                 </vs-list>
 
                 <vs-divider />
@@ -78,18 +78,16 @@
                 <!-- <vs-divider /> -->
 
                 <!-- Quantity -->
-                <div class="vx-row">
+                <!-- <div class="vx-row">
                   <div class="vx-col w-full">
                     <p class="my-2">
                       <span>Status</span>
                       <span class="mx-2">-</span>
-                      <span class="text-success">Online</span> OR
-                      <span class="text-danger">Offline</span>
+                      <span class="text-success">{{ supportTracker.analyticsData.meta.status }}</span>
                     </p>
                   </div>
-
                   <div class="vx-col w-full"></div>
-                </div>
+                </div> -->
                 <!-- /Quantity -->
               </div>
             </div>
@@ -132,7 +130,7 @@
                                 {{ revenueComparisonLine.analyticsData.lastMonth.toLocaleString() }}
                               </p>
                             </div>
-                          </div> -->
+                          </div>-->
 
                           <vue-apex-charts
                             type="line"
@@ -262,7 +260,7 @@ export default {
             "Waktu Response": 0 + " detik"
           }
         },
-        series: [83]
+        series: [0]
       },
       analyticsData: analyticsData,
       item_data: null,
@@ -284,7 +282,30 @@ export default {
   },
   computed: {
     alat() {
-      return this.$store.state.dataAlat.alat;
+      var d_alat = this.$store.state.dataAlat.alat;
+      let subscription = this.$ws.socket.getSubscription(
+        "alat:" + d_alat._id
+      );
+      if (!subscription) {
+        subscription = this.$ws.subscribe("alat:" + d_alat._id);
+      }
+      subscription.on("message", data => {
+        var arus = (data.arus / 5000) * 100;
+        this.supportTracker.series = [arus.toFixed(2)];
+        this.supportTracker.analyticsData.meta.Status = data.status;
+        // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
+        console.log(
+          "Message subscribe with id " + this.d_alat,
+          this.supportTracker
+        );
+      });
+      return d_alat;
+    },
+    sensor(){
+      return this.$store.state.dataAlat.alat.sensor;
+    },
+    micro(){
+      return this.$store.state.dataAlat.alat.micro;
     }
   },
   methods: {
@@ -316,6 +337,7 @@ export default {
       .catch(err => {
         console.error(err);
       });
+    // this.$store.commit("SET_ALAT_ID", this.alat._id);
     // console.log(this.$store.state.dataAlat)
     // this.fetch_item_details(this.$route.params.item_id);
   },

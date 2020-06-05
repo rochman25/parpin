@@ -81,7 +81,7 @@ export default {
     return {
       val: false,
       isMounted: false,
-      icons: ["icon-alert-octagon","icon-check"]
+      icons: ["icon-alert-octagon","icon-check-circle"]
     };
   },
   computed: {

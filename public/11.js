@@ -92,7 +92,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       val: false,
       isMounted: false,
-      icons: ["icon-alert-octagon", "icon-check"]
+      icons: ["icon-alert-octagon", "icon-check-circle"]
     };
   },
   computed: {

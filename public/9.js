@@ -9,11 +9,15 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../store/alat/moduleAlat.js */ "./resources/assets/frontend/store/alat/moduleAlat.js");
-/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
-/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../../components/statistics-cards/StatisticsCardLine */ "./resources/assets/frontend/components/statistics-cards/StatisticsCardLine.vue");
-/* harmony import */ var _analyticData_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./analyticData.js */ "./resources/assets/frontend/views/pages/Alat/analyticData.js");
+/* harmony import */ var core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.to-fixed */ "./node_modules/core-js/modules/es.number.to-fixed.js");
+/* harmony import */ var core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../store/alat/moduleAlat.js */ "./resources/assets/frontend/store/alat/moduleAlat.js");
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../components/statistics-cards/StatisticsCardLine */ "./resources/assets/frontend/components/statistics-cards/StatisticsCardLine.vue");
+/* harmony import */ var _analyticData_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./analyticData.js */ "./resources/assets/frontend/views/pages/Alat/analyticData.js");
+
+ //
 //
 //
 //
@@ -236,9 +240,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
+
 
 
 
@@ -284,9 +286,9 @@ __webpack_require__.r(__webpack_exports__);
             "Waktu Response": 0 + " detik"
           }
         },
-        series: [83]
+        series: [0]
       },
-      analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_3__["default"],
+      analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_4__["default"],
       item_data: null,
       error_occured: false,
       error_msg: "",
@@ -295,12 +297,34 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    VueApexCharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_1___default.a,
-    StatisticsCardLine: _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_2__["default"]
+    VueApexCharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_2___default.a,
+    StatisticsCardLine: _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   computed: {
     alat: function alat() {
-      return this.$store.state.dataAlat.alat;
+      var _this = this;
+
+      var d_alat = this.$store.state.dataAlat.alat;
+      var subscription = this.$ws.socket.getSubscription("alat:" + d_alat._id);
+
+      if (!subscription) {
+        subscription = this.$ws.subscribe("alat:" + d_alat._id);
+      }
+
+      subscription.on("message", function (data) {
+        var arus = data.arus / 5000 * 100;
+        _this.supportTracker.series = [arus.toFixed(2)];
+        _this.supportTracker.analyticsData.meta.Status = data.status; // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
+
+        console.log("Message subscribe with id " + _this.d_alat, _this.supportTracker);
+      });
+      return d_alat;
+    },
+    sensor: function sensor() {
+      return this.$store.state.dataAlat.alat.sensor;
+    },
+    micro: function micro() {
+      return this.$store.state.dataAlat.alat.micro;
     }
   },
   methods: {
@@ -322,14 +346,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    if (!_store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegistered) {
-      this.$store.registerModule("dataAlat", _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
-      _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_0__["default"].isRegistered = true;
+    if (!_store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__["default"].isRegistered) {
+      this.$store.registerModule("dataAlat", _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
+      _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__["default"].isRegistered = true;
     }
 
     this.$store.dispatch("dataAlat/fetchDetailAlat", this.$route.params.id)["catch"](function (err) {
       console.error(err);
-    }); // console.log(this.$store.state.dataAlat)
+    }); // this.$store.commit("SET_ALAT_ID", this.alat._id);
+    // console.log(this.$store.state.dataAlat)
     // this.fetch_item_details(this.$route.params.item_id);
   },
   mounted: function mounted() {
@@ -647,90 +672,84 @@ var render = function() {
                             attrs: {
                               title: "Sensor",
                               "icon-pack": "feather",
-                              icon: "icon-truck"
+                              icon: "icon-rss"
                             }
                           }),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Nama Sensor : " + _vm._s(_vm.alat.sensor.nama)
-                            )
-                          ]),
+                          _vm.sensor
+                            ? _c("p", [
+                                _vm._v(
+                                  "Nama Sensor : " + _vm._s(_vm.sensor.nama)
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Model Sensor : " + _vm._s(_vm.alat.sensor.model)
-                            )
-                          ]),
+                          _vm.sensor
+                            ? _c("p", [
+                                _vm._v(
+                                  "Model Sensor : " + _vm._s(_vm.sensor.model)
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Working Range : " +
-                                _vm._s(_vm.alat.sensor.working_range)
-                            )
-                          ]),
+                          _vm.sensor
+                            ? _c("p", [
+                                _vm._v(
+                                  "Working Range : " +
+                                    _vm._s(_vm.sensor.working_range)
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Water Pressure : " +
-                                _vm._s(_vm.alat.sensor.water_pressure)
-                            )
-                          ]),
+                          _vm.sensor
+                            ? _c("p", [
+                                _vm._v(
+                                  "Water Pressure : " +
+                                    _vm._s(_vm.sensor.water_pressure)
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _c("vs-list-item", {
                             staticClass: "p-0 border-none",
                             attrs: {
                               title: "Microcontroller",
                               "icon-pack": "feather",
-                              icon: "icon-dollar-sign"
+                              icon: "icon-cpu"
                             }
                           }),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Nama Microcontroller : " +
-                                _vm._s(_vm.alat.micro.nama)
-                            )
-                          ]),
+                          _vm.micro
+                            ? _c("p", [
+                                _vm._v(
+                                  "Nama Microcontroller : " +
+                                    _vm._s(_vm.micro.nama)
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Model Microcontroller : " +
-                                _vm._s(_vm.alat.micro.model)
-                            )
-                          ]),
+                          _vm.micro
+                            ? _c("p", [
+                                _vm._v(
+                                  "Model Microcontroller : " +
+                                    _vm._s(_vm.micro.model)
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "Connection Type : " +
-                                _vm._s(_vm.alat.micro.connection_type)
-                            )
-                          ])
+                          _vm.micro
+                            ? _c("p", [
+                                _vm._v(
+                                  "Connection Type : " +
+                                    _vm._s(_vm.micro.connection_type)
+                                )
+                              ])
+                            : _vm._e()
                         ],
                         1
                       ),
                       _vm._v(" "),
-                      _c("vs-divider"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "vx-row" }, [
-                        _c("div", { staticClass: "vx-col w-full" }, [
-                          _c("p", { staticClass: "my-2" }, [
-                            _c("span", [_vm._v("Status")]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "mx-2" }, [_vm._v("-")]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "text-success" }, [
-                              _vm._v("Online")
-                            ]),
-                            _vm._v(" OR\n                    "),
-                            _c("span", { staticClass: "text-danger" }, [
-                              _vm._v("Offline")
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "vx-col w-full" })
-                      ])
+                      _c("vs-divider")
                     ],
                     1
                   )

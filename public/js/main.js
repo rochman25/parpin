@@ -66693,7 +66693,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/dashboard',
       name: 'parpin-dashboard',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(1), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -66707,7 +66707,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/alat',
       name: 'parpin-alat',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(15), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/list_alat.vue */ "./resources/assets/frontend/views/pages/Alat/list_alat.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/list_alat.vue */ "./resources/assets/frontend/views/pages/Alat/list_alat.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -66721,7 +66721,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/alat/detail/:id',
       name: 'parpin-detail-alat',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(1), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/DetailAlat.vue */ "./resources/assets/frontend/views/pages/Alat/DetailAlat.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(1), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/DetailAlat.vue */ "./resources/assets/frontend/views/pages/Alat/DetailAlat.vue"));
       },
       meta: {
         authRequired: true
