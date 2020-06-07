@@ -1,6 +1,7 @@
 "use strict";
 const BaseController = use("App/Controllers/Http/BaseController.js");
 const Alat = use("App/Models/Alat");
+const AlatArus = use("App/Models/ArusAlat");
 const Sensor = use("App/Models/Sensor");
 const Micro = use("App/Models/Microcontroller");
 
@@ -41,6 +42,34 @@ class AlatController extends BaseController {
         return response.json(this.successResponse(respon));
     }
 
+    async getStatisticArus({ request, response }) {
+        let respon = {};
+        let id = request.input("id");
+        let arus = [];
+
+        if (id != null) {
+            arus = await AlatArus.where("alat_id", id).fetch();
+            respon = {
+                message: this.dataNotFound,
+                data: arus
+            };
+            return response.json(this.successResponse(respon));
+        }
+        arus = await AlatArus.all();
+        if (arus) {
+            respon = {
+                message: this.dataFound,
+                data: arus
+            };
+        } else {
+            respon = {
+                message: this.dataNotFound,
+                data: arus
+            };
+        }
+        return response.json(this.successResponse(respon));
+    }
+
     async add_action({ request, response }) {
         let nama = request.input("nama");
         let ids = request.input("id_sensor");
@@ -54,9 +83,9 @@ class AlatController extends BaseController {
         alat.nama = nama;
         alat.sensor = sensor.toJSON();
         alat.micro = micro.toJSON();
-        alat.latitude = latitude
-        alat.longitude = longitude
-        alat.photo = photo
+        alat.latitude = latitude;
+        alat.longitude = longitude;
+        alat.photo = photo;
         await alat.save();
         let respon = {
             message: this.addSuccessMessage,
@@ -84,12 +113,12 @@ class AlatController extends BaseController {
             let photo = request.input("photo");
 
             alat.nama = nama;
-            alat.sensor = sensor.toJSON()
-            alat.micro = micro.toJSON()
-            alat.latitude = latitude
-            alat.longitude = longitude
-            alat.photo = photo
-            await alat.save()
+            alat.sensor = sensor.toJSON();
+            alat.micro = micro.toJSON();
+            alat.latitude = latitude;
+            alat.longitude = longitude;
+            alat.photo = photo;
+            await alat.save();
 
             respon = {
                 message: this.updateSuccessMessage,
@@ -109,9 +138,9 @@ class AlatController extends BaseController {
         let alat = await Alat.find(id);
         let respon = {};
         if (alat) {
-            await alat.delete()
+            await alat.delete();
             respon = {
-                message: this.deleteSuccessMessage,
+                message: this.deleteSuccessMessage
             };
         } else {
             respon = {

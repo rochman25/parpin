@@ -27,6 +27,7 @@ Route.group(function() {
 
     //alat
     Route.get("/alat", 'AlatController.index');
+    Route.get("/alat/arus", 'AlatController.getStatisticArus');
     Route.post("/alat/add", 'AlatController.add_action');
     Route.put("/alat/update/:id", 'AlatController.update_action');
     Route.delete("/alat/delete", "AlatController.delete_action");
@@ -47,6 +48,8 @@ Route.group(function() {
     Route.get("/notifikasi", 'NotifikasiController.index')
     Route.post("/notifikasi/add", 'NotifikasiController.add_action')
     Route.put("/notifikasi/update/:id", 'NotifikasiController.update_action')
+
+
 
 }).prefix("api/v1").middleware('auth')
 
