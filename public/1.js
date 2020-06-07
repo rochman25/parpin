@@ -530,8 +530,20 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  addItem: function addItem(_ref3, item) {
+  fetchStatisticArus: function fetchStatisticArus(_ref3) {
     var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/alat/arus", {}).then(function (response) {
+        // commit("UPDATE_STAT", response.data.data);
+        console.log(response);
+        resolve(response);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  },
+  addItem: function addItem(_ref4, item) {
+    var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/v1/alat/add", {
         nama: item.nama,
@@ -548,8 +560,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  updateItem: function updateItem(_ref4, item) {
-    var commit = _ref4.commit;
+  updateItem: function updateItem(_ref5, item) {
+    var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].put("/api/v1/alat/update/".concat(item.id), {
         nama: item.nama,
@@ -564,8 +576,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  removeItem: function removeItem(_ref5, itemId) {
-    var commit = _ref5.commit;
+  removeItem: function removeItem(_ref6, itemId) {
+    var commit = _ref6.commit;
     return new Promise(function (resolve, reject) {
       _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("/api/v1/alat/delete?id=".concat(itemId)).then(function (response) {
         commit("REMOVE_ITEM", itemId);
@@ -630,6 +642,9 @@ __webpack_require__.r(__webpack_exports__);
       return p._id == itemId;
     });
     state.alat.splice(ItemIndex, 1);
+  },
+  UPDATE_STAT: function UPDATE_STAT(state, arus) {
+    state.arus = arus;
   }
 });
 
@@ -646,7 +661,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   alat: [],
-  jumlah: 0
+  jumlah: 0,
+  arus: []
 });
 
 /***/ })

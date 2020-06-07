@@ -18,4 +18,7 @@ export default {
         const ItemIndex = state.alat.findIndex((p) => p._id == itemId)
         state.alat.splice(ItemIndex, 1)
     },
+    UPDATE_STAT(state, arus) {
+        state.arus = arus
+    }
 }

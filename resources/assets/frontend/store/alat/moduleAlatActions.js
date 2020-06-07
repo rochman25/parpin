@@ -32,13 +32,27 @@ export default {
                 });
         });
     },
+    fetchStatisticArus({ commit }) {
+        return new Promise((resolve, reject) => {
+            axios
+                .get(`api/v1/alat/arus`, {})
+                .then(response => {
+                    // commit("UPDATE_STAT", response.data.data);
+                    console.log(response);
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    },
     addItem({ commit }, item) {
         return new Promise((resolve, reject) => {
             axios
                 .post("/api/v1/alat/add", {
                     nama: item.nama,
                     id_sensor: item.sensor_id,
-                    id_micro: item.micro_id,
+                    id_micro: item.micro_id
                 })
                 .then(response => {
                     // console.log(response.data.data.microcontroller._id)
@@ -59,7 +73,7 @@ export default {
                 .put(`/api/v1/alat/update/${item.id}`, {
                     nama: item.nama,
                     id_sensor: item.sensor_id,
-                    id_micro: item.micro_id,
+                    id_micro: item.micro_id
                 })
                 .then(response => {
                     // console.log(response)
