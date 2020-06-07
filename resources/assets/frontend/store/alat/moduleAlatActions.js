@@ -34,16 +34,29 @@ export default {
     },
     fetchStatisticArus({ commit }, itemId) {
         return new Promise((resolve, reject) => {
-            axios
-                .get(`api/v1/alat/arus`, )
-                .then(response => {
-                    commit("UPDATE_STAT", response.data.data);
-                    // console.log(response.data.data);
-                    resolve(response);
-                })
-                .catch(error => {
-                    reject(error);
-                });
+            if (itemId) {
+                axios
+                    .get(`api/v1/alat/arus?id=${itemId}`, )
+                    .then(response => {
+                        commit("UPDATE_STAT", response.data.data);
+                        // console.log(response.data.data);
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            } else {
+                axios
+                    .get(`api/v1/alat/arus`, )
+                    .then(response => {
+                        commit("UPDATE_STAT", response.data.data);
+                        // console.log(response.data.data);
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            }
         });
     },
     addItem({ commit }, item) {

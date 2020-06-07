@@ -131,10 +131,10 @@ __webpack_require__.r(__webpack_exports__);
       lineAreaChartSpline: {
         series: [{
           name: "series1",
-          data: [10, 1, 2, 3, 4, 5, 1000, 200, 100, 100, 100, 200, 300, 400, 100]
+          data: []
         }, {
           name: "series2",
-          data: [20, 2, 3, 10, 200, 100, 100, 100, 200, 300, 400, 500, 100, 200, 300]
+          data: []
         }],
         chartOptions: {
           dataLabels: {
@@ -146,22 +146,7 @@ __webpack_require__.r(__webpack_exports__);
           colors: this.themeColors,
           xaxis: {
             type: "datetime",
-            categories: [// "2018-09-19T00:00:00.891Z",
-              // "2018-09-19T01:30:00.891Z",
-              // "2018-09-19T02:30:00.891Z",
-              // "2018-09-19T03:30:00.891Z",
-              // "2018-09-19T04:30:00.891Z",
-              // "2018-09-19T05:30:00.891Z",
-              // "2018-09-19T06:30:00.891Z",
-              // "2018-09-19T07:30:00.891Z",
-              // "2018-09-19T08:30:00.891Z",
-              // "2018-09-19T09:30:00.891Z",
-              // "2018-09-19T10:30:00.891Z",
-              // "2018-09-19T11:30:00.891Z",
-              // "2018-09-19T12:30:00.891Z",
-              // "2018-09-19T13:30:00.891Z",
-              // "2018-09-19T14:30:00.891Z"
-            ]
+            categories: []
           },
           tooltip: {
             x: {
@@ -211,10 +196,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
       arr.map(function (item, index) {
-        return (// console.log(item.data)
+        return (// console.log(item.data[0])
           _this.$set(_this.lineAreaChartSpline.series, index, {
             name: item.name,
-            data: item.data[index]
+            data: item.data[0]
           })
         );
       });

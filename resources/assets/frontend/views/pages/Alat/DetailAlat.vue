@@ -87,7 +87,7 @@
                     </p>
                   </div>
                   <div class="vx-col w-full"></div>
-                </div> -->
+                </div>-->
                 <!-- /Quantity -->
               </div>
             </div>
@@ -238,17 +238,13 @@ export default {
       goalOverview: {},
       revenueComparisonLine: {
         analyticsData: {
-          thisMonth: 86589,
-          lastMonth: 73683
+          thisMonth: 99999999999
+          // lastMonth: 73683
         },
         series: [
           {
-            name: "This Month",
+            name: "",
             data: [45000, 47000, 44800, 47500, 45500, 48000, 46500, 48600]
-          },
-          {
-            name: "Last Month",
-            data: [46000, 48000, 45500, 46600, 44500, 46500, 45000, 47000]
           }
         ]
       },
@@ -283,9 +279,7 @@ export default {
   computed: {
     alat() {
       var d_alat = this.$store.state.dataAlat.alat;
-      let subscription = this.$ws.socket.getSubscription(
-        "alat:" + d_alat._id
-      );
+      let subscription = this.$ws.socket.getSubscription("alat:" + d_alat._id);
       if (!subscription) {
         subscription = this.$ws.subscribe("alat:" + d_alat._id);
       }
@@ -299,12 +293,17 @@ export default {
           this.supportTracker
         );
       });
+      this.$set(this.revenueComparisonLine.series, 0, {
+        name: d_alat.nama,
+        data: []
+      });
+      this.setSeries(this.$store.state.dataAlat.arus);
       return d_alat;
     },
-    sensor(){
+    sensor() {
       return this.$store.state.dataAlat.alat.sensor;
     },
-    micro(){
+    micro() {
       return this.$store.state.dataAlat.alat.micro;
     }
   },
@@ -315,16 +314,21 @@ export default {
     toggleItemInCart(item) {
       this.$store.dispatch("eCommerce/toggleItemInCart", item);
     },
-    fetch_item_details(id) {
-      //   this.algolia_index.getObject(id, (err, content) => {
-      //     if (err) {
-      //       this.error_occured = true;
-      //       this.error_msg = err.message;
-      //       console.error(err);
-      //     } else {
-      //       this.item_data = content;
-      //     }
-      //   });
+    setSeries(arus) {
+      // console.log(arus)
+      // arus.map((item, index) => this.$set(this.revenueComparisonLine.series,0,{
+      //   data:item.arus
+      // }));
+      var arr = [];
+      arus.map((item, index) => arr.push(item.arus));
+      arr.map((item, index) =>
+        this.$set(this.revenueComparisonLine.series[0].data, index, item)
+      );
+      // this.$set(this.revenueComparisonLine.series,{
+      //   data:arr
+      // })
+      // console.log(arr)
+      console.log(this.revenueComparisonLine.series);
     }
   },
   created() {
@@ -334,6 +338,11 @@ export default {
     }
     this.$store
       .dispatch("dataAlat/fetchDetailAlat", this.$route.params.id)
+      .catch(err => {
+        console.error(err);
+      });
+    this.$store
+      .dispatch("dataAlat/fetchStatisticArus", this.$route.params.id)
       .catch(err => {
         console.error(err);
       });

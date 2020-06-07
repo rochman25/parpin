@@ -9,13 +9,17 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.to-fixed */ "./node_modules/core-js/modules/es.number.to-fixed.js");
-/* harmony import */ var core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../store/alat/moduleAlat.js */ "./resources/assets/frontend/store/alat/moduleAlat.js");
-/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
-/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../components/statistics-cards/StatisticsCardLine */ "./resources/assets/frontend/components/statistics-cards/StatisticsCardLine.vue");
-/* harmony import */ var _analyticData_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./analyticData.js */ "./resources/assets/frontend/views/pages/Alat/analyticData.js");
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.map */ "./node_modules/core-js/modules/es.array.map.js");
+/* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.number.to-fixed */ "./node_modules/core-js/modules/es.number.to-fixed.js");
+/* harmony import */ var core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_to_fixed__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../../store/alat/moduleAlat.js */ "./resources/assets/frontend/store/alat/moduleAlat.js");
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../components/statistics-cards/StatisticsCardLine */ "./resources/assets/frontend/components/statistics-cards/StatisticsCardLine.vue");
+/* harmony import */ var _analyticData_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./analyticData.js */ "./resources/assets/frontend/views/pages/Alat/analyticData.js");
+
+
 
  //
 //
@@ -267,15 +271,12 @@ __webpack_require__.r(__webpack_exports__);
       goalOverview: {},
       revenueComparisonLine: {
         analyticsData: {
-          thisMonth: 86589,
-          lastMonth: 73683
+          thisMonth: 99999999999 // lastMonth: 73683
+
         },
         series: [{
-          name: "This Month",
+          name: "",
           data: [45000, 47000, 44800, 47500, 45500, 48000, 46500, 48600]
-        }, {
-          name: "Last Month",
-          data: [46000, 48000, 45500, 46600, 44500, 46500, 45000, 47000]
         }]
       },
       supportTracker: {
@@ -288,7 +289,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         series: [0]
       },
-      analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_4__["default"],
+      analyticsData: _analyticData_js__WEBPACK_IMPORTED_MODULE_5__["default"],
       item_data: null,
       error_occured: false,
       error_msg: "",
@@ -297,8 +298,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    VueApexCharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_2___default.a,
-    StatisticsCardLine: _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_3__["default"]
+    VueApexCharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_3___default.a,
+    StatisticsCardLine: _components_statistics_cards_StatisticsCardLine__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   computed: {
     alat: function alat() {
@@ -318,6 +319,11 @@ __webpack_require__.r(__webpack_exports__);
 
         console.log("Message subscribe with id " + _this.d_alat, _this.supportTracker);
       });
+      this.$set(this.revenueComparisonLine.series, 0, {
+        name: d_alat.nama,
+        data: []
+      });
+      this.setSeries(this.$store.state.dataAlat.arus);
       return d_alat;
     },
     sensor: function sensor() {
@@ -334,24 +340,37 @@ __webpack_require__.r(__webpack_exports__);
     toggleItemInCart: function toggleItemInCart(item) {
       this.$store.dispatch("eCommerce/toggleItemInCart", item);
     },
-    fetch_item_details: function fetch_item_details(id) {//   this.algolia_index.getObject(id, (err, content) => {
-      //     if (err) {
-      //       this.error_occured = true;
-      //       this.error_msg = err.message;
-      //       console.error(err);
-      //     } else {
-      //       this.item_data = content;
-      //     }
-      //   });
+    setSeries: function setSeries(arus) {
+      var _this2 = this; // console.log(arus)
+      // arus.map((item, index) => this.$set(this.revenueComparisonLine.series,0,{
+      //   data:item.arus
+      // }));
+
+
+      var arr = [];
+      arus.map(function (item, index) {
+        return arr.push(item.arus);
+      });
+      arr.map(function (item, index) {
+        return _this2.$set(_this2.revenueComparisonLine.series[0].data, index, item);
+      }); // this.$set(this.revenueComparisonLine.series,{
+      //   data:arr
+      // })
+      // console.log(arr)
+
+      console.log(this.revenueComparisonLine.series);
     }
   },
   created: function created() {
-    if (!_store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__["default"].isRegistered) {
-      this.$store.registerModule("dataAlat", _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
-      _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__["default"].isRegistered = true;
+    if (!_store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered) {
+      this.$store.registerModule("dataAlat", _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
+      _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered = true;
     }
 
     this.$store.dispatch("dataAlat/fetchDetailAlat", this.$route.params.id)["catch"](function (err) {
+      console.error(err);
+    });
+    this.$store.dispatch("dataAlat/fetchStatisticArus", this.$route.params.id)["catch"](function (err) {
       console.error(err);
     }); // this.$store.commit("SET_ALAT_ID", this.alat._id);
     // console.log(this.$store.state.dataAlat)

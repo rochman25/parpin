@@ -79,43 +79,11 @@ export default {
         series: [
           {
             name: "series1",
-            data: [
-              10,
-              1,
-              2,
-              3,
-              4,
-              5,
-              1000,
-              200,
-              100,
-              100,
-              100,
-              200,
-              300,
-              400,
-              100
-            ]
+            data: []
           },
           {
             name: "series2",
-            data: [
-              20,
-              2,
-              3,
-              10,
-              200,
-              100,
-              100,
-              100,
-              200,
-              300,
-              400,
-              500,
-              100,
-              200,
-              300
-            ]
+            data: []
           }
         ],
         chartOptions: {
@@ -128,23 +96,7 @@ export default {
           colors: this.themeColors,
           xaxis: {
             type: "datetime",
-            categories: [
-              // "2018-09-19T00:00:00.891Z",
-              // "2018-09-19T01:30:00.891Z",
-              // "2018-09-19T02:30:00.891Z",
-              // "2018-09-19T03:30:00.891Z",
-              // "2018-09-19T04:30:00.891Z",
-              // "2018-09-19T05:30:00.891Z",
-              // "2018-09-19T06:30:00.891Z",
-              // "2018-09-19T07:30:00.891Z",
-              // "2018-09-19T08:30:00.891Z",
-              // "2018-09-19T09:30:00.891Z",
-              // "2018-09-19T10:30:00.891Z",
-              // "2018-09-19T11:30:00.891Z",
-              // "2018-09-19T12:30:00.891Z",
-              // "2018-09-19T13:30:00.891Z",
-              // "2018-09-19T14:30:00.891Z"
-            ]
+            categories: []
           },
           tooltip: {
             x: {
@@ -193,10 +145,10 @@ export default {
       }
       // console.log(categories);
       arr.map((item, index) =>
-        // console.log(item.data)
+        // console.log(item.data[0])
         this.$set(this.lineAreaChartSpline.series, index, {
           name: item.name,
-          data: item.data[index]
+          data: item.data[0]
         })
       );
       let created_arr = Array.from(new Set(categories));
