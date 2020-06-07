@@ -530,12 +530,12 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  fetchStatisticArus: function fetchStatisticArus(_ref3) {
+  fetchStatisticArus: function fetchStatisticArus(_ref3, itemId) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/alat/arus", {}).then(function (response) {
-        // commit("UPDATE_STAT", response.data.data);
-        console.log(response);
+      _axios_js__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/v1/alat/arus").then(function (response) {
+        commit("UPDATE_STAT", response.data.data); // console.log(response.data.data);
+
         resolve(response);
       })["catch"](function (error) {
         reject(error);

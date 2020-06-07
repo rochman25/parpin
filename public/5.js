@@ -387,9 +387,6 @@ var topicName = "alat:5ebe4cd46246ed22f9afc08f";
       //   console.log(this.$store.state.dataAlat);
       this.foo(this.$store.state.dataAlat.alat);
       return this.$store.state.dataAlat.alat;
-    },
-    getSeries: function getSeries() {
-      return [this.$store.state.alat_id["5ebe4cd46246ed22f9afc08f"].series];
     }
   },
   created: function created() {

@@ -32,13 +32,13 @@ export default {
                 });
         });
     },
-    fetchStatisticArus({ commit }) {
+    fetchStatisticArus({ commit }, itemId) {
         return new Promise((resolve, reject) => {
             axios
-                .get(`api/v1/alat/arus`, {})
+                .get(`api/v1/alat/arus`, )
                 .then(response => {
-                    // commit("UPDATE_STAT", response.data.data);
-                    console.log(response);
+                    commit("UPDATE_STAT", response.data.data);
+                    // console.log(response.data.data);
                     resolve(response);
                 })
                 .catch(error => {

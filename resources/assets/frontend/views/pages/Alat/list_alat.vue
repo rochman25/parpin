@@ -119,9 +119,6 @@ export default {
       this.foo(this.$store.state.dataAlat.alat);
       return this.$store.state.dataAlat.alat;
     },
-    getSeries(){
-      return [this.$store.state.alat_id["5ebe4cd46246ed22f9afc08f"].series]
-    }
   },
   created() {
     if (!moduleAlat.isRegistered) {
