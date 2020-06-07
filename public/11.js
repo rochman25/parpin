@@ -147,7 +147,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("vx-card", { attrs: { title: "Notifikasi Alat" } }, [
     _c("p", [
-      _vm._v("Berikut daftar notifikasi alat yang terbagi menjadi 2 :")
+      _vm._v(
+        "Berikut daftar notifikasi alat yang terbagi menjadi 2 (Bocor dan Waspada):"
+      )
     ]),
     _vm._v(" "),
     _c(

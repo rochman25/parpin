@@ -9,9 +9,11 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_statistics_cards_StatisticsCardLine_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/statistics-cards/StatisticsCardLine.vue */ "./resources/assets/frontend/components/statistics-cards/StatisticsCardLine.vue");
-/* harmony import */ var _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../store/alat/moduleAlat.js */ "./resources/assets/frontend/store/alat/moduleAlat.js");
-/* harmony import */ var _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../store/notifikasi/moduleNotifikasi.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js");
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-apexcharts */ "./node_modules/vue-apexcharts/dist/vue-apexcharts.js");
+/* harmony import */ var vue_apexcharts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_apexcharts__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_statistics_cards_StatisticsCardLine_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/statistics-cards/StatisticsCardLine.vue */ "./resources/assets/frontend/components/statistics-cards/StatisticsCardLine.vue");
+/* harmony import */ var _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../store/alat/moduleAlat.js */ "./resources/assets/frontend/store/alat/moduleAlat.js");
+/* harmony import */ var _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../store/notifikasi/moduleNotifikasi.js */ "./resources/assets/frontend/store/notifikasi/moduleNotifikasi.js");
 //
 //
 //
@@ -64,15 +66,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    StatisticsCardLine: _components_statistics_cards_StatisticsCardLine_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    StatisticsCardLine: _components_statistics_cards_StatisticsCardLine_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    VueApexCharts: vue_apexcharts__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   data: function data() {
-    return {};
+    return {
+      themeColors: ["#7367F0", "#28C76F", "#EA5455", "#FF9F43", "#1E1E1E"],
+      lineAreaChartSpline: {
+        series: [{
+          name: "series1",
+          data: [31, 40, 28, 51, 42, 109, 100]
+        }, {
+          name: "series2",
+          data: [11, 32, 45, 32, 34, 52, 41]
+        }],
+        chartOptions: {
+          dataLabels: {
+            enabled: false
+          },
+          stroke: {
+            curve: "smooth"
+          },
+          colors: this.themeColors,
+          xaxis: {
+            type: "datetime",
+            categories: ["2018-09-19T00:00:00", "2018-09-19T01:30:00", "2018-09-19T02:30:00", "2018-09-19T03:30:00", "2018-09-19T04:30:00", "2018-09-19T05:30:00", "2018-09-19T06:30:00"]
+          },
+          tooltip: {
+            x: {
+              format: "dd/MM/yy HH:mm"
+            }
+          }
+        }
+      }
+    };
   },
   computed: {
     totalAlat: function totalAlat() {
@@ -84,18 +129,18 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    if (!_store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__["default"].isRegistered) {
-      this.$store.registerModule("dataAlat", _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
-      _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_1__["default"].isRegistered = true;
+    if (!_store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered) {
+      this.$store.registerModule("dataAlat", _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
+      _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered = true;
     }
 
     this.$store.dispatch("dataAlat/fetchDataAlat")["catch"](function (err) {
       console.error(err);
     });
 
-    if (!_store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered) {
-      this.$store.registerModule("dataNotifikasi", _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
-      _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_2__["default"].isRegistered = true;
+    if (!_store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_3__["default"].isRegistered) {
+      this.$store.registerModule("dataNotifikasi", _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
+      _store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_3__["default"].isRegistered = true;
     }
 
     this.$store.dispatch("dataNotifikasi/fetchDataNotifikasi")["catch"](function (err) {
@@ -194,6 +239,31 @@ var render = function() {
               color: "warning"
             }
           })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "vx-row" }, [
+      _c(
+        "div",
+        { staticClass: "vx-col md:w-1/1 w-full mb-base" },
+        [
+          _c(
+            "vx-card",
+            { attrs: { title: "Statistik Harian Alat" } },
+            [
+              _c("vue-apex-charts", {
+                attrs: {
+                  type: "area",
+                  height: "350",
+                  options: _vm.lineAreaChartSpline.chartOptions,
+                  series: _vm.lineAreaChartSpline.series
+                }
+              })
+            ],
+            1
+          )
         ],
         1
       )

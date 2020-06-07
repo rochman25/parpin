@@ -1,6 +1,6 @@
 <template>
   <vx-card title="Notifikasi Alat">
-    <p>Berikut daftar notifikasi alat yang terbagi menjadi 2 :</p>
+    <p>Berikut daftar notifikasi alat yang terbagi menjadi 2 (Bocor dan Waspada):</p>
 
     <div class="demo-alignment">
       <vs-list>
