@@ -66683,7 +66683,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   {
     path: "",
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/assets/frontend/layouts/main/Main.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4), __webpack_require__.e(3), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./layouts/main/Main.vue */ "./resources/assets/frontend/layouts/main/Main.vue"));
     },
     children: [//main page
     {
@@ -66693,7 +66693,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/dashboard',
       name: 'parpin-dashboard',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(1), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(17), __webpack_require__.e(4), __webpack_require__.e(6), __webpack_require__.e(1), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/assets/frontend/views/Dashboard.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -66707,7 +66707,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/alat',
       name: 'parpin-alat',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(15), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/list_alat.vue */ "./resources/assets/frontend/views/pages/Alat/list_alat.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(17), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/list_alat.vue */ "./resources/assets/frontend/views/pages/Alat/list_alat.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -66721,7 +66721,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/alat/detail/:id',
       name: 'parpin-detail-alat',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(1), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/DetailAlat.vue */ "./resources/assets/frontend/views/pages/Alat/DetailAlat.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(17), __webpack_require__.e(1), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/pages/Alat/DetailAlat.vue */ "./resources/assets/frontend/views/pages/Alat/DetailAlat.vue"));
       },
       meta: {
         authRequired: true
@@ -66730,7 +66730,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/pengguna',
       name: 'parpin-pengguna',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/pages/Pengguna/list_pengguna.vue */ "./resources/assets/frontend/views/pages/Pengguna/list_pengguna.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/pages/Pengguna/list_pengguna.vue */ "./resources/assets/frontend/views/pages/Pengguna/list_pengguna.vue"));
       },
       meta: {
         // breadcrumb: [
@@ -66744,7 +66744,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/sensor',
       name: 'parpin-sensor',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/pages/Sensor/list_sensor.vue */ "./resources/assets/frontend/views/pages/Sensor/list_sensor.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/pages/Sensor/list_sensor.vue */ "./resources/assets/frontend/views/pages/Sensor/list_sensor.vue"));
       },
       meta: {
         authRequired: true
@@ -66753,7 +66753,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/microcontroller',
       name: 'parpin-microcontroller',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./views/pages/Microcontroller/list_microcontroller.vue */ "./resources/assets/frontend/views/pages/Microcontroller/list_microcontroller.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/pages/Microcontroller/list_microcontroller.vue */ "./resources/assets/frontend/views/pages/Microcontroller/list_microcontroller.vue"));
       },
       meta: {
         authRequired: true

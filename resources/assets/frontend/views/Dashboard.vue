@@ -135,7 +135,15 @@ export default {
               // "2018-09-19T03:30:00.891Z",
               // "2018-09-19T04:30:00.891Z",
               // "2018-09-19T05:30:00.891Z",
-              // "2018-09-19T06:30:00.891Z"
+              // "2018-09-19T06:30:00.891Z",
+              // "2018-09-19T07:30:00.891Z",
+              // "2018-09-19T08:30:00.891Z",
+              // "2018-09-19T09:30:00.891Z",
+              // "2018-09-19T10:30:00.891Z",
+              // "2018-09-19T11:30:00.891Z",
+              // "2018-09-19T12:30:00.891Z",
+              // "2018-09-19T13:30:00.891Z",
+              // "2018-09-19T14:30:00.891Z"
             ]
           },
           tooltip: {
@@ -164,80 +172,13 @@ export default {
     }
   },
   methods: {
-    elapsedTime(startTime) {
-      let x = new Date(startTime);
-      let now = new Date();
-      var timeDiff = now - x;
-      timeDiff /= 1000;
-
-      var seconds = Math.round(timeDiff);
-      timeDiff = Math.floor(timeDiff / 60);
-
-      var minutes = Math.round(timeDiff % 60);
-      timeDiff = Math.floor(timeDiff / 60);
-
-      var hours = Math.round(timeDiff % 24);
-      timeDiff = Math.floor(timeDiff / 24);
-
-      var days = Math.round(timeDiff % 365);
-      timeDiff = Math.floor(timeDiff / 365);
-
-      var years = timeDiff;
-
-      if (years > 0) {
-        return years + (years > 1 ? " Years " : " Year ") + "ago";
-      } else if (days > 0) {
-        return days + (days > 1 ? " Days " : " Day ") + "ago";
-      } else if (hours > 0) {
-        return hours + (hours > 1 ? " Hrs " : " Hour ") + "ago";
-      } else if (minutes > 0) {
-        return minutes + (minutes > 1 ? " Mins " : " Min ") + "ago";
-      } else if (seconds > 0) {
-        return seconds + (seconds > 1 ? " sec ago" : "just now");
-      }
-
-      return "Just Now";
-    },
     setSeries(alat, arus) {
-      // var arus_ = [];
-      // arus.forEach(function(item, index) {
-      //   alat.forEach(function(item_, index_) {
-      //     arus_[index_] = {alat_id: item_._id,name: item_.nama,data:[]};
-      //     // console.log(item_._id)
-      //     if(arus_[index_].alat_id == item.alat_id){
-      //       console.log(item.arus)
-      //     }
-      //     // arus_[index_].name.data.push(item.arus)
-      //     // console.log(item.alat_id);
-      //     // if (item.alat_id == item_.alat_id) {
-      //       // this.$set(this.lineAreaChartSpline.series, index_, {
-      //       //   data: [item.arus]
-      //       // })
-      //     // }
-      //   });
-      //   // console.log(item);
-      // });
-      // console.log(arus_);
-      // alat.forEach(function(item, index) {
-      //   this.$store
-      //     .dispatch("dataAlat/fetchStatisticArus", item._id)
-      //     .catch(err => {
-      //       console.error(err);
-      //     });
-      // });
+      let categories = [];
       let group = arus.reduce((r, a) => {
-        // console.log("a", a);
-        // console.log("r", r);
         r[a.alat_id] = [...(r[a.alat_id] || []), a.arus];
+        categories.push(a.created_at);
         return r;
       }, {});
-      let categories = arus.reduce((r, a) => {
-        // console.log("a", a);
-        // console.log("r", r);
-        r[a.alat_id] = [...(r[a.alat_id] || []), a.created_at];
-        return r;
-      }, {});
-      // let created_at = arus.reduce((r, a) =)
       var arr = [];
       // console.log("group", categories);
       var i;
@@ -251,26 +192,22 @@ export default {
         arr[i].data.push(group[alat[i]._id]);
       }
       // console.log(categories);
-      // arr.map((item, index) =>
-      //   this.$set(this.lineAreaChartSpline.series, index, {
-      //     name: item.name,
-      //     data: item.data
-      //   })
-      // );
-      categories.map((item, index) =>
-        // this.$set(
-        //   this.lineAreaChartSpline.chartOptions.xaxis.categories,
-        //   index,
-        //   item
-        // )
-        console.log(index)
+      arr.map((item, index) =>
+        // console.log(item.data)
+        this.$set(this.lineAreaChartSpline.series, index, {
+          name: item.name,
+          data: item.data[index]
+        })
+      );
+      let created_arr = Array.from(new Set(categories));
+      created_arr.map((item, index) =>
+        this.$set(
+          this.lineAreaChartSpline.chartOptions.xaxis.categories,
+          index,
+          item
+        )
       );
       console.log(this.lineAreaChartSpline);
-    },
-    setArusData(alat) {
-      // this.$store.dispatch("dataAlat/fetchStatisticArus",id).catch(err => {
-      //     console.error(err);
-      // });
     }
   },
   created() {
