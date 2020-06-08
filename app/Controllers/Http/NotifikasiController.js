@@ -40,6 +40,17 @@ class NotifikasiController extends BaseController {
         return response.json(this.successResponse(respon));
     }
 
+    async lastest({ response }) {
+        let respon = {}
+            // let notifikasi = await Notifikasi.query().orderBy('created_at', 'desc').first()
+        let notifikasi = await Notifikasi.query().where("alat._id", "5ebe4aa8223616100e59d3cb").orderBy('created_at', 'desc').first()
+        respon = {
+            message: this.dataFound,
+            data: notifikasi
+        };
+        return response.json(this.successResponse(respon));
+    }
+
     async add_action({ request, response }) {
         let title = request.input("title");
         let msg = request.input("msg");

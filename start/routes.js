@@ -53,5 +53,7 @@ Route.group(function() {
 
 }).prefix("api/v1").middleware('auth')
 
+Route.get("api/v1/notifikasi/test", 'NotifikasiController.lastest')
+
 // This has to be the last route
 Route.any('*', ({ view }) => view.render('app'))
