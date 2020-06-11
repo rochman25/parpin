@@ -1634,6 +1634,9 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.removeItem("userInfo");
         this.$router.push("/login")["catch"](function () {});
       }
+    },
+    profile: function profile() {
+      this.$router.push("/profile");
     }
   }
 });
@@ -4649,7 +4652,8 @@ var render = function() {
                       "li",
                       {
                         staticClass:
-                          "flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+                          "flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white",
+                        on: { click: _vm.profile }
                       },
                       [
                         _c("feather-icon", {

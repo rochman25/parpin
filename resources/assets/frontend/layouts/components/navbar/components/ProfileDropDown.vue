@@ -20,7 +20,7 @@
 
       <vs-dropdown-menu class="vx-navbar-dropdown">
         <ul style="min-width: 9rem">
-          <li class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white">
+          <li class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white" @click="profile">
             <feather-icon icon="UserIcon" svgClasses="w-4 h-4" />
             <span class="ml-2">Profile</span>
           </li>
@@ -58,6 +58,9 @@ export default {
         localStorage.removeItem("userInfo");
         this.$router.push("/login").catch(() => {});
       }
+    },
+    profile(){
+      this.$router.push("/profile")
     }
   }
 };

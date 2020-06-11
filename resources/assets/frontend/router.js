@@ -99,6 +99,15 @@ const router = new Router({
                     meta: {
                         authRequired: true
                     }
+                },
+                {
+                    path: '/profile',
+                    name: 'parpin-profile',
+                    component: () =>
+                        import ('./views/pages/profile.vue'),
+                    meta: {
+                        authRequired: true
+                    }
                 }
             ]
         },
