@@ -23,9 +23,11 @@ const getUserInfo = () => {
     let userInfo = {
         uid: userInfoLocalStorage._id,
         displayName: userInfoLocalStorage.username,
+        email: userInfoLocalStorage.email,
         photoURL: require("@/assets/images/portrait/small/account.png"), // From Auth
         status: "online",
-        userRole: "admin"
+        userRole: "admin",
+        noTelp: userInfoLocalStorage.no_telp
     };
     // Update property in user
     // Object.keys(userDefaults).forEach(key => {

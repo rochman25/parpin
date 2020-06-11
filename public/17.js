@@ -12,7 +12,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      username: this.$store.state.AppActiveUser.displayName,
+      //   name: this.$store.state.AppActiveUser.displayName,
+      email: this.$store.state.AppActiveUser.email,
+      noTelp: this.$store.state.AppActiveUser.noTelp,
+      company: "Parpin Official Account"
+    };
+  },
+  computed: {
+    activeUserInfo: function activeUserInfo() {
+      return this.$store.state.AppActiveUser;
+    }
+  }
+});
 
 /***/ }),
 
@@ -31,7 +78,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "vx-card",
+    { attrs: { "no-shadow": "" } },
+    [
+      _c(
+        "div",
+        { staticClass: "flex flex-wrap items-center mb-base" },
+        [
+          _c("vs-avatar", {
+            staticClass: "mr-4 mb-4",
+            attrs: { src: _vm.activeUserInfo.photoURL, size: "70px" }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _c("vs-button", { staticClass: "mr-4 sm:mb-0 mb-2" }, [
+                _vm._v("Upload photo")
+              ]),
+              _vm._v(" "),
+              _c("vs-button", { attrs: { type: "border", color: "danger" } }, [
+                _vm._v("Remove")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-sm mt-2" }, [
+                _vm._v("Allowed JPG, GIF or PNG. Max size of 800kB")
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("vs-input", {
+        staticClass: "w-full mb-base",
+        attrs: { "label-placeholder": "Username" },
+        model: {
+          value: _vm.username,
+          callback: function($$v) {
+            _vm.username = $$v
+          },
+          expression: "username"
+        }
+      }),
+      _vm._v(" "),
+      _c("vs-input", {
+        staticClass: "w-full mb-base",
+        attrs: { "label-placeholder": "Email" },
+        model: {
+          value: _vm.email,
+          callback: function($$v) {
+            _vm.email = $$v
+          },
+          expression: "email"
+        }
+      }),
+      _vm._v(" "),
+      _c("vs-input", {
+        staticClass: "w-full mb-base",
+        attrs: { "label-placeholder": "No Telphone" },
+        model: {
+          value: _vm.noTelp,
+          callback: function($$v) {
+            _vm.noTelp = $$v
+          },
+          expression: "noTelp"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex flex-wrap items-center justify-end" },
+        [_c("vs-button", { staticClass: "ml-auto mt-2" }, [_vm._v("Simpan")])],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
