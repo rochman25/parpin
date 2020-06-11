@@ -65835,9 +65835,9 @@ var baseURL = "";
 var headers = "";
 /* harmony default export */ __webpack_exports__["default"] = (axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
   domain: domain,
-  baseURL: 'http://192.168.1.6:3333/',
+  // baseURL: 'http://192.168.1.6:3333/',
   // baseURL: 'http://192.168.43.73:3333/',
-  // baseURL: 'http://127.0.0.1:3333/',
+  baseURL: 'http://127.0.0.1:3333/',
   headers: {
     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
   } // You can add your headers here

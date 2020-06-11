@@ -24,7 +24,7 @@ class NotifikasiController extends BaseController {
             }
             return response.json(this.successResponse(respon));
         }
-        notifikasi = await Notifikasi.query().paginate(page, 10);
+        notifikasi = await Notifikasi.query().orderBy('created_at', 'desc').paginate(page, 10);
         if (notifikasi.toJSON().total > 0) {
             respon = {
                 message: this.dataFound,

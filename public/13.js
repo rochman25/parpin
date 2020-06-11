@@ -101,10 +101,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    navigate_to_detail_alat: function navigate_to_detail_alat(id, id_alat) {
-      this.$store.dispatch("dataNotifikasi/updateItem", id)["catch"](function (err) {
-        console.error(err);
-      });
+    navigate_to_detail_alat: function navigate_to_detail_alat(id, id_alat, stat) {
+      if (stat == 0) {
+        this.$store.dispatch("dataNotifikasi/updateItem", id)["catch"](function (err) {
+          console.error(err);
+        });
+      }
+
       this.$router.push({
         name: "parpin-detail-alat",
         params: {
@@ -226,7 +229,8 @@ var render = function() {
                                         click: function($event) {
                                           return _vm.navigate_to_detail_alat(
                                             ntf._id,
-                                            ntf.alat._id
+                                            ntf.alat._id,
+                                            ntf.status
                                           )
                                         }
                                       }
