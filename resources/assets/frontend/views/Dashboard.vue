@@ -168,10 +168,10 @@ export default {
       moduleAlat.isRegistered = true;
     }
     this.$store.dispatch("dataAlat/fetchDataAlat").catch(err => {
-      console.error(err);
+      // console.error(err);
     });
     this.$store.dispatch("dataAlat/fetchStatisticArus").catch(err => {
-      console.error(err);
+      // console.error(err);
     });
 
     if (!moduleNotifikasi.isRegistered) {

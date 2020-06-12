@@ -4603,7 +4603,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.activeUserInfo.displayName
+  return _vm.activeUserInfo.username
     ? _c(
         "div",
         { staticClass: "the-navbar__user-meta flex items-center" },
@@ -4613,7 +4613,7 @@ var render = function() {
             { staticClass: "text-right leading-tight hidden sm:block" },
             [
               _c("p", { staticClass: "font-semibold" }, [
-                _vm._v(_vm._s(_vm.activeUserInfo.displayName))
+                _vm._v(_vm._s(_vm.activeUserInfo.username))
               ]),
               _vm._v(" "),
               _c("small", [_vm._v("Available")])

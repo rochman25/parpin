@@ -58,6 +58,9 @@ __webpack_require__.r(__webpack_exports__);
     activeUserInfo: function activeUserInfo() {
       return this.$store.state.AppActiveUser;
     }
+  },
+  methods: {
+    simpan: function simpan() {}
   }
 });
 
@@ -151,7 +154,20 @@ var render = function() {
       _c(
         "div",
         { staticClass: "flex flex-wrap items-center justify-end" },
-        [_c("vs-button", { staticClass: "ml-auto mt-2" }, [_vm._v("Simpan")])],
+        [
+          _c(
+            "vs-button",
+            {
+              staticClass: "ml-auto mt-2",
+              on: {
+                click: function($event) {
+                  return _vm.simpan()
+                }
+              }
+            },
+            [_vm._v("Simpan")]
+          )
+        ],
         1
       )
     ],

@@ -99,7 +99,7 @@ const mutations = {
         // Get Data localStorage
         let userInfo =
             JSON.parse(localStorage.getItem("userInfo")) || state.AppActiveUser;
-
+        // console.log(Object.keys(payload));
         for (const property of Object.keys(payload)) {
             if (payload[property] != null) {
                 // If some of user property is null - user default property defined in state.AppActiveUser
@@ -111,7 +111,7 @@ const mutations = {
         }
         // Store data in localStorage
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
-        console.log(localStorage.getItem("userInfo"));
+
     },
     SET_ALAT_ID(state, val) {
         state.alat_id[val._id] = val;

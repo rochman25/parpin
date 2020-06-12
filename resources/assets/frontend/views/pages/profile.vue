@@ -28,7 +28,7 @@
 
     <!-- Save & Reset Button -->
     <div class="flex flex-wrap items-center justify-end">
-      <vs-button class="ml-auto mt-2">Simpan</vs-button>
+      <vs-button class="ml-auto mt-2" @click="simpan()">Simpan</vs-button>
       <!-- <vs-button class="ml-4 mt-2" type="border" color="warning">Reset</vs-button> -->
     </div>
   </vx-card>
@@ -48,6 +48,11 @@ export default {
     activeUserInfo() {
       return this.$store.state.AppActiveUser;
     }
+  },
+  methods: {
+      simpan(){
+          
+      }
   }
 };
 </script>

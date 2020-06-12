@@ -21,13 +21,13 @@ const userInfoLocalStorage = JSON.parse(localStorage.getItem("userInfo")) || {};
 // More data can be added by auth provider or other plugins/packages
 const getUserInfo = () => {
     let userInfo = {
-        uid: userInfoLocalStorage._id,
-        displayName: userInfoLocalStorage.username,
+        _id: userInfoLocalStorage._id,
+        username: userInfoLocalStorage.username,
         email: userInfoLocalStorage.email,
         photoURL: require("@/assets/images/portrait/small/account.png"), // From Auth
         status: "online",
         userRole: "admin",
-        noTelp: userInfoLocalStorage.no_telp
+        no_telp: userInfoLocalStorage.no_telp
     };
     // Update property in user
     // Object.keys(userDefaults).forEach(key => {

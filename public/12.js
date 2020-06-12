@@ -216,11 +216,9 @@ __webpack_require__.r(__webpack_exports__);
       _store_alat_moduleAlat_js__WEBPACK_IMPORTED_MODULE_12__["default"].isRegistered = true;
     }
 
-    this.$store.dispatch("dataAlat/fetchDataAlat")["catch"](function (err) {
-      console.error(err);
+    this.$store.dispatch("dataAlat/fetchDataAlat")["catch"](function (err) {// console.error(err);
     });
-    this.$store.dispatch("dataAlat/fetchStatisticArus")["catch"](function (err) {
-      console.error(err);
+    this.$store.dispatch("dataAlat/fetchStatisticArus")["catch"](function (err) {// console.error(err);
     });
 
     if (!_store_notifikasi_moduleNotifikasi_js__WEBPACK_IMPORTED_MODULE_13__["default"].isRegistered) {

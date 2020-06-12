@@ -65836,8 +65836,8 @@ var headers = "";
 /* harmony default export */ __webpack_exports__["default"] = (axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
   domain: domain,
   // baseURL: 'http://192.168.1.6:3333/',
-  // baseURL: 'http://192.168.43.73:3333/',
-  baseURL: 'http://127.0.0.1:3333/',
+  baseURL: 'http://192.168.43.73:3333/',
+  // baseURL: 'http://127.0.0.1:3333/',
   headers: {
     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
   } // You can add your headers here
@@ -66943,7 +66943,7 @@ __webpack_require__.r(__webpack_exports__);
       _http_requests_auth_jwt_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].login(payload.userDetails.username, payload.userDetails.password).then(function (response) {
         // console.log(response);
         if (response.data.code != 401) {
-          // console.log(response.data.data.token.token);
+          // console.log(response.data.data.pengguna);
           _router_js__WEBPACK_IMPORTED_MODULE_2__["default"].push(_router_js__WEBPACK_IMPORTED_MODULE_2__["default"].currentRoute.query.to || '/');
           localStorage.setItem("accessToken", response.data.data.token.token);
           commit("UPDATE_USER_INFO", response.data.data.pengguna, {
@@ -67176,7 +67176,7 @@ var mutations = {
   // Updates user info in state and localstorage
   UPDATE_USER_INFO: function UPDATE_USER_INFO(state, payload) {
     // Get Data localStorage
-    var userInfo = JSON.parse(localStorage.getItem("userInfo")) || state.AppActiveUser;
+    var userInfo = JSON.parse(localStorage.getItem("userInfo")) || state.AppActiveUser; // console.log(Object.keys(payload));
 
     for (var _i = 0, _Object$keys = Object.keys(payload); _i < _Object$keys.length; _i++) {
       var property = _Object$keys[_i];
@@ -67191,7 +67191,6 @@ var mutations = {
 
 
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
-    console.log(localStorage.getItem("userInfo"));
   },
   SET_ALAT_ID: function SET_ALAT_ID(state, val) {
     state.alat_id[val._id] = val;
@@ -67240,14 +67239,14 @@ var userInfoLocalStorage = JSON.parse(localStorage.getItem("userInfo")) || {}; /
 
 var getUserInfo = function getUserInfo() {
   var userInfo = {
-    uid: userInfoLocalStorage._id,
-    displayName: userInfoLocalStorage.username,
+    _id: userInfoLocalStorage._id,
+    username: userInfoLocalStorage.username,
     email: userInfoLocalStorage.email,
     photoURL: __webpack_require__(/*! @/assets/images/portrait/small/account.png */ "./resources/assets/frontend/assets/images/portrait/small/account.png"),
     // From Auth
     status: "online",
     userRole: "admin",
-    noTelp: userInfoLocalStorage.no_telp
+    no_telp: userInfoLocalStorage.no_telp
   }; // Update property in user
   // Object.keys(userDefaults).forEach(key => {
   //     // If property is defined in localStorage => Use that

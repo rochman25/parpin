@@ -9,7 +9,7 @@ export default {
                 .then(response => {
                     // console.log(response);
                     if (response.data.code != 401) {
-                        // console.log(response.data.data.token.token);
+                        // console.log(response.data.data.pengguna);
                         router.push(router.currentRoute.query.to || '/')
 
                         localStorage.setItem("accessToken", response.data.data.token.token);
