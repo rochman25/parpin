@@ -66771,7 +66771,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/profile',
       name: 'parpin-profile',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./views/pages/profile.vue */ "./resources/assets/frontend/views/pages/profile.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./views/pages/profile.vue */ "./resources/assets/frontend/views/pages/profile.vue"));
       },
       meta: {
         authRequired: true
@@ -66780,7 +66780,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   }, {
     path: "",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./layouts/full-page/FullPage.vue */ "./resources/assets/frontend/layouts/full-page/FullPage.vue"));
+      return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./layouts/full-page/FullPage.vue */ "./resources/assets/frontend/layouts/full-page/FullPage.vue"));
     },
     children: [//fullpages
     {
@@ -66793,7 +66793,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
       path: '/not-found',
       name: 'parpin-not-found',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./views/pages/404.vue */ "./resources/assets/frontend/views/pages/404.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/pages/404.vue */ "./resources/assets/frontend/views/pages/404.vue"));
       }
     } // {
     //     path: '/not-authorized',

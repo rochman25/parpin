@@ -13,7 +13,8 @@ class AlatController {
     onMessage(message) {
         this.socket.broadcastToAll("message", message);
         if (message.arus > 0) {
-            setInterval(() => this.saveToDb(message), 60 * 1000);
+            this.saveToDb(message);
+            // setInterval(() => this.saveToDb(message), 60 * 1000);
         } else {
             // console.log("woi")
             this.saveNotification(message);
@@ -25,25 +26,26 @@ class AlatController {
         // console.log(this.socket.channel.subscriptions)
     }
 
-    saveToDb(message) {
+    async saveToDb(message) {
         let alat_id = message.alat_id;
         let arusAlat = message.arus;
         let maxArus = 0;
         let nama_alat = message.nama_alat;
-        let alat = Arus.where("alat_id", alat_id).first();
+        let alat = await Alat.find(alat_id);
 
         if (arusAlat > maxArus) {
             maxArus = arusAlat;
-            alat.max_arus = maxArus
-            alat.save();
+            alat.max_arus = maxArus;
+            await alat.save();
+            // console.log(alat)
         }
-
+        // console.log(maxArus)
         let arus = new Arus();
 
         arus.alat_id = alat_id;
         arus.nama_alat = nama_alat;
         arus.arus = arusAlat;
-        arus.save();
+        await arus.save();
     }
 
     async saveNotification(message) {

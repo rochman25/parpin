@@ -284,7 +284,7 @@ export default {
         subscription = this.$ws.subscribe("alat:" + d_alat._id);
       }
       subscription.on("message", data => {
-        var arus = (data.arus / 500) * 100;
+        var arus = (data.arus / d_alat.max_arus) * 100;
         this.supportTracker.series = [arus.toFixed(2)];
         this.supportTracker.analyticsData.meta.Status = data.status;
         // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);

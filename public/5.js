@@ -460,9 +460,10 @@ var topicName = "alat:5ebe4cd46246ed22f9afc08f";
                 "Waktu Response": 0 + " detik"
               }
             },
-            series: [this.$store.state.alat_id[item[i]._id].series]
+            series: [this.$store.state.alat_id[item[i]._id].series],
+            maxArus: item[i].max_arus
           }
-        });
+        }); // console.log(item[i]);
       } // console.log(this.test_series);
 
     },
@@ -476,11 +477,13 @@ var topicName = "alat:5ebe4cd46246ed22f9afc08f";
       }
 
       subscription.on("message", function (data) {
-        var arus = data.arus / 500 * 100;
+        // var arus = (data.arus/500) * 100
+        var arus = data.arus / _this.test_series[id].supportTracker.maxArus * 100;
         _this.test_series[id].supportTracker.series = [arus.toFixed(2)];
         _this.test_series[id].supportTracker.analyticsData.meta.Status = data.status; // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
+        // console.log("Message subscribe with id " + id, this.test_series[id]);
 
-        console.log("Message subscribe with id " + id, _this.test_series[id]);
+        console.log(_this.test_series[id].supportTracker.maxArus);
       });
     } // getSeriess(id) {
     //   // console.log(this.$store.state.alat_id[id]);
