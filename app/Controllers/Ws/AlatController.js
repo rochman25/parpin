@@ -13,8 +13,8 @@ class AlatController {
     onMessage(message) {
         this.socket.broadcastToAll("message", message);
         if (message.arus > 0) {
-            this.saveToDb(message);
-            // setInterval(() => this.saveToDb(message), 60 * 1000);
+            // this.saveToDb(message);
+            setInterval(() => this.saveToDb(message), 60 * 1000);
         } else {
             // console.log("woi")
             this.saveNotification(message);

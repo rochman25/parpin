@@ -334,7 +334,7 @@ var render = function() {
         [
           _c(
             "vx-card",
-            { attrs: { title: "Statistik Harian Alat" } },
+            { attrs: { title: "Statistik Perbandingan Alat" } },
             [
               _c("vue-apex-charts", {
                 attrs: {

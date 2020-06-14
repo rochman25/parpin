@@ -109,7 +109,7 @@
                   <div class="vx-row text-center">
                     <!-- LINE CHART -->
                     <div class="vx-col p-10 w-full md:mb-0 mb-16 mx-auto">
-                      <vx-card title="Statistik Alat">
+                      <vx-card title="Statistik Arus Air (L/h)">
                         <template slot="actions">
                           <feather-icon icon="SettingsIcon" svgClasses="w-6 h-6 text-grey"></feather-icon>
                         </template>
@@ -284,7 +284,8 @@ export default {
         subscription = this.$ws.subscribe("alat:" + d_alat._id);
       }
       subscription.on("message", data => {
-        var arus = (data.arus / d_alat.max_arus) * 100;
+        var arus = (data.arus/500)*100;
+        // var arus = (data.arus / (d_alat.max_arus + 10)) * 100;
         this.supportTracker.series = [arus.toFixed(2)];
         this.supportTracker.analyticsData.meta.Status = data.status;
         // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);

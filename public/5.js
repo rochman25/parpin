@@ -477,8 +477,8 @@ var topicName = "alat:5ebe4cd46246ed22f9afc08f";
       }
 
       subscription.on("message", function (data) {
-        // var arus = (data.arus/500) * 100
-        var arus = data.arus / _this.test_series[id].supportTracker.maxArus * 100;
+        var arus = data.arus / 500 * 100; // var arus = (data.arus/(this.test_series[id].supportTracker.maxArus + 10)) * 100
+
         _this.test_series[id].supportTracker.series = [arus.toFixed(2)];
         _this.test_series[id].supportTracker.analyticsData.meta.Status = data.status; // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
         // console.log("Message subscribe with id " + id, this.test_series[id]);

@@ -313,7 +313,8 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       subscription.on("message", function (data) {
-        var arus = data.arus / d_alat.max_arus * 100;
+        var arus = data.arus / 500 * 100; // var arus = (data.arus / (d_alat.max_arus + 10)) * 100;
+
         _this.supportTracker.series = [arus.toFixed(2)];
         _this.supportTracker.analyticsData.meta.Status = data.status; // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
 
@@ -814,7 +815,9 @@ var render = function() {
                               [
                                 _c(
                                   "vx-card",
-                                  { attrs: { title: "Statistik Alat" } },
+                                  {
+                                    attrs: { title: "Statistik Arus Air (L/h)" }
+                                  },
                                   [
                                     _c(
                                       "template",

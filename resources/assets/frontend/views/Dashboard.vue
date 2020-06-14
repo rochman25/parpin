@@ -50,7 +50,7 @@
     </div>
     <div class="vx-row">
       <div class="vx-col md:w-1/1 w-full mb-base">
-        <vx-card title="Statistik Harian Alat">
+        <vx-card title="Statistik Perbandingan Alat">
           <vue-apex-charts
             type="area"
             height="350"
