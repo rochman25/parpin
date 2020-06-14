@@ -289,7 +289,7 @@ export default {
         this.supportTracker.analyticsData.meta.Status = data.status;
         // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
         console.log(
-          "Message subscribe with id " + this.d_alat,
+          "Message subscribe with id " + d_alat._id,
           this.supportTracker
         );
       });

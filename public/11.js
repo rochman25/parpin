@@ -317,7 +317,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.supportTracker.series = [arus.toFixed(2)];
         _this.supportTracker.analyticsData.meta.Status = data.status; // this.$ws.$on('alat:'|message', this.handleAboutMessageEvent);
 
-        console.log("Message subscribe with id " + _this.d_alat, _this.supportTracker);
+        console.log("Message subscribe with id " + d_alat._id, _this.supportTracker);
       });
       this.$set(this.revenueComparisonLine.series, 0, {
         name: d_alat.nama,
