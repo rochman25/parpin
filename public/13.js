@@ -319,7 +319,8 @@ var render = function() {
                                         click: function($event) {
                                           return _vm.navigate_to_detail_alat(
                                             ntf._id,
-                                            ntf.alat._id
+                                            ntf.alat._id,
+                                            ntf.status
                                           )
                                         }
                                       }

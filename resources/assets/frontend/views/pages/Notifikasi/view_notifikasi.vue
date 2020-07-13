@@ -64,7 +64,7 @@
                   type="border"
                   icon-pack="feather"
                   icon="icon-eye"
-                  @click="navigate_to_detail_alat(ntf._id,ntf.alat._id)"
+                  @click="navigate_to_detail_alat(ntf._id,ntf.alat._id,ntf.status)"
                 >lihat</vs-button>
               </vs-col>
             </vs-row>

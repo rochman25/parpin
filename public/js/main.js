@@ -65835,9 +65835,9 @@ var baseURL = "";
 var headers = "";
 /* harmony default export */ __webpack_exports__["default"] = (axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
   domain: domain,
-  // baseURL: 'http://192.168.1.6:3333/',
-  baseURL: 'http://192.168.43.73:3333/',
-  // baseURL: 'http://127.0.0.1:3333/',
+  // baseURL: 'http://192.168.1.8:3333/',
+  // baseURL: 'http://192.168.43.73:3333/',
+  baseURL: 'http://127.0.0.1:3333/',
   headers: {
     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
   } // You can add your headers here
@@ -67386,39 +67386,12 @@ var userTopicSubscriptions = function userTopicSubscriptions(id) {
 
             });
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.socket.on("open", function () {
-              // console.log(store.watch())
-              // console.log(store)
-              // if (store.getters.getAlatId != null) {
-              // userTopicSubscriptions(store.getters.getAlatId)
-              // } else {
-              // userTopicSubscriptions("all")
-              // }
               resolve();
-              console.log("ws connected"); // store.watch(
-              //         () => store.getters.getAlatId,
-              //         async id => {
-              //             console.log(id)
-              //         }
-              //     )
-              // console.log(store.getters.getAlatId)
+              console.log("ws connected");
             });
             vue__WEBPACK_IMPORTED_MODULE_4___default.a.ws.socket.on("close", function () {
               console.log("ws disconnected");
-            }); // FOR EXAMPLE you can observe for userId or another variable from Vuex
-            // store.watch(
-            //     () => store.getters.getAlatId,
-            //     async id => {
-            //         if (id) {
-            //             var i;
-            //             for (i = 0; i < id.length; i++) {
-            //                 userTopicSubscriptions(id[i])
-            //             }
-            //             // userTopicSubscriptions(id);
-            //             // console.log(id)
-            //         }
-            //         // console.log(id)
-            //     }
-            // );
+            });
           }));
 
         case 1:

@@ -48,14 +48,14 @@ class AlatController extends BaseController {
         let arus = [];
 
         if (id != null) {
-            arus = await AlatArus.where("alat_id", id).fetch();
+            arus = await AlatArus.where("alat_id", id).pickInverse(20);
             respon = {
                 message: this.dataNotFound,
                 data: arus
             };
             return response.json(this.successResponse(respon));
         }
-        arus = await AlatArus.all();
+        arus = await AlatArus.pickInverse(20);
         if (arus) {
             respon = {
                 message: this.dataFound,

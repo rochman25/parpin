@@ -5,7 +5,7 @@ const Model = use("Model");
 
 class ArusAlat extends Model {
     static get collection() {
-        return "arus";
+        return "arus_test";
     }
 }
 

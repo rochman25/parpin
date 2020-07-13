@@ -13,8 +13,11 @@ class AlatController {
     onMessage(message) {
         this.socket.broadcastToAll("message", message);
         if (message.arus > 0) {
+            if (message.arus < 250) {
+                this.saveNotification(message);
+            }
             // this.saveToDb(message);
-            setInterval(() => this.saveToDb(message), 60 * 1000);
+            setInterval(() => this.saveToDb(message), 60 * 2000);
         } else {
             // console.log("woi")
             this.saveNotification(message);
@@ -58,6 +61,33 @@ class AlatController {
                 title = "Jalur pipa sebelum " + message.nama_alat + " terjadi kebocoran"
                 msg = message.nama_alat + " tidak dapat menerima arus air"
                 category = "danger"
+                let notifikasi = await Notifikasi.query().where("alat._id", idAlat).orderBy('created_at', 'desc').first()
+                    // console.log(notifikasi)
+                if (notifikasi != null) {
+                    if (notifikasi.toJSON().status == 1) {
+                        let alat = await Alat.find(idAlat);
+                        let notifikasi = new Notifikasi();
+                        notifikasi.title = title;
+                        notifikasi.msg = msg;
+                        notifikasi.alat = alat.toJSON();
+                        notifikasi.category = category;
+                        notifikasi.status = 0;
+                        await notifikasi.save();
+                    }
+                } else {
+                    let alat = await Alat.find(idAlat);
+                    let notifikasi = new Notifikasi();
+                    notifikasi.title = title;
+                    notifikasi.msg = msg;
+                    notifikasi.alat = alat.toJSON();
+                    notifikasi.category = category;
+                    notifikasi.status = 0;
+                    await notifikasi.save();
+                }
+            } else if (message.arus < 250) {
+                title = "Jalur pipa sebelum " + message.nama_alat + " terjadi kebocoran"
+                msg = message.nama_alat + " mengalami penurunan tekanan arus air"
+                category = "warning"
                 let notifikasi = await Notifikasi.query().where("alat._id", idAlat).orderBy('created_at', 'desc').first()
                     // console.log(notifikasi)
                 if (notifikasi != null) {

@@ -83,12 +83,12 @@ module.exports = {
 
     mongodb: {
         client: "mongodb",
-        connectionString: Env.get("DB_CONNECTION_STRING", ""),
+        connectionString: Env.get("DB_CONNECTION_STRING", "mongodb+srv://zaenur:%24Rochman25@cluster0-6pduv.azure.mongodb.net/db_parpin?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"),
         connection: {
-            host: Env.get("DB_HOST", "localhost"),
+            host: Env.get("DB_HOST", "cluster0-6pduv.azure.mongodb.net"),
             port: Env.get("DB_PORT", 27017),
-            username: Env.get("DB_USER", "zaen"),
-            password: Env.get("DB_PASSWORD", "2"),
+            username: Env.get("DB_USER", "zaenur"),
+            password: Env.get("DB_PASSWORD", "%24Rochman25"),
             database: Env.get("DB_DATABASE", "db_parpin"),
             options: {
                 // replicaSet: Env.get('DB_REPLICA_SET', '')
